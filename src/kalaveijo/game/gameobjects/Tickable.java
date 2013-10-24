@@ -3,6 +3,7 @@ package kalaveijo.game.gameobjects;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 
 public interface Tickable {
 
@@ -14,6 +15,6 @@ public interface Tickable {
 
 	public void remove();
 
-	public void spawn();
+	public void spawn(Point location, int x, int y);
 
 }

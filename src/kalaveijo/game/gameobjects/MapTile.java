@@ -1,9 +1,12 @@
 package kalaveijo.game.gameobjects;
 
+import kalaveijo.game.util.Options;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.Rect;
 
 public class MapTile implements Tickable {
 
@@ -18,7 +21,14 @@ public class MapTile implements Tickable {
 
 	@Override
 	public void draw(Canvas c, Paint mPaint) {
-		c.drawBitmap(picture, location.x, location.y, mPaint);
+		// c.drawBitmap(picture, location.x, location.y, mPaint);
+		Rect r = new Rect(location.x, location.y, location.x
+				+ Options.TILE_SIZE, location.y + Options.TILE_SIZE);
+		Paint p = new Paint();
+		p.setColor(Color.GRAY);
+		p.setStyle(Paint.Style.STROKE);
+		p.setStrokeWidth(3);
+		c.drawRect(r, p);
 	}
 
 	@Override
@@ -34,9 +44,17 @@ public class MapTile implements Tickable {
 	}
 
 	@Override
-	public void spawn() {
+	public void spawn(Point location, int x, int y) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public int getTileType() {
+		return this.tileType;
+	}
+
+	public Point getLocation() {
+		return this.location;
 	}
 
 	// should load bitmap related to type of terrain, implement later

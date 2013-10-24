@@ -1,6 +1,7 @@
 package kalaveijo.game.grittydefence;
 
 import kalaveijo.game.gameobjects.ObjectManager;
+import kalaveijo.game.gameobjects.playerunits.Rifleman;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
@@ -27,6 +28,7 @@ public class GameThread extends Thread {
 	// Initializes all gamelogic related stuff
 	public void initializeGame(Canvas c) {
 		om = new ObjectManager();
+		om.spawnPlayerUnit(new Rifleman(om.getNextFreeId()), 4, 4);
 	}// initializeGame
 
 	/*
@@ -39,16 +41,21 @@ public class GameThread extends Thread {
 
 			if (firstRun) { //
 				initializeGame(mCanvas); // loads all game objects
-				cv.loadGraphics(om.getPlayerUnits(), om.getEnemyUnits(),
-						om.getMap()); // loads images to all
-										// gameobjects
+				/*
+				 * cv.loadGraphics(om.getPlayerUnits(), om.getEnemyUnits(),
+				 * om.getMap()); // loads images to all // gameobjects
+				 */
 				firstRun = false;
 			}// if
 
 			if (mCanvas != null) {
 
+				handleEvents(); // fetches user input
+				tick();
+
 				startTime = System.currentTimeMillis();
-				cv.doDraw(mCanvas, lastTime, om.getMap());
+				cv.doDraw(mCanvas, lastTime, om.getMap(), om.getPlayerUnits(),
+						om.getEnemyUnits());
 				mHolder.unlockCanvasAndPost(mCanvas);
 				lastTime = System.currentTimeMillis() - startTime;
 				sleepTime = perioid - lastTime;
@@ -67,6 +74,13 @@ public class GameThread extends Thread {
 			}// catch
 		}// while
 	}// run
+
+	/*
+	 * Single game tick, moves logic forward
+	 */
+	private void tick() {
+
+	}
 
 	// Passes user events to gameobjects, needs ArrayList<GuiEvent> as param
 	public void handleEvents() {

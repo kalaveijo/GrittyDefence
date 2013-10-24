@@ -16,6 +16,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
+import android.view.InputEvent;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -34,13 +35,14 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 	private GestureDetector mDetector;
 	private GameThread aThread;
 	private Context context; // aka GameActivity
+	private ArrayList<InputEvent> alIE = new ArrayList<InputEvent>();
 
 	public GameSurfaceView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		this.context = context;
 		initView();
 
-	}
+	}// constructor
 
 	// Initializes animation thread and canvas paints
 	private void initView() {
@@ -50,7 +52,7 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 		mPaint.setTypeface(Typeface.SANS_SERIF);
 
 		getHolder().addCallback(this);
-		aThread = new GameThread(getHolder(), this, mPaint);
+		aThread = new GameThread(getHolder(), this);
 
 		this.setOnTouchListener(this);
 
@@ -60,28 +62,30 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 					public boolean onDoubleTap(MotionEvent e) {
 						invalidate();
 						return true;
-					}
+					}// onDoubleTap
 
 					public boolean onFling(MotionEvent e1, MotionEvent e2,
 							float velocityX, float velocityY) {
 						invalidate();
 						return true;
-					}
+					}// onFling
 
-				});
+				}); // gesture detector
 
-	}
+	}// initView
 
 	/*
 	 * Does drawing to canvas, called from animation thread
 	 */
-	protected void doDraw(Canvas canvas, Long time, ArrayList<Map> al) {
+	protected void doDraw(Canvas canvas, Long time, ArrayList<Map> al,
+			ArrayList<Unit> playerUnits, ArrayList<Unit> enemyUnits) {
 		canvas.drawColor(Color.GREEN);
 
 		// draw map
 		drawMap(canvas, al);
 
 		// draw units
+		drawUnits(canvas, playerUnits, enemyUnits);
 
 		// draw effects
 
@@ -89,9 +93,9 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 
 		if (DEBUG) {
 			canvas.drawText(String.valueOf("ms: " + time), 20, 20, mPaint);
-		}
+		}// if
 
-	}
+	}// doDraw
 
 	protected void drawMap(Canvas c, ArrayList<Map> al) {
 		for (Map m : al) {
@@ -99,10 +103,23 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 			for (int i = 0; i < mt.length; i++) {
 				for (int e = 0; e < mt[i].length; e++) {
 					mt[i][e].draw(c, mPaint);
-				}
-			}
-		}
-	}
+				}// for
+			}// for
+		}// for
+	}// drawMap
+
+	protected void drawUnits(Canvas c, ArrayList<Unit> playerUnits,
+			ArrayList<Unit> enemyUnits) {
+
+		for (Unit u : playerUnits) {
+			u.draw(c, mPaint);
+		}// for
+
+		for (Unit u : enemyUnits) {
+			u.draw(c, mPaint);
+		}// for
+
+	}// drawUnits
 
 	/*
 	 * Does drawing to canvas, called from animation thread
@@ -121,7 +138,7 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 	@Override
 	public void surfaceCreated(SurfaceHolder arg0) {
 		if (!aThread.isAlive()) {
-			aThread = new GameThread(getHolder(), this, mPaint);
+			aThread = new GameThread(getHolder(), this);
 		}
 		aThread.setRunning(true);
 		aThread.start();
@@ -155,7 +172,7 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 			invalidate();
 		}
 		return true;
-	}
+	}// onTouch
 
 	// loads Bitmaps to maptiles
 	public boolean loadGraphicsToMapTiles(ArrayList<Map> al) {
@@ -169,13 +186,13 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 					picture = Bitmap.createScaledBitmap(picture, 40, 40, true);
 
 					mt[i][e].loadBitmap(picture);
-				}
-			}
+				}// for
+			}// for
 
-		}
+		}// for
 
 		return true;
-	}
+	}// loadGraphicsToMapTiles
 
 	// General function that handles every graphical object load
 	public void loadGraphics(ArrayList<Unit> playerUnits,
@@ -187,6 +204,18 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 
 		} catch (Exception e) {
 			Log.d("Graphical load error: ", e.getMessage());
-		}
+		}// catch
+	}// loadGraphics
+
+	// overridden to get canvas measurements
+	// currently not in use
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+		int parentWidth = MeasureSpec.getSize(widthMeasureSpec);
+		int parentHeight = MeasureSpec.getSize(heightMeasureSpec);
+	}// onMeasure
+
+	public ArrayList<InputEvent> getInputEvents() {
+		return this.alIE;
 	}
 }

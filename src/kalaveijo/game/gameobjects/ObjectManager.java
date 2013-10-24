@@ -7,13 +7,14 @@ import java.util.ArrayList;
  */
 public class ObjectManager {
 
+	private long idCount = 0;
 	private ArrayList<Unit> playerUnit = new ArrayList<Unit>();
 	private ArrayList<Unit> enemyUnit = new ArrayList<Unit>();
 	private ArrayList<Map> map = new ArrayList<Map>();
 
 	public ObjectManager() {
 		// initialize map
-		map.add(new Map());
+		map.add(new Map(21, 11));
 	}// Constructor
 
 	public ArrayList<Map> getMap() {
@@ -27,5 +28,45 @@ public class ObjectManager {
 	public ArrayList<Unit> getEnemyUnits() {
 		return this.enemyUnit;
 	}// getEnemyUnits
+
+	public boolean spawnPlayerUnit(Unit u, int x, int y) {
+
+		// if place is occupied, fail
+		if (!mapLocationIsFree(x, y)) {
+			return false;
+		}
+
+		MapTile[][] mt = new MapTile[0][0];
+		for (Map ma : map) { // Assuming we only have one map
+			mt = ma.getTiles();
+		}
+
+		playerUnit.add(u);
+		u.spawn(mt[x][y].getLocation(), x, y);
+		return true;
+	}// spawnPlayerUnit
+
+	// checks if give tile in x,y is free, returns true if tile is free
+	public boolean mapLocationIsFree(int x, int y) {
+		for (Unit u : enemyUnit) {
+			if (u.getPosX() == x && u.getPosY() == y) {
+				return false;
+			}// if
+		}// for
+
+		for (Unit u : playerUnit) {
+			if (u.getPosX() == x && u.getPosY() == y) {
+				return false;
+			}// if
+		}// for
+
+		return true;
+	}// mapLocationisFree
+
+	public long getNextFreeId() {
+		long i = this.idCount;
+		this.idCount++;
+		return i;
+	}// getNextFreeId
 
 }// class
