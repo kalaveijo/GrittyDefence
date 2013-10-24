@@ -1,5 +1,6 @@
 package kalaveijo.game.gameobjects.playerunits;
 
+import kalaveijo.game.gameobjects.Ai;
 import kalaveijo.game.gameobjects.Tickable;
 import kalaveijo.game.gameobjects.Unit;
 import kalaveijo.game.util.Options;
@@ -11,7 +12,11 @@ import android.graphics.Point;
 
 public class Rifleman extends Unit implements Tickable {
 
-	private int health = 10;
+	protected int health = 10;
+	protected int speed = 2;
+	protected int range = 2;
+	protected int atkSpeed = 1;
+	protected int status = IDLE;
 
 	public Rifleman(long id) {
 		super(id);
@@ -39,7 +44,6 @@ public class Rifleman extends Unit implements Tickable {
 		if (posX != -1) {
 			// AI does decision making here
 
-			// Skipped before implementation
 		}
 	}
 
@@ -54,6 +58,36 @@ public class Rifleman extends Unit implements Tickable {
 		this.location = location;
 		this.posX = x;
 		this.posY = y;
+		this.ai = new Ai(getPosX(), getPosY(), getRange(), this);
 	}
 
+	/*
+	 * handles statemachine and counting
+	 */
+	protected void moveStatus() {
+		if (status != IDLE) {
+			switch (status) {
+
+			case ATTACKING:
+
+				if (actionLeft - atkSpeed < 0) {
+					actionLeft = Options.GAME_SPEED;
+					status = IDLE;
+				} else {
+					actionLeft = actionLeft - atkSpeed;
+				}
+
+				break;
+
+			case MOVING:
+				// calculate movement step amount for sprite
+
+				break;
+
+			case DYING:
+				break;
+
+			}
+		}
+	}
 }

@@ -11,6 +11,11 @@ import android.graphics.Point;
  */
 public class Unit implements Tickable {
 
+	public static final int IDLE = 0;
+	public static final int MOVING = 1;
+	public static final int ATTACKING = 2;
+	public static final int DYING = 3;
+
 	protected int offSetX = Options.TILE_SIZE / 2,
 			offSetY = Options.TILE_SIZE / 2;
 	protected int Health = 0;
@@ -18,6 +23,13 @@ public class Unit implements Tickable {
 	protected Ai ai = null;
 	protected Point location = null;
 	protected int posX, posY = -1;
+	protected int range = 0;
+	protected int speed = 0;
+	protected int atkSpeed = 0;
+	protected int status = IDLE;
+	protected int actionLeft = Options.GAME_SPEED;
+	protected int nextTileX = 0;
+	protected int nextTileY = 0;
 
 	public Unit(long id) {
 		this.id = id;
@@ -59,6 +71,34 @@ public class Unit implements Tickable {
 	public void spawn(Point location, int x, int y) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public int getRange() {
+		return this.range;
+	}
+
+	public int getSpeed() {
+		return this.speed;
+	}
+
+	public int getStatus() {
+		return this.status;
+	}
+
+	public int getAtkSpeed() {
+		return this.status;
+	}
+
+	public int getActionLeft() {
+		return this.actionLeft;
+	}
+
+	public int getNextTileX() {
+		return this.nextTileX;
+	}
+
+	public int getNextTileY() {
+		return this.nextTileY;
 	}
 
 }

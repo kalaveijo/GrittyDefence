@@ -1,6 +1,7 @@
 package kalaveijo.game.grittydefence;
 
 import kalaveijo.game.gameobjects.ObjectManager;
+import kalaveijo.game.gameobjects.Unit;
 import kalaveijo.game.gameobjects.playerunits.Rifleman;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
@@ -51,7 +52,7 @@ public class GameThread extends Thread {
 			if (mCanvas != null) {
 
 				handleEvents(); // fetches user input
-				tick();
+				tick(om);
 
 				startTime = System.currentTimeMillis();
 				cv.doDraw(mCanvas, lastTime, om.getMap(), om.getPlayerUnits(),
@@ -78,8 +79,13 @@ public class GameThread extends Thread {
 	/*
 	 * Single game tick, moves logic forward
 	 */
-	private void tick() {
-
+	private void tick(ObjectManager om) {
+		for (Unit u : om.getPlayerUnits()) {
+			u.move();
+		}
+		for (Unit u : om.getEnemyUnits()) {
+			u.move();
+		}
 	}
 
 	// Passes user events to gameobjects, needs ArrayList<GuiEvent> as param
