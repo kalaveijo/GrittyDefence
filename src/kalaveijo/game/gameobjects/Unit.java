@@ -1,4 +1,4 @@
-package kalaveijo.game.grittydefence;
+package kalaveijo.game.gameobjects;
 
 /*
  * Basic superclass for game unit

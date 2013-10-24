@@ -2,21 +2,24 @@ package kalaveijo.game.grittydefence;
 
 import java.util.ArrayList;
 
+import kalaveijo.game.gameobjects.Map;
+import kalaveijo.game.gameobjects.MapTile;
+import kalaveijo.game.gameobjects.Unit;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Point;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.GestureDetector;
+import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.View.OnTouchListener;
 
 /*
@@ -26,45 +29,45 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 		SurfaceHolder.Callback {
 
 	private final boolean DEBUG = true; // enables debug data to this view
-	
+
 	private Paint mPaint;
 	private GestureDetector mDetector;
 	private GameThread aThread;
-	private Context context;
+	private Context context; // aka GameActivity
 
 	public GameSurfaceView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		this.context = context;
 		initView();
-		
+
 	}
 
-	//Initializes animation thread and canvas paints
+	// Initializes animation thread and canvas paints
 	private void initView() {
-		mPaint = new Paint(Paint.ANTI_ALIAS_FLAG); // reduce the
-		mPaint.setColor(Color.BLACK); // jaggedness of lines in graphics
+		mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+		mPaint.setColor(Color.BLACK);
 		mPaint.setTextSize(13);
 		mPaint.setTypeface(Typeface.SANS_SERIF);
 
 		getHolder().addCallback(this);
 		aThread = new GameThread(getHolder(), this, mPaint);
-		
+
 		this.setOnTouchListener(this);
-		
+
 		mDetector = new GestureDetector(getContext(),
 				new SimpleOnGestureListener() {
-			
+
 					public boolean onDoubleTap(MotionEvent e) {
 						invalidate();
 						return true;
 					}
-					
 
-					public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY){
+					public boolean onFling(MotionEvent e1, MotionEvent e2,
+							float velocityX, float velocityY) {
 						invalidate();
 						return true;
 					}
-					
+
 				});
 
 	}
@@ -72,23 +75,30 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 	/*
 	 * Does drawing to canvas, called from animation thread
 	 */
-	protected void doDraw(Canvas canvas, Long time, ArrayList<Map> al) {	
+	protected void doDraw(Canvas canvas, Long time, ArrayList<Map> al) {
 		canvas.drawColor(Color.GREEN);
-		
+
+		// draw map
 		drawMap(canvas, al);
-		
-		if(DEBUG){
+
+		// draw units
+
+		// draw effects
+
+		// draw GUI
+
+		if (DEBUG) {
 			canvas.drawText(String.valueOf("ms: " + time), 20, 20, mPaint);
 		}
-			
+
 	}
-	
-	protected void drawMap(Canvas c, ArrayList<Map> al){
-		for(Map m : al){
-			MapTile[][] mt =  m.getTiles();
-			for(int i = 0; i < mt.length; i++){
-				for(int e = 0; e < mt[i].length; e++){
-					mt[i][e].draw(c);
+
+	protected void drawMap(Canvas c, ArrayList<Map> al) {
+		for (Map m : al) {
+			MapTile[][] mt = m.getTiles();
+			for (int i = 0; i < mt.length; i++) {
+				for (int e = 0; e < mt[i].length; e++) {
+					mt[i][e].draw(c, mPaint);
 				}
 			}
 		}
@@ -98,11 +108,9 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 	 * Does drawing to canvas, called from animation thread
 	 */
 	/*
-	public void onDraw(Canvas canvas) {
-		super.onDraw(canvas);
-		canvas.drawColor(Color.GREEN);
-	}
-	*/
+	 * public void onDraw(Canvas canvas) { super.onDraw(canvas);
+	 * canvas.drawColor(Color.GREEN); }
+	 */
 
 	@Override
 	public void surfaceChanged(SurfaceHolder arg0, int arg1, int arg2, int arg3) {
@@ -136,7 +144,9 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 
 	/*
 	 * (non-Javadoc)
-	 * @see android.view.View.OnTouchListener#onTouch(android.view.View, android.view.MotionEvent)
+	 * 
+	 * @see android.view.View.OnTouchListener#onTouch(android.view.View,
+	 * android.view.MotionEvent)
 	 */
 	public boolean onTouch(View v, MotionEvent event) {
 		mDetector.onTouchEvent(event);
@@ -146,25 +156,37 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 		}
 		return true;
 	}
-	
-	public boolean loadBitmapsToMapTiles(ArrayList<Map> al){
-		
-		
-		for(Map map : al){
-			MapTile[][] mt =  map.getTiles();
-			for(int i = 0; i < mt.length; i++){
-				for(int e = 0; e < mt[i].length; e++){
-					Bitmap picture = BitmapFactory.decodeResource(getResources(),
-							R.drawable.grass_field);
+
+	// loads Bitmaps to maptiles
+	public boolean loadGraphicsToMapTiles(ArrayList<Map> al) {
+
+		for (Map map : al) {
+			MapTile[][] mt = map.getTiles();
+			for (int i = 0; i < mt.length; i++) {
+				for (int e = 0; e < mt[i].length; e++) {
+					Bitmap picture = BitmapFactory.decodeResource(
+							getResources(), R.drawable.grass_field);
 					picture = Bitmap.createScaledBitmap(picture, 40, 40, true);
-					
+
 					mt[i][e].loadBitmap(picture);
 				}
 			}
-			
+
 		}
-		
+
 		return true;
 	}
-	
+
+	// General function that handles every graphical object load
+	public void loadGraphics(ArrayList<Unit> playerUnits,
+			ArrayList<Unit> enemyUnits, ArrayList<Map> map) {
+		try {
+			loadGraphicsToMapTiles(map);
+
+			// implement
+
+		} catch (Exception e) {
+			Log.d("Graphical load error: ", e.getMessage());
+		}
+	}
 }
