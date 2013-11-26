@@ -13,14 +13,13 @@ import android.graphics.Point;
 
 public class Rifleman extends Unit implements Tickable {
 
-	protected int health = 10;
-	protected int speed = 2;
-	protected int range = 2;
-	protected int atkSpeed = 1;
-	protected int status = IDLE;
-
 	public Rifleman(long id, ObjectManager om) {
 		super(id, om);
+		super.health = 10;
+		super.speed = 1;
+		super.range = 2;
+		super.atkSpeed = 1;
+		super.status = IDLE;
 	}
 
 	@Override
@@ -44,6 +43,7 @@ public class Rifleman extends Unit implements Tickable {
 	public void move() {
 		if (posX != -1) {
 			// AI does decision making here
+			ai.assesAction();
 			moveStatus();
 		}
 	}
@@ -86,6 +86,7 @@ public class Rifleman extends Unit implements Tickable {
 
 				// if done moving
 				if (actionLeft - speed < 0) {
+
 					actionLeft = Options.GAME_SPEED;
 
 					posX = nextTileX;

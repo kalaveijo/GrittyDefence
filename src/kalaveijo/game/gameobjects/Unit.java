@@ -18,7 +18,7 @@ public class Unit implements Tickable {
 
 	protected int offSetX = Options.TILE_SIZE / 2,
 			offSetY = Options.TILE_SIZE / 2;
-	protected int Health = 0;
+	protected int health = 0;
 	protected long id;
 	protected Ai ai = null;
 	protected Point location = null;
@@ -101,6 +101,10 @@ public class Unit implements Tickable {
 
 	public int getNextTileY() {
 		return this.nextTileY;
+	}
+
+	public ObjectManager getObjectManager() {
+		return this.om;
 	}
 
 }
