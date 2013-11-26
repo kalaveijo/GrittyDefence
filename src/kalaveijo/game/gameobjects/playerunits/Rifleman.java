@@ -1,6 +1,7 @@
 package kalaveijo.game.gameobjects.playerunits;
 
 import kalaveijo.game.gameobjects.Ai;
+import kalaveijo.game.gameobjects.ObjectManager;
 import kalaveijo.game.gameobjects.Tickable;
 import kalaveijo.game.gameobjects.Unit;
 import kalaveijo.game.util.Options;
@@ -18,8 +19,8 @@ public class Rifleman extends Unit implements Tickable {
 	protected int atkSpeed = 1;
 	protected int status = IDLE;
 
-	public Rifleman(long id) {
-		super(id);
+	public Rifleman(long id, ObjectManager om) {
+		super(id, om);
 	}
 
 	@Override
@@ -43,7 +44,7 @@ public class Rifleman extends Unit implements Tickable {
 	public void move() {
 		if (posX != -1) {
 			// AI does decision making here
-
+			moveStatus();
 		}
 	}
 
@@ -70,17 +71,46 @@ public class Rifleman extends Unit implements Tickable {
 
 			case ATTACKING:
 
+				// if done attacking
 				if (actionLeft - atkSpeed < 0) {
 					actionLeft = Options.GAME_SPEED;
 					status = IDLE;
 				} else {
 					actionLeft = actionLeft - atkSpeed;
+					// else continnue attacking
 				}
 
 				break;
 
 			case MOVING:
-				// calculate movement step amount for sprite
+
+				// if done moving
+				if (actionLeft - speed < 0) {
+					actionLeft = Options.GAME_SPEED;
+
+					posX = nextTileX;
+					posY = nextTileY;
+					status = IDLE;
+				} else {
+					int spriteMoveAmount = Options.TILE_SIZE
+							/ (Options.GAME_SPEED / speed);
+					// else continnue moving
+					actionLeft = actionLeft - speed;
+					// calculate movement step amount for sprite
+					// if moving to left
+					if (nextTileX < posX) {
+						location.x = location.x - spriteMoveAmount;
+					} else if (nextTileX > posX) { // else right
+						location.x = location.x + spriteMoveAmount;
+					}
+
+					// if moving up
+					if (nextTileY < posY) {
+						location.y = location.y - spriteMoveAmount;
+					} else if (nextTileY > posY) { // else down
+						location.y = location.y + spriteMoveAmount;
+					}
+				}
 
 				break;
 
@@ -90,4 +120,14 @@ public class Rifleman extends Unit implements Tickable {
 			}
 		}
 	}
+
+	// used to check if movement logic works
+	public void debugOrder() {
+		if (Options.DEBUG) {
+			status = MOVING;
+			nextTileX = 3;
+			nextTileY = 4;
+		}
+	}
+
 }

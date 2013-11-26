@@ -29,7 +29,9 @@ public class GameThread extends Thread {
 	// Initializes all gamelogic related stuff
 	public void initializeGame(Canvas c) {
 		om = new ObjectManager();
-		om.spawnPlayerUnit(new Rifleman(om.getNextFreeId()), 4, 4);
+		Rifleman rm = new Rifleman(om.getNextFreeId(), om);
+		om.spawnPlayerUnit(rm, 4, 4);
+		rm.debugOrder();
 	}// initializeGame
 
 	/*
