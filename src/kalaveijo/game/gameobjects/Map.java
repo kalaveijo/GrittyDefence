@@ -70,6 +70,13 @@ public class Map {
 					direction = MovementHelper.LEFT;
 				}
 
+				if (i == 5 && e == 4)
+					direction = MovementHelper.DOWN;
+				if (i == 5 && e == 5)
+					direction = MovementHelper.LEFT;
+				if (i == 4 && e == 5)
+					direction = MovementHelper.UP;
+
 				helpers[i][e] = new MovementHelper(direction);
 			}// for
 		}// for

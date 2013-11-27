@@ -92,7 +92,9 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 		// draw GUI
 
 		if (DEBUG) {
-			canvas.drawText(String.valueOf("ms: " + time), 20, 20, mPaint);
+			if (time != 0)
+				time = 1000 / time; // converting loop duration to fps
+			canvas.drawText(String.valueOf("FPS: " + time), 20, 20, mPaint);
 		}// if
 
 	}// doDraw

@@ -93,11 +93,12 @@ public class Rifleman extends Unit implements Tickable {
 					posY = nextTileY;
 					status = IDLE;
 				} else {
+					// calculate movement step amount for sprite
 					int spriteMoveAmount = Options.TILE_SIZE
 							/ (Options.GAME_SPEED / speed);
 					// else continnue moving
 					actionLeft = actionLeft - speed;
-					// calculate movement step amount for sprite
+
 					// if moving to left
 					if (nextTileX < posX) {
 						location.x = location.x - spriteMoveAmount;
@@ -119,6 +120,9 @@ public class Rifleman extends Unit implements Tickable {
 				break;
 
 			}
+		} else {
+			// insert sprite into correct place
+			// ??
 		}
 	}
 
