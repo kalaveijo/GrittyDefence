@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.MapTile;
+import kalaveijo.game.gameobjects.MovementHelper;
 import kalaveijo.game.gameobjects.Unit;
+import kalaveijo.game.util.Options;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -102,9 +104,13 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 	protected void drawMap(Canvas c, ArrayList<Map> al) {
 		for (Map m : al) {
 			MapTile[][] mt = m.getTiles();
+			MovementHelper[][] mh = m.getHelpers();
 			for (int i = 0; i < mt.length; i++) {
 				for (int e = 0; e < mt[i].length; e++) {
 					mt[i][e].draw(c, mPaint);
+					if (Options.DEBUG) {
+						mh[i][e].draw(c);
+					}
 				}// for
 			}// for
 		}// for
@@ -181,13 +187,41 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 
 		for (Map map : al) {
 			MapTile[][] mt = map.getTiles();
+			MovementHelper[][] mh = map.getHelpers();
 			for (int i = 0; i < mt.length; i++) {
 				for (int e = 0; e < mt[i].length; e++) {
 					Bitmap picture = BitmapFactory.decodeResource(
 							getResources(), R.drawable.grass_field);
 					picture = Bitmap.createScaledBitmap(picture, 40, 40, true);
-
+					// load map
 					mt[i][e].loadBitmap(picture);
+
+					// load helper pictures
+					Bitmap[] helper = new Bitmap[4];
+
+					picture = BitmapFactory.decodeResource(getResources(),
+							R.drawable.arrow_up);
+					picture = Bitmap.createScaledBitmap(picture,
+							Options.TILE_SIZE, Options.TILE_SIZE, true);
+					helper[MovementHelper.UP] = picture;
+					picture = BitmapFactory.decodeResource(getResources(),
+							R.drawable.arrow_down);
+					picture = Bitmap.createScaledBitmap(picture,
+							Options.TILE_SIZE, Options.TILE_SIZE, true);
+					helper[MovementHelper.DOWN] = picture;
+					picture = BitmapFactory.decodeResource(getResources(),
+							R.drawable.arrow_left);
+					picture = Bitmap.createScaledBitmap(picture,
+							Options.TILE_SIZE, Options.TILE_SIZE, true);
+					helper[MovementHelper.LEFT] = picture;
+					picture = BitmapFactory.decodeResource(getResources(),
+							R.drawable.arrow_right);
+					picture = Bitmap.createScaledBitmap(picture,
+							Options.TILE_SIZE, Options.TILE_SIZE, true);
+					helper[MovementHelper.RIGHT] = picture;
+
+					mh[i][e].loadBitmap(helper);
+
 				}// for
 			}// for
 

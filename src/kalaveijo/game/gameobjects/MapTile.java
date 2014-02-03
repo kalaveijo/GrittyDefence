@@ -8,13 +8,14 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 
-public class MapTile implements Tickable {
+public class MapTile extends Unit implements Tickable {
 
 	private Point location;
 	private int tileType; // type of terrain
 	private Bitmap picture;
 
-	public MapTile(Point location, int tileType) {
+	public MapTile(long id, ObjectManager om, Point location, int tileType) {
+		super(id, om);
 		this.location = location;
 		this.tileType = tileType;
 	}

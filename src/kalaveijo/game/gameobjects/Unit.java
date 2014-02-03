@@ -30,6 +30,7 @@ public class Unit implements Tickable {
 	protected int actionLeft = Options.GAME_SPEED;
 	protected int nextTileX = 0;
 	protected int nextTileY = 0;
+	protected Bitmap[] picture;
 	protected ObjectManager om;
 
 	public Unit(long id, ObjectManager om) {

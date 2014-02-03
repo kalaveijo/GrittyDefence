@@ -6,7 +6,7 @@ import android.graphics.Point;
 /*
  * Keeps track of maptiles
  */
-public class Map {
+public class Map extends Unit {
 
 	private final int sizeX;
 	private final int sizeY;
@@ -14,30 +14,33 @@ public class Map {
 	private MovementHelper[][] helpers;
 
 	// default constructor
-	public Map() {
+	public Map(long id, ObjectManager om) {
+		super(id, om);
 		sizeX = 20;
 		sizeY = 20;
 		tiles = new MapTile[sizeX][sizeY];
 		helpers = new MovementHelper[sizeX][sizeY];
+
 		for (int i = 0; i < sizeX; i++) {
 			for (int e = 0; e < sizeY; e++) {
-				tiles[i][e] = new MapTile(new Point((i * Options.TILE_SIZE),
-						(e * Options.TILE_SIZE)), 0);
+				tiles[i][e] = new MapTile(om.getNextFreeId(), om, new Point(
+						(i * Options.TILE_SIZE), (e * Options.TILE_SIZE)), 0);
 			}// for
 		}// for
 		placeHelpers();
 
 	}// Constructor
 
-	public Map(int x, int y) {
+	public Map(long id, ObjectManager om, int x, int y) {
+		super(id, om);
 		sizeX = x;
 		sizeY = y;
 		tiles = new MapTile[sizeX][sizeY];
 		helpers = new MovementHelper[sizeX][sizeY];
 		for (int i = 0; i < sizeX; i++) {
 			for (int e = 0; e < sizeY; e++) {
-				tiles[i][e] = new MapTile(new Point((i * Options.TILE_SIZE),
-						(e * Options.TILE_SIZE)), 0);
+				tiles[i][e] = new MapTile(om.getNextFreeId(), om, new Point(
+						(i * Options.TILE_SIZE), (e * Options.TILE_SIZE)), 0);
 			}// for
 		}// for
 		placeHelpers();
@@ -77,7 +80,9 @@ public class Map {
 				if (i == 4 && e == 5)
 					direction = MovementHelper.UP;
 
-				helpers[i][e] = new MovementHelper(direction);
+				helpers[i][e] = new MovementHelper(om.getNextFreeId(), om,
+						direction, new Point((i * Options.TILE_SIZE),
+								(e * Options.TILE_SIZE)));
 			}// for
 		}// for
 	}

@@ -10,12 +10,21 @@ public class ObjectManager {
 	private long idCount = 0;
 	private ArrayList<Unit> playerUnit = new ArrayList<Unit>();
 	private ArrayList<Unit> enemyUnit = new ArrayList<Unit>();
+	private ArrayList<ArrayList> mapUnits = new ArrayList<ArrayList>();
 	private ArrayList<Map> map = new ArrayList<Map>();
 
 	public ObjectManager() {
 		// initialize map
-		map.add(new Map(21, 11));
+		map.add(new Map(getNextFreeId(), this, 21, 11));
 	}// Constructor
+
+	public ArrayList<ArrayList> getMapUnits() {
+		return mapUnits;
+	}
+
+	public void setMapUnits(ArrayList<ArrayList> mapUnits) {
+		this.mapUnits = mapUnits;
+	}
 
 	public ArrayList<Map> getMap() {
 		return this.map;
@@ -68,5 +77,9 @@ public class ObjectManager {
 		this.idCount++;
 		return i;
 	}// getNextFreeId
+
+	public void addToMapUnits(ArrayList al) {
+		this.mapUnits.add(al);
+	}
 
 }// class
