@@ -122,7 +122,7 @@ public class Rifleman extends Unit implements Tickable {
 			}
 		} else {
 			// insert sprite into correct place
-			// ??
+			super.resetSpritePosition();
 		}
 	}
 

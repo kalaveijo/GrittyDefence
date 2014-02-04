@@ -107,4 +107,10 @@ public class Unit implements Tickable {
 		return this.om;
 	}
 
+	// resets sprite to corresponds current x,y position
+	public void resetSpritePosition() {
+		location.x = posX * Options.TILE_SIZE;
+		location.y = posY * Options.TILE_SIZE;
+	}
+
 }

@@ -28,6 +28,7 @@ public class Ai {
 
 		// no point checking anything if unit is doing something already
 		if (u.status == Unit.IDLE) {
+			u.resetSpritePosition();
 			this.currentPosX = u.posX;
 			this.currentPosY = u.posY;
 			// Check if enemies are nearby

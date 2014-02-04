@@ -31,6 +31,9 @@ public class GameThread extends Thread {
 		om = new ObjectManager();
 		Rifleman rm = new Rifleman(om.getNextFreeId(), om);
 		om.spawnPlayerUnit(rm, 4, 4);
+		rm = new Rifleman(om.getNextFreeId(), om);
+		om.spawnPlayerUnit(rm, 15, 4);
+
 		// rm.debugOrder();
 	}// initializeGame
 
