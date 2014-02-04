@@ -21,7 +21,7 @@ public class MapTile extends Unit implements Tickable {
 	}
 
 	@Override
-	public void draw(Canvas c, Paint mPaint) {
+	public void draw(Canvas c) {
 		// c.drawBitmap(picture, location.x, location.y, mPaint);
 		Rect r = new Rect(location.x, location.y, location.x
 				+ Options.TILE_SIZE, location.y + Options.TILE_SIZE);

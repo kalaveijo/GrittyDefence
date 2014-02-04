@@ -3,6 +3,7 @@ package kalaveijo.game.gameobjects;
 import kalaveijo.game.util.Options;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Point;
 
 /*
@@ -33,23 +34,28 @@ public class MovementHelper extends Unit implements Tickable {
 
 	public void draw(Canvas canvas) {
 
+		Paint paint = new Paint();
 		// helpers will only be drawn when debug is tagged on
 		if (Options.DEBUG) {
 			if (picture != null) {
 				if (direction == UP) {
-					// canvas.drawBitmap(picture[UP]);
+					canvas.drawBitmap(picture[UP], location.x, location.y,
+							paint);
 				}
 
 				if (direction == DOWN) {
-
+					canvas.drawBitmap(picture[DOWN], location.x, location.y,
+							paint);
 				}
 
 				if (direction == LEFT) {
-
+					canvas.drawBitmap(picture[LEFT], location.x, location.y,
+							paint);
 				}
 
 				if (direction == RIGHT) {
-
+					canvas.drawBitmap(picture[RIGHT], location.x, location.y,
+							paint);
 				}
 			}
 		}

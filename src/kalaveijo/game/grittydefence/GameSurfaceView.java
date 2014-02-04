@@ -81,8 +81,6 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 	 */
 	protected void doDraw(Canvas canvas, Long time, ArrayList<Map> al,
 			ArrayList<Unit> playerUnits, ArrayList<Unit> enemyUnits) {
-		canvas.drawColor(Color.GREEN);
-
 		// draw map
 		drawMap(canvas, al);
 
@@ -103,28 +101,19 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 
 	protected void drawMap(Canvas c, ArrayList<Map> al) {
 		for (Map m : al) {
-			MapTile[][] mt = m.getTiles();
-			MovementHelper[][] mh = m.getHelpers();
-			for (int i = 0; i < mt.length; i++) {
-				for (int e = 0; e < mt[i].length; e++) {
-					mt[i][e].draw(c, mPaint);
-					if (Options.DEBUG) {
-						mh[i][e].draw(c);
-					}
-				}// for
-			}// for
-		}// for
+			m.draw(c);
+		}
 	}// drawMap
 
 	protected void drawUnits(Canvas c, ArrayList<Unit> playerUnits,
 			ArrayList<Unit> enemyUnits) {
 
 		for (Unit u : playerUnits) {
-			u.draw(c, mPaint);
+			u.draw(c);
 		}// for
 
 		for (Unit u : enemyUnits) {
-			u.draw(c, mPaint);
+			u.draw(c);
 		}// for
 
 	}// drawUnits

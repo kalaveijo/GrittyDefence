@@ -1,6 +1,10 @@
 package kalaveijo.game.gameobjects;
 
 import kalaveijo.game.util.Options;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Point;
 
 /*
@@ -12,6 +16,8 @@ public class Map extends Unit {
 	private final int sizeY;
 	private MapTile[][] tiles;
 	private MovementHelper[][] helpers;
+	private Bitmap fullMap;
+	private boolean needsReDraw = true;
 
 	// default constructor
 	public Map(long id, ObjectManager om) {
@@ -52,6 +58,35 @@ public class Map extends Unit {
 
 	public MovementHelper[][] getHelpers() {
 		return this.helpers;
+	}
+
+	public void draw(Canvas c) {
+
+		// if map havent been processed into one bitmap or needs redraw
+		if (needsReDraw || fullMap == null) {
+			if (fullMap == null) {
+				// create bitmap sized of whole map
+				fullMap = Bitmap.createBitmap(sizeX * Options.TILE_SIZE, sizeY
+						* Options.TILE_SIZE, Bitmap.Config.ARGB_8888);
+			}
+			// draw map into fullMap
+			Canvas temporaryCanvas = new Canvas(fullMap);
+			temporaryCanvas.drawColor(Color.GREEN);
+			for (int i = 0; i < tiles.length; i++) {
+				for (int e = 0; e < tiles[i].length; e++) {
+					tiles[i][e].draw(temporaryCanvas);
+					if (Options.DEBUG) {
+						helpers[i][e].draw(temporaryCanvas);
+					}
+				}// for
+			}// for
+			needsReDraw = false;
+			c.drawBitmap(fullMap, 0, 0, new Paint());
+		} else {
+			// if no need to touch background
+			c.drawBitmap(fullMap, 0, 0, new Paint());
+		}
+
 	}
 
 	/*

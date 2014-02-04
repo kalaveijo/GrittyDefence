@@ -3,7 +3,6 @@ package kalaveijo.game.gameobjects;
 import kalaveijo.game.util.Options;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.Point;
 
 /*
@@ -53,7 +52,7 @@ public class Unit implements Tickable {
 	}
 
 	@Override
-	public void draw(Canvas c, Paint mPaint) {
+	public void draw(Canvas c) {
 		// TODO Auto-generated method stub
 
 	}

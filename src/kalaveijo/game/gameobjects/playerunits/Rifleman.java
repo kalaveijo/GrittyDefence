@@ -29,9 +29,9 @@ public class Rifleman extends Unit implements Tickable {
 	}
 
 	@Override
-	public void draw(Canvas c, Paint mPaint) {
+	public void draw(Canvas c) {
 		if (location != null) {
-			mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+			Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 			mPaint.setColor(Color.BLUE);
 			c.drawCircle(location.x + offSetX, location.y + offSetY,
 					Options.TILE_SIZE / 2, mPaint);

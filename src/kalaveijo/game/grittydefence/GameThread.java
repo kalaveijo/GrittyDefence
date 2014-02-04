@@ -44,10 +44,10 @@ public class GameThread extends Thread {
 
 			if (firstRun) { //
 				initializeGame(mCanvas); // loads all game objects
-				/*
-				 * cv.loadGraphics(om.getPlayerUnits(), om.getEnemyUnits(),
-				 * om.getMap()); // loads images to all // gameobjects
-				 */
+
+				cv.loadGraphics(om.getPlayerUnits(), om.getEnemyUnits(),
+						om.getMap()); // loads images to all // gameobjects
+
 				firstRun = false;
 			}// if
 
