@@ -1,4 +1,4 @@
-package kalaveijo.game.gameobjects;
+package kalaveijo.game.engine;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;

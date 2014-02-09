@@ -2,6 +2,9 @@ package kalaveijo.game.gameobjects;
 
 import java.util.ArrayList;
 
+import kalaveijo.game.engine.Entity;
+import kalaveijo.game.engine.ObjectManager;
+
 /*
  * Handles decision making by units
  */
@@ -27,10 +30,10 @@ public class Ai {
 	public void assesAction() {
 
 		// no point checking anything if unit is doing something already
-		if (u.status == Unit.IDLE) {
+		if (u.getStatus() == Entity.IDLE) {
 			u.resetSpritePosition();
-			this.currentPosX = u.posX;
-			this.currentPosY = u.posY;
+			this.currentPosX = u.getPosX();
+			this.currentPosY = u.getPosY();
 			// Check if enemies are nearby
 
 			// Check where to move
@@ -71,9 +74,9 @@ public class Ai {
 		// Check if next tile is free
 		if (om.mapLocationIsFree(possibleTargetX, possibleTargetY)) {
 			// if so, point target for unit and change status to moving
-			u.nextTileX = possibleTargetX;
-			u.nextTileY = possibleTargetY;
-			u.status = Unit.MOVING;
+			u.setNextTileX(possibleTargetX);
+			u.setNextTileY(possibleTargetY);
+			u.setStatus(Entity.MOVING);
 		}
 	}
 }

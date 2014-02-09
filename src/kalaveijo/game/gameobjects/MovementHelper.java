@@ -1,5 +1,8 @@
 package kalaveijo.game.gameobjects;
 
+import kalaveijo.game.engine.Entity;
+import kalaveijo.game.engine.ObjectManager;
+import kalaveijo.game.engine.Tickable;
 import kalaveijo.game.util.Options;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -10,7 +13,7 @@ import android.graphics.Point;
  * Class under map that tells enemy units where they can move next
  * Each helper only points into certain direction
  */
-public class MovementHelper extends Unit implements Tickable {
+public class MovementHelper extends Entity implements Tickable {
 
 	public static final int UP = 0;
 	public static final int DOWN = 1;

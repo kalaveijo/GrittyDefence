@@ -1,8 +1,8 @@
 package kalaveijo.game.grittydefence;
 
-import kalaveijo.game.gameobjects.ObjectManager;
+import kalaveijo.game.engine.Entity;
+import kalaveijo.game.engine.ObjectManager;
 import kalaveijo.game.gameobjects.Unit;
-import kalaveijo.game.gameobjects.playerunits.Rifleman;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
@@ -29,9 +29,9 @@ public class GameThread extends Thread {
 	// Initializes all gamelogic related stuff
 	public void initializeGame(Canvas c) {
 		om = new ObjectManager();
-		Rifleman rm = new Rifleman(om.getNextFreeId(), om);
+		Unit rm = new Unit(om.getNextFreeId(), om);
 		om.spawnPlayerUnit(rm, 4, 4);
-		rm = new Rifleman(om.getNextFreeId(), om);
+		rm = new Unit(om.getNextFreeId(), om);
 		om.spawnPlayerUnit(rm, 15, 4);
 
 		// rm.debugOrder();
@@ -85,10 +85,10 @@ public class GameThread extends Thread {
 	 * Single game tick, moves logic forward
 	 */
 	private void tick(ObjectManager om) {
-		for (Unit u : om.getPlayerUnits()) {
+		for (Entity u : om.getPlayerUnits()) {
 			u.move();
 		}
-		for (Unit u : om.getEnemyUnits()) {
+		for (Entity u : om.getEnemyUnits()) {
 			u.move();
 		}
 	}

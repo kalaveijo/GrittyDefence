@@ -1,48 +1,24 @@
 package kalaveijo.game.gameobjects;
 
+import kalaveijo.game.engine.Entity;
+import kalaveijo.game.engine.ObjectManager;
+import kalaveijo.game.engine.Tickable;
 import kalaveijo.game.util.Options;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Point;
 
-/*
- * Basic superclass for game unit
- */
-public class Unit implements Tickable {
-
-	public static final int IDLE = 0;
-	public static final int MOVING = 1;
-	public static final int ATTACKING = 2;
-	public static final int DYING = 3;
-
-	protected int offSetX = Options.TILE_SIZE / 2,
-			offSetY = Options.TILE_SIZE / 2;
-	protected int health = 0;
-	protected long id;
-	protected Ai ai = null;
-	protected Point location = null;
-	protected int posX, posY = -1;
-	protected int range = 0;
-	protected int speed = 0;
-	protected int atkSpeed = 0;
-	protected int status = IDLE;
-	protected int actionLeft = Options.GAME_SPEED;
-	protected int nextTileX = 0;
-	protected int nextTileY = 0;
-	protected Bitmap[] picture;
-	protected ObjectManager om;
+public class Unit extends Entity implements Tickable {
 
 	public Unit(long id, ObjectManager om) {
-		this.id = id;
-		this.om = om;
-	}
-
-	public int getPosX() {
-		return this.posX;
-	}
-
-	public int getPosY() {
-		return this.posY;
+		super(id, om);
+		super.health = 10;
+		super.speed = 1;
+		super.range = 2;
+		super.atkSpeed = 1;
+		super.status = IDLE;
 	}
 
 	@Override
@@ -53,14 +29,22 @@ public class Unit implements Tickable {
 
 	@Override
 	public void draw(Canvas c) {
-		// TODO Auto-generated method stub
-
+		if (location != null) {
+			Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+			mPaint.setColor(Color.BLUE);
+			c.drawCircle(location.x + offSetX, location.y + offSetY,
+					Options.TILE_SIZE / 2, mPaint);
+			// offSetX/Y are from superclass
+		}
 	}
 
 	@Override
 	public void move() {
-		// TODO Auto-generated method stub
-
+		if (posX != -1) {
+			// AI does decision making here
+			ai.assesAction();
+			moveStatus();
+		}
 	}
 
 	@Override
@@ -71,46 +55,83 @@ public class Unit implements Tickable {
 
 	@Override
 	public void spawn(Point location, int x, int y) {
-		// TODO Auto-generated method stub
-
+		this.location = location;
+		this.posX = x;
+		this.posY = y;
+		this.ai = new Ai(getPosX(), getPosY(), getRange(), this);
 	}
 
-	public int getRange() {
-		return this.range;
+	/*
+	 * handles statemachine and counting
+	 */
+	protected void moveStatus() {
+		if (status != IDLE) {
+			switch (status) {
+
+			case ATTACKING:
+
+				// if done attacking
+				if (actionLeft - atkSpeed < 0) {
+					actionLeft = Options.GAME_SPEED;
+					status = IDLE;
+				} else {
+					actionLeft = actionLeft - atkSpeed;
+					// else continnue attacking
+				}
+
+				break;
+
+			case MOVING:
+
+				// if done moving
+				if (actionLeft - speed < 0) {
+
+					actionLeft = Options.GAME_SPEED;
+
+					posX = nextTileX;
+					posY = nextTileY;
+					status = IDLE;
+				} else {
+					// calculate movement step amount for sprite
+					int spriteMoveAmount = Options.TILE_SIZE
+							/ (Options.GAME_SPEED / speed);
+					// else continnue moving
+					actionLeft = actionLeft - speed;
+
+					// if moving to left
+					if (nextTileX < posX) {
+						location.x = location.x - spriteMoveAmount;
+					} else if (nextTileX > posX) { // else right
+						location.x = location.x + spriteMoveAmount;
+					}
+
+					// if moving up
+					if (nextTileY < posY) {
+						location.y = location.y - spriteMoveAmount;
+					} else if (nextTileY > posY) { // else down
+						location.y = location.y + spriteMoveAmount;
+					}
+				}
+
+				break;
+
+			case DYING:
+				break;
+
+			}
+		} else {
+			// insert sprite into correct place
+			super.resetSpritePosition();
+		}
 	}
 
-	public int getSpeed() {
-		return this.speed;
-	}
-
-	public int getStatus() {
-		return this.status;
-	}
-
-	public int getAtkSpeed() {
-		return this.status;
-	}
-
-	public int getActionLeft() {
-		return this.actionLeft;
-	}
-
-	public int getNextTileX() {
-		return this.nextTileX;
-	}
-
-	public int getNextTileY() {
-		return this.nextTileY;
-	}
-
-	public ObjectManager getObjectManager() {
-		return this.om;
-	}
-
-	// resets sprite to corresponds current x,y position
-	public void resetSpritePosition() {
-		location.x = posX * Options.TILE_SIZE;
-		location.y = posY * Options.TILE_SIZE;
+	// used to check if movement logic works
+	public void debugOrder() {
+		if (Options.DEBUG) {
+			status = MOVING;
+			nextTileX = 3;
+			nextTileY = 4;
+		}
 	}
 
 }

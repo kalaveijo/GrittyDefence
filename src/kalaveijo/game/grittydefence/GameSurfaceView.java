@@ -2,10 +2,10 @@ package kalaveijo.game.grittydefence;
 
 import java.util.ArrayList;
 
+import kalaveijo.game.engine.Entity;
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.MapTile;
 import kalaveijo.game.gameobjects.MovementHelper;
-import kalaveijo.game.gameobjects.Unit;
 import kalaveijo.game.util.Options;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -80,7 +80,7 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 	 * Does drawing to canvas, called from animation thread
 	 */
 	protected void doDraw(Canvas canvas, Long time, ArrayList<Map> al,
-			ArrayList<Unit> playerUnits, ArrayList<Unit> enemyUnits) {
+			ArrayList<Entity> playerUnits, ArrayList<Entity> enemyUnits) {
 		// draw map
 		drawMap(canvas, al);
 
@@ -105,14 +105,14 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 		}
 	}// drawMap
 
-	protected void drawUnits(Canvas c, ArrayList<Unit> playerUnits,
-			ArrayList<Unit> enemyUnits) {
+	protected void drawUnits(Canvas c, ArrayList<Entity> playerUnits,
+			ArrayList<Entity> enemyUnits) {
 
-		for (Unit u : playerUnits) {
+		for (Entity u : playerUnits) {
 			u.draw(c);
 		}// for
 
-		for (Unit u : enemyUnits) {
+		for (Entity u : enemyUnits) {
 			u.draw(c);
 		}// for
 
@@ -220,8 +220,8 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 	}// loadGraphicsToMapTiles
 
 	// General function that handles every graphical object load
-	public void loadGraphics(ArrayList<Unit> playerUnits,
-			ArrayList<Unit> enemyUnits, ArrayList<Map> map) {
+	public void loadGraphics(ArrayList<Entity> playerUnits,
+			ArrayList<Entity> enemyUnits, ArrayList<Map> map) {
 		try {
 			loadGraphicsToMapTiles(map);
 

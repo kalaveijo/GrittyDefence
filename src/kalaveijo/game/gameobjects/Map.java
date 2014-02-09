@@ -1,5 +1,7 @@
 package kalaveijo.game.gameobjects;
 
+import kalaveijo.game.engine.Entity;
+import kalaveijo.game.engine.ObjectManager;
 import kalaveijo.game.util.Options;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -10,7 +12,7 @@ import android.graphics.Point;
 /*
  * Keeps track of maptiles
  */
-public class Map extends Unit {
+public class Map extends Entity {
 
 	private final int sizeX;
 	private final int sizeY;
