@@ -3,9 +3,13 @@ package kalaveijo.game.engine;
 import java.util.ArrayList;
 
 import kalaveijo.game.gameobjects.Map;
+import kalaveijo.game.gameobjects.MovementHelper;
+import kalaveijo.game.grittydefence.GameSurfaceView;
 import kalaveijo.game.grittydefence.GameThread;
+import kalaveijo.game.grittydefence.R;
 import kalaveijo.game.util.Options;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
@@ -17,10 +21,14 @@ public class Renderer {
 
 	ObjectManager om;
 	GameThread gThread;
+	ArrayList<BitmapContainerGroup> bitmapContainers;
+	GameSurfaceView cv;
 
-	public Renderer(ObjectManager om, GameThread gThread) {
+	public Renderer(ObjectManager om, GameThread gThread, GameSurfaceView cv) {
 		this.om = om;
 		this.gThread = gThread;
+		this.cv = cv;
+		this.bitmapContainers = new ArrayList<BitmapContainerGroup>();
 	}
 
 	// for some reason this causes heavy load, need to debug later, use
@@ -106,4 +114,97 @@ public class Renderer {
 			m.draw(c);
 		}
 	}// drawMap
+
+	// handles loading of all bitmaps to memory
+	public void load() {
+		// load all bitmaps to memory
+		loadBitmaps(bitmapContainers);
+
+		// pair all entities with correct BitmapContainerGroups
+		pairContainersWithEntities();
+
+	}
+
+	public BitmapContainerGroup findContainer(String name) {
+		for (BitmapContainerGroup bcg : bitmapContainers) {
+			if (bcg.getName().equals(name)) {
+				return bcg;
+			}
+		}
+		return null;
+	}
+
+	// needs argument where to load all container groups
+	public void loadBitmaps(ArrayList<BitmapContainerGroup> BitmapContainers) {
+
+		// load xml file
+
+		// parse xml file and create container for all sprite groups
+		// here be haxorz
+		debugBitmapLoad(BitmapContainers);
+
+	}
+
+	public void pairContainersWithEntities() {
+
+		// loop through all entities and pair correct containers
+		debugPairContainers();
+
+	}
+
+	public void debugPairContainers() {
+
+		ArrayList<Map> al = om.getMap();
+
+		for (Map map : al) {
+			MovementHelper[][] mh = map.getHelpers();
+			for (int i = 0; i < map.getSizeX(); i++) {
+				for (int e = 0; e < map.getSizeY(); e++) {
+					BitmapContainerGroup bcg = findContainer("MovementHelper");
+					String temp = "";
+					if (bcg != null) {
+						mh[i][e].setBmContainerGroup(bcg);
+					}
+				}// for
+			}// for
+
+		}
+
+	}
+
+	public void debugBitmapLoad(ArrayList<BitmapContainerGroup> bitmapContainers) {
+		BitmapContainerGroup bmg = new BitmapContainerGroup("MovementHelper");
+		Bitmap picture;
+
+		picture = BitmapFactory.decodeResource(cv.getResources(),
+				R.drawable.arrow_up);
+		picture = Bitmap.createScaledBitmap(picture, Options.TILE_SIZE,
+				Options.TILE_SIZE, true);
+		bmg.addBitmapContainer(new BitmapContainer(picture, "Up_arrow",
+				BitmapContainer.UP, 0, false, bmg));
+
+		picture = BitmapFactory.decodeResource(cv.getResources(),
+				R.drawable.arrow_down);
+		picture = Bitmap.createScaledBitmap(picture, Options.TILE_SIZE,
+				Options.TILE_SIZE, true);
+		bmg.addBitmapContainer(new BitmapContainer(picture, "Down_arrow",
+				BitmapContainer.DOWN, 0, false, bmg));
+
+		picture = BitmapFactory.decodeResource(cv.getResources(),
+				R.drawable.arrow_left);
+		picture = Bitmap.createScaledBitmap(picture, Options.TILE_SIZE,
+				Options.TILE_SIZE, true);
+		bmg.addBitmapContainer(new BitmapContainer(picture, "Left_arrow",
+				BitmapContainer.LEFT, 0, false, bmg));
+
+		picture = BitmapFactory.decodeResource(cv.getResources(),
+				R.drawable.arrow_right);
+		picture = Bitmap.createScaledBitmap(picture, Options.TILE_SIZE,
+				Options.TILE_SIZE, true);
+		bmg.addBitmapContainer(new BitmapContainer(picture, "Right_arrow",
+				BitmapContainer.RIGHT, 0, false, bmg));
+
+		bitmapContainers.add(bmg);
+	}
+
 }

@@ -1,5 +1,6 @@
 package kalaveijo.game.gameobjects;
 
+import kalaveijo.game.engine.BitmapContainer;
 import kalaveijo.game.engine.Entity;
 import kalaveijo.game.engine.ObjectManager;
 import kalaveijo.game.engine.Tickable;
@@ -26,6 +27,7 @@ public class MovementHelper extends Entity implements Tickable {
 		super(id, om);
 		direction = RIGHT;
 		this.location = location;
+		this.name = "MapTile";
 	}
 
 	public MovementHelper(long id, ObjectManager om, int direction,
@@ -35,29 +37,57 @@ public class MovementHelper extends Entity implements Tickable {
 		this.location = location;
 	}
 
-	public void draw(Canvas canvas) {
+	/*
+	 * public void draw(Canvas canvas) {
+	 * 
+	 * Paint paint = new Paint(); // helpers will only be drawn when debug is
+	 * tagged on if (Options.DEBUG) { if (picture != null) { if (direction ==
+	 * UP) { canvas.drawBitmap(picture[UP], location.x, location.y, paint); }
+	 * 
+	 * if (direction == DOWN) { canvas.drawBitmap(picture[DOWN], location.x,
+	 * location.y, paint); }
+	 * 
+	 * if (direction == LEFT) { canvas.drawBitmap(picture[LEFT], location.x,
+	 * location.y, paint); }
+	 * 
+	 * if (direction == RIGHT) { canvas.drawBitmap(picture[RIGHT], location.x,
+	 * location.y, paint); } } } }
+	 */
 
+	public void draw(Canvas canvas) {
 		Paint paint = new Paint();
-		// helpers will only be drawn when debug is tagged on
+
 		if (Options.DEBUG) {
 			if (picture != null) {
 				if (direction == UP) {
-					canvas.drawBitmap(picture[UP], location.x, location.y,
+					canvas.drawBitmap(
+							bmContainerGroup.findBitmapContainerByType(
+									"MovementHelper", BitmapContainer.UP)
+									.getPicture(), location.x, location.y,
 							paint);
 				}
 
 				if (direction == DOWN) {
-					canvas.drawBitmap(picture[DOWN], location.x, location.y,
+					canvas.drawBitmap(
+							bmContainerGroup.findBitmapContainerByType(
+									"MovementHelper", BitmapContainer.DOWN)
+									.getPicture(), location.x, location.y,
 							paint);
 				}
 
 				if (direction == LEFT) {
-					canvas.drawBitmap(picture[LEFT], location.x, location.y,
+					canvas.drawBitmap(
+							bmContainerGroup.findBitmapContainerByType(
+									"MovementHelper", BitmapContainer.LEFT)
+									.getPicture(), location.x, location.y,
 							paint);
 				}
 
 				if (direction == RIGHT) {
-					canvas.drawBitmap(picture[RIGHT], location.x, location.y,
+					canvas.drawBitmap(
+							bmContainerGroup.findBitmapContainerByType(
+									"MovementHelper", BitmapContainer.RIGHT)
+									.getPicture(), location.x, location.y,
 							paint);
 				}
 			}

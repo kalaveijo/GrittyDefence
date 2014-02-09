@@ -30,7 +30,7 @@ public class GameThread extends Thread {
 	// Initializes all gamelogic related stuff
 	public void initializeGame(Canvas c) {
 		objectManager = new ObjectManager();
-		renderer = new Renderer(objectManager, this);
+		renderer = new Renderer(objectManager, this, cv);
 		Unit rm = new Unit(objectManager.getNextFreeId(), objectManager);
 		objectManager.spawnPlayerUnit(rm, 4, 4);
 		rm = new Unit(objectManager.getNextFreeId(), objectManager);
@@ -48,14 +48,16 @@ public class GameThread extends Thread {
 			if (firstRun) { //
 				initializeGame(mCanvas); // loads all game objects
 
-				cv.loadGraphics(objectManager.getPlayerUnits(),
-						objectManager.getEnemyUnits(), objectManager.getMap()); // loads
-																				// images
-																				// to
-																				// all
-																				// //
-																				// gameobjects
+				// cv.loadGraphics(objectManager.getPlayerUnits(),
+				// objectManager.getEnemyUnits(), objectManager.getMap()); //
+				// loads
+				// images
+				// to
+				// all
+				// //
+				// gameobjects
 
+				renderer.load();
 				firstRun = false;
 			}// if
 

@@ -31,7 +31,17 @@ public class Entity implements Tickable {
 	protected int nextTileX = 0;
 	protected int nextTileY = 0;
 	protected Bitmap[] picture;
+	protected BitmapContainerGroup bmContainerGroup;
+	protected String name;
 	protected ObjectManager om;
+
+	public BitmapContainerGroup getBmContainerGroup() {
+		return bmContainerGroup;
+	}
+
+	public void setBmContainerGroup(BitmapContainerGroup bmContainerGroup) {
+		this.bmContainerGroup = bmContainerGroup;
+	}
 
 	public Entity(long id, ObjectManager om) {
 		this.id = id;
