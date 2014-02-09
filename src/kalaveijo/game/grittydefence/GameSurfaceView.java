@@ -10,7 +10,6 @@ import kalaveijo.game.util.Options;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
@@ -75,56 +74,6 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 				}); // gesture detector
 
 	}// initView
-
-	/*
-	 * Does drawing to canvas, called from animation thread
-	 */
-	protected void doDraw(Canvas canvas, Long time, ArrayList<Map> al,
-			ArrayList<Entity> playerUnits, ArrayList<Entity> enemyUnits) {
-		// draw map
-		drawMap(canvas, al);
-
-		// draw units
-		drawUnits(canvas, playerUnits, enemyUnits);
-
-		// draw effects
-
-		// draw GUI
-
-		if (DEBUG) {
-			if (time != 0)
-				time = 1000 / time; // converting loop duration to fps
-			canvas.drawText(String.valueOf("FPS: " + time), 20, 20, mPaint);
-		}// if
-
-	}// doDraw
-
-	protected void drawMap(Canvas c, ArrayList<Map> al) {
-		for (Map m : al) {
-			m.draw(c);
-		}
-	}// drawMap
-
-	protected void drawUnits(Canvas c, ArrayList<Entity> playerUnits,
-			ArrayList<Entity> enemyUnits) {
-
-		for (Entity u : playerUnits) {
-			u.draw(c);
-		}// for
-
-		for (Entity u : enemyUnits) {
-			u.draw(c);
-		}// for
-
-	}// drawUnits
-
-	/*
-	 * Does drawing to canvas, called from animation thread
-	 */
-	/*
-	 * public void onDraw(Canvas canvas) { super.onDraw(canvas);
-	 * canvas.drawColor(Color.GREEN); }
-	 */
 
 	@Override
 	public void surfaceChanged(SurfaceHolder arg0, int arg1, int arg2, int arg3) {

@@ -2,6 +2,7 @@ package kalaveijo.game.grittydefence;
 
 import kalaveijo.game.engine.Entity;
 import kalaveijo.game.engine.ObjectManager;
+import kalaveijo.game.engine.Renderer;
 import kalaveijo.game.gameobjects.Unit;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
@@ -14,6 +15,7 @@ public class GameThread extends Thread {
 	private long startTime, lastTime = 0, sleepTime;
 	private long perioid = 20;
 	private boolean firstRun = true;
+	private Renderer renderer;
 
 	private ObjectManager om;
 
@@ -29,12 +31,11 @@ public class GameThread extends Thread {
 	// Initializes all gamelogic related stuff
 	public void initializeGame(Canvas c) {
 		om = new ObjectManager();
+		renderer = new Renderer(om, this);
 		Unit rm = new Unit(om.getNextFreeId(), om);
 		om.spawnPlayerUnit(rm, 4, 4);
 		rm = new Unit(om.getNextFreeId(), om);
 		om.spawnPlayerUnit(rm, 15, 4);
-
-		// rm.debugOrder();
 	}// initializeGame
 
 	/*
@@ -58,10 +59,8 @@ public class GameThread extends Thread {
 
 				handleEvents(); // fetches user input
 				tick(om);
-
 				startTime = System.currentTimeMillis();
-				cv.doDraw(mCanvas, lastTime, om.getMap(), om.getPlayerUnits(),
-						om.getEnemyUnits());
+				renderer.render(mCanvas);
 				mHolder.unlockCanvasAndPost(mCanvas);
 				lastTime = System.currentTimeMillis() - startTime;
 				sleepTime = perioid - lastTime;
@@ -91,6 +90,10 @@ public class GameThread extends Thread {
 		for (Entity u : om.getEnemyUnits()) {
 			u.move();
 		}
+	}
+
+	public long getLastTime() {
+		return this.lastTime;
 	}
 
 	// Passes user events to gameobjects, needs ArrayList<GuiEvent> as param

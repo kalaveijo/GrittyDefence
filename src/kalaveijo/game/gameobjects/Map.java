@@ -124,4 +124,11 @@ public class Map extends Entity {
 		}// for
 	}
 
+	public int getSizeX() {
+		return this.sizeX;
+	}
+
+	public int getSizeY() {
+		return this.sizeY;
+	}
 }
