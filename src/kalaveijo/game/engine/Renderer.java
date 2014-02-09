@@ -60,6 +60,7 @@ public class Renderer {
 		return renderedImage;
 	}
 
+	//
 	public void render(Canvas canvas) {
 
 		// draw map

@@ -1,6 +1,5 @@
 package kalaveijo.game.grittydefence;
 
-import kalaveijo.game.engine.Entity;
 import kalaveijo.game.engine.ObjectManager;
 import kalaveijo.game.engine.Renderer;
 import kalaveijo.game.gameobjects.Unit;
@@ -17,7 +16,7 @@ public class GameThread extends Thread {
 	private boolean firstRun = true;
 	private Renderer renderer;
 
-	private ObjectManager om;
+	private ObjectManager objectManager;
 
 	public GameThread(SurfaceHolder sHolder, GameSurfaceView cv) {
 		this.cv = cv;
@@ -30,12 +29,12 @@ public class GameThread extends Thread {
 
 	// Initializes all gamelogic related stuff
 	public void initializeGame(Canvas c) {
-		om = new ObjectManager();
-		renderer = new Renderer(om, this);
-		Unit rm = new Unit(om.getNextFreeId(), om);
-		om.spawnPlayerUnit(rm, 4, 4);
-		rm = new Unit(om.getNextFreeId(), om);
-		om.spawnPlayerUnit(rm, 15, 4);
+		objectManager = new ObjectManager();
+		renderer = new Renderer(objectManager, this);
+		Unit rm = new Unit(objectManager.getNextFreeId(), objectManager);
+		objectManager.spawnPlayerUnit(rm, 4, 4);
+		rm = new Unit(objectManager.getNextFreeId(), objectManager);
+		objectManager.spawnPlayerUnit(rm, 15, 4);
 	}// initializeGame
 
 	/*
@@ -49,8 +48,13 @@ public class GameThread extends Thread {
 			if (firstRun) { //
 				initializeGame(mCanvas); // loads all game objects
 
-				cv.loadGraphics(om.getPlayerUnits(), om.getEnemyUnits(),
-						om.getMap()); // loads images to all // gameobjects
+				cv.loadGraphics(objectManager.getPlayerUnits(),
+						objectManager.getEnemyUnits(), objectManager.getMap()); // loads
+																				// images
+																				// to
+																				// all
+																				// //
+																				// gameobjects
 
 				firstRun = false;
 			}// if
@@ -58,7 +62,7 @@ public class GameThread extends Thread {
 			if (mCanvas != null) {
 
 				handleEvents(); // fetches user input
-				tick(om);
+				objectManager.tick();
 				startTime = System.currentTimeMillis();
 				renderer.render(mCanvas);
 				mHolder.unlockCanvasAndPost(mCanvas);
@@ -79,18 +83,6 @@ public class GameThread extends Thread {
 			}// catch
 		}// while
 	}// run
-
-	/*
-	 * Single game tick, moves logic forward
-	 */
-	private void tick(ObjectManager om) {
-		for (Entity u : om.getPlayerUnits()) {
-			u.move();
-		}
-		for (Entity u : om.getEnemyUnits()) {
-			u.move();
-		}
-	}
 
 	public long getLastTime() {
 		return this.lastTime;

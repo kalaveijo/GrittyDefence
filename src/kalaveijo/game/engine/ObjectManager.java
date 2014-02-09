@@ -85,4 +85,14 @@ public class ObjectManager {
 		this.mapUnits.add(al);
 	}
 
+	// run single game tick for all Entities
+	public void tick() {
+		for (Entity u : getPlayerUnits()) {
+			u.move();
+		}
+		for (Entity u : getEnemyUnits()) {
+			u.move();
+		}
+	}
+
 }// class
