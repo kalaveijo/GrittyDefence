@@ -33,7 +33,20 @@ public class GameThread extends Thread {
 		Unit rm = new Unit(objectManager.getNextFreeId(), objectManager);
 		objectManager.spawnPlayerUnit(rm, 4, 4);
 		rm = new Unit(objectManager.getNextFreeId(), objectManager);
-		objectManager.spawnPlayerUnit(rm, 15, 4);
+		objectManager.spawnPlayerUnit(rm, 5, 4);
+
+		rm = new Unit(objectManager.getNextFreeId(), objectManager);
+		objectManager.spawnPlayerUnit(rm, 9, 4);
+
+		rm = new Unit(objectManager.getNextFreeId(), objectManager);
+		objectManager.spawnPlayerUnit(rm, 10, 4);
+
+		rm = new Unit(objectManager.getNextFreeId(), objectManager);
+		objectManager.spawnPlayerUnit(rm, 11, 4);
+
+		rm = new Unit(objectManager.getNextFreeId(), objectManager);
+		objectManager.spawnPlayerUnit(rm, 12, 4);
+
 	}// initializeGame
 
 	/*
@@ -46,16 +59,6 @@ public class GameThread extends Thread {
 
 			if (firstRun) { //
 				initializeGame(mCanvas); // loads all game objects
-
-				// cv.loadGraphics(objectManager.getPlayerUnits(),
-				// objectManager.getEnemyUnits(), objectManager.getMap()); //
-				// loads
-				// images
-				// to
-				// all
-				// //
-				// gameobjects
-
 				renderer.load();
 				firstRun = false;
 			}// if

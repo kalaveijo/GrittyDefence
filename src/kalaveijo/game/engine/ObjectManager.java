@@ -3,7 +3,8 @@ package kalaveijo.game.engine;
 import java.util.ArrayList;
 
 import kalaveijo.game.gameobjects.Map;
-import kalaveijo.game.gameobjects.MapTile;
+import kalaveijo.game.util.Options;
+import android.graphics.Point;
 
 /*
  * Handles all and any game objects
@@ -48,13 +49,9 @@ public class ObjectManager {
 			return false;
 		}
 
-		MapTile[][] mt = new MapTile[0][0];
-		for (Map ma : map) { // Assuming we only have one map
-			mt = ma.getTiles();
-		}
-
+		Point point = new Point(x * Options.TILE_SIZE, y * Options.TILE_SIZE);
 		playerUnit.add(u);
-		u.spawn(mt[x][y].getLocation(), x, y);
+		u.spawn(point, x, y);
 		return true;
 	}// spawnPlayerUnit
 

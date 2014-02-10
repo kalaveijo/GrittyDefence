@@ -15,7 +15,7 @@ public class MapTile extends Entity implements Tickable {
 
 	private Point location;
 	private int tileType; // type of terrain
-	private Bitmap picture;
+	private Bitmap picture; // not in use, check BitmapContainerGroup
 
 	public MapTile(long id, ObjectManager om, Point location, int tileType) {
 		super(id, om);

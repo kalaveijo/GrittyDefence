@@ -61,6 +61,7 @@ public class MovementHelper extends Entity implements Tickable {
 		try {
 			if (Options.DEBUG) {
 				if (bmContainerGroup != null) {
+					// write nullchecks you shit
 					if (direction == UP) {
 						canvas.drawBitmap(bmContainerGroup
 								.findBitmapContainerByType(BitmapContainer.UP)
@@ -82,11 +83,6 @@ public class MovementHelper extends Entity implements Tickable {
 					}
 
 					if (direction == RIGHT) {
-
-						BitmapContainer temp = bmContainerGroup
-								.findBitmapContainerByType("MovementHelper",
-										BitmapContainer.RIGHT);
-
 						canvas.drawBitmap(
 								bmContainerGroup.findBitmapContainerByType(
 										BitmapContainer.RIGHT).getPicture(),
