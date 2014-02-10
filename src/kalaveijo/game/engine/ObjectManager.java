@@ -72,6 +72,24 @@ public class ObjectManager {
 		return true;
 	}// mapLocationisFree
 
+	// used to check if someone else is trying to go to desired tile
+	public boolean noneIsMovingToMapLocation(int x, int y) {
+
+		for (Entity u : enemyUnit) {
+			if (u.getNextTileX() == x && u.getNextTileY() == y) {
+				return false;
+			}// if
+		}// for
+
+		for (Entity u : playerUnit) {
+			if (u.getNextTileX() == x && u.getNextTileY() == y) {
+				return false;
+			}// if
+		}// for
+
+		return true;
+	}
+
 	public long getNextFreeId() {
 		long i = this.idCount;
 		this.idCount++;

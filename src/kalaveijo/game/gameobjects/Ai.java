@@ -73,10 +73,12 @@ public class Ai {
 
 		// Check if next tile is free
 		if (om.mapLocationIsFree(possibleTargetX, possibleTargetY)) {
-			// if so, point target for unit and change status to moving
-			u.setNextTileX(possibleTargetX);
-			u.setNextTileY(possibleTargetY);
-			u.setStatus(Entity.MOVING);
+			if (om.noneIsMovingToMapLocation(possibleTargetX, possibleTargetY)) {
+				// if so, point target for unit and change status to moving
+				u.setNextTileX(possibleTargetX);
+				u.setNextTileY(possibleTargetY);
+				u.setStatus(Entity.MOVING);
+			}
 		}
 	}
 }
