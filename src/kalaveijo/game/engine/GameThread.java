@@ -1,8 +1,7 @@
-package kalaveijo.game.grittydefence;
+package kalaveijo.game.engine;
 
-import kalaveijo.game.engine.ObjectManager;
-import kalaveijo.game.engine.Renderer;
 import kalaveijo.game.gameobjects.Unit;
+import kalaveijo.game.grittydefence.GameSurfaceView;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 

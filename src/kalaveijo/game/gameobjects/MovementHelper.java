@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.util.Log;
 
 /*
  * Class under map that tells enemy units where they can move next
@@ -57,41 +58,46 @@ public class MovementHelper extends Entity implements Tickable {
 	public void draw(Canvas canvas) {
 		Paint paint = new Paint();
 
-		if (Options.DEBUG) {
-			if (picture != null) {
-				if (direction == UP) {
-					canvas.drawBitmap(
-							bmContainerGroup.findBitmapContainerByType(
-									"MovementHelper", BitmapContainer.UP)
-									.getPicture(), location.x, location.y,
-							paint);
-				}
+		try {
+			if (Options.DEBUG) {
+				if (bmContainerGroup != null) {
+					if (direction == UP) {
+						canvas.drawBitmap(bmContainerGroup
+								.findBitmapContainerByType(BitmapContainer.UP)
+								.getPicture(), location.x, location.y, paint);
+					}
 
-				if (direction == DOWN) {
-					canvas.drawBitmap(
-							bmContainerGroup.findBitmapContainerByType(
-									"MovementHelper", BitmapContainer.DOWN)
-									.getPicture(), location.x, location.y,
-							paint);
-				}
+					if (direction == DOWN) {
+						canvas.drawBitmap(
+								bmContainerGroup.findBitmapContainerByType(
+										BitmapContainer.DOWN).getPicture(),
+								location.x, location.y, paint);
+					}
 
-				if (direction == LEFT) {
-					canvas.drawBitmap(
-							bmContainerGroup.findBitmapContainerByType(
-									"MovementHelper", BitmapContainer.LEFT)
-									.getPicture(), location.x, location.y,
-							paint);
-				}
+					if (direction == LEFT) {
+						canvas.drawBitmap(
+								bmContainerGroup.findBitmapContainerByType(
+										BitmapContainer.LEFT).getPicture(),
+								location.x, location.y, paint);
+					}
 
-				if (direction == RIGHT) {
-					canvas.drawBitmap(
-							bmContainerGroup.findBitmapContainerByType(
-									"MovementHelper", BitmapContainer.RIGHT)
-									.getPicture(), location.x, location.y,
-							paint);
+					if (direction == RIGHT) {
+
+						BitmapContainer temp = bmContainerGroup
+								.findBitmapContainerByType("MovementHelper",
+										BitmapContainer.RIGHT);
+
+						canvas.drawBitmap(
+								bmContainerGroup.findBitmapContainerByType(
+										BitmapContainer.RIGHT).getPicture(),
+								location.x, location.y, paint);
+					}
 				}
 			}
+		} catch (Exception e) {
+			Log.d("MovementHelperException", e.toString());
 		}
+
 	}
 
 	public int getDirection() {

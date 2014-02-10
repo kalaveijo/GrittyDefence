@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.MovementHelper;
 import kalaveijo.game.grittydefence.GameSurfaceView;
-import kalaveijo.game.grittydefence.GameThread;
 import kalaveijo.game.grittydefence.R;
 import kalaveijo.game.util.Options;
 import android.graphics.Bitmap;

@@ -3,6 +3,7 @@ package kalaveijo.game.grittydefence;
 import java.util.ArrayList;
 
 import kalaveijo.game.engine.Entity;
+import kalaveijo.game.engine.GameThread;
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.MapTile;
 import kalaveijo.game.gameobjects.MovementHelper;
