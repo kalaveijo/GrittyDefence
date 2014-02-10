@@ -12,6 +12,7 @@ import android.graphics.Point;
 public class ObjectManager {
 
 	private long idCount = 0;
+	private ArrayList<Entity> entityTemplates = new ArrayList<Entity>();
 	private ArrayList<Entity> playerUnit = new ArrayList<Entity>();
 	private ArrayList<Entity> enemyUnit = new ArrayList<Entity>();
 	private ArrayList<ArrayList> mapUnits = new ArrayList<ArrayList>();
@@ -24,6 +25,10 @@ public class ObjectManager {
 
 	public ArrayList<ArrayList> getMapUnits() {
 		return mapUnits;
+	}
+
+	public void addEntityTemplate(Entity entity) {
+		entityTemplates.add(entity);
 	}
 
 	public void setMapUnits(ArrayList<ArrayList> mapUnits) {

@@ -16,6 +16,7 @@ public class GameThread extends Thread {
 	private Renderer renderer;
 
 	private ObjectManager objectManager;
+	private XMLLoader xmlLoader;
 
 	public GameThread(SurfaceHolder sHolder, GameSurfaceView cv) {
 		this.cv = cv;
@@ -29,6 +30,7 @@ public class GameThread extends Thread {
 	// Initializes all gamelogic related stuff
 	public void initializeGame(Canvas c) {
 		objectManager = new ObjectManager();
+		xmlLoader = new XMLLoader(objectManager, cv);
 		renderer = new Renderer(objectManager, this, cv);
 		Unit rm = new Unit(objectManager.getNextFreeId(), objectManager);
 		objectManager.spawnPlayerUnit(rm, 4, 4);
@@ -37,15 +39,6 @@ public class GameThread extends Thread {
 
 		rm = new Unit(objectManager.getNextFreeId(), objectManager);
 		objectManager.spawnPlayerUnit(rm, 9, 4);
-
-		rm = new Unit(objectManager.getNextFreeId(), objectManager);
-		objectManager.spawnPlayerUnit(rm, 10, 4);
-
-		rm = new Unit(objectManager.getNextFreeId(), objectManager);
-		objectManager.spawnPlayerUnit(rm, 11, 4);
-
-		rm = new Unit(objectManager.getNextFreeId(), objectManager);
-		objectManager.spawnPlayerUnit(rm, 12, 4);
 
 	}// initializeGame
 
@@ -59,6 +52,7 @@ public class GameThread extends Thread {
 
 			if (firstRun) { //
 				initializeGame(mCanvas); // loads all game objects
+				xmlLoader.loadEntities();
 				renderer.load();
 				firstRun = false;
 			}// if

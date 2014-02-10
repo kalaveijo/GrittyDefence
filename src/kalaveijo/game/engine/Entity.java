@@ -32,6 +32,9 @@ public class Entity implements Tickable {
 	protected int nextTileY = 0;
 	protected Bitmap[] picture;
 	protected BitmapContainerGroup bmContainerGroup;
+	protected String bitmapcontainergroup; // used by rendered to load correct
+											// bmContainerGroup
+
 	protected String name;
 	protected ObjectManager om;
 
@@ -46,6 +49,11 @@ public class Entity implements Tickable {
 	public Entity(long id, ObjectManager om) {
 		this.id = id;
 		this.om = om;
+	}
+
+	// used when making empty templates
+	public Entity() {
+
 	}
 
 	public int getPosX() {

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<unitlist>
+	<unit>
+		<name>rifleman</name>
+		<health>10</health>
+		<speed>1</speed>
+		<range>2</range>
+		<atkspeed>1</atkspeed>
+		<ai>enemy</ai>
+		<bitmapcontainergroup>rifleman</bitmapcontainergroup>
+	</unit>
+</unitlist>
