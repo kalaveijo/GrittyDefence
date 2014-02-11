@@ -54,12 +54,11 @@ public class Renderer {
 			// draw GUI
 
 			if (Options.DEBUG) {
-				long time = gThread.getLastTime();
+				int fps = gThread.getFPS();
 				Paint mPaint = new Paint();
-				if (time != 0)
-					time = 1000 / time; // converting loop duration to fps
-				temporaryCanvas.drawText(String.valueOf("FPS: " + time), 20,
-						20, mPaint);
+				if (fps != 0)
+					temporaryCanvas.drawText(String.valueOf("FPS: " + fps), 20,
+							20, mPaint);
 			}// if
 
 		}
@@ -81,11 +80,10 @@ public class Renderer {
 		// draw GUI
 
 		if (Options.DEBUG) {
-			long time = gThread.getLastTime();
+			int fps = gThread.getFPS();
 			Paint mPaint = new Paint();
-			if (time != 0)
-				time = 1000 / time; // converting loop duration to fps
-			canvas.drawText(String.valueOf("FPS: " + time), 20, 20, mPaint);
+			if (fps != 0)
+				canvas.drawText(String.valueOf("FPS: " + fps), 20, 20, mPaint);
 		}// if
 
 	}

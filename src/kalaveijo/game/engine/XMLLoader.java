@@ -59,7 +59,7 @@ public class XMLLoader {
 
 	// reads inputstream and outputs document
 	// inputstream will be given by AssetManager
-	private Document readXml(InputStream inputStream) {
+	private Document readXml(InputStream inputStream) {// desired fps
 		Document document = null;
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try {
