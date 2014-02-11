@@ -1,5 +1,6 @@
 package kalaveijo.game.engine;
 
+import kalaveijo.game.gameobjects.Ai;
 import kalaveijo.game.gameobjects.Unit;
 import kalaveijo.game.grittydefence.GameSurfaceView;
 import kalaveijo.game.util.Options;
@@ -38,11 +39,13 @@ public class GameThread extends Thread {
 		renderer = new Renderer(objectManager, this, cv);
 		Unit rm = new Unit(objectManager.getNextFreeId(), objectManager);
 		objectManager.spawnPlayerUnit(rm, 4, 4);
+		rm.loadAi(new Ai(rm));
 		rm = new Unit(objectManager.getNextFreeId(), objectManager);
 		objectManager.spawnPlayerUnit(rm, 5, 4);
-
+		rm.loadAi(new Ai(rm));
 		rm = new Unit(objectManager.getNextFreeId(), objectManager);
 		objectManager.spawnPlayerUnit(rm, 9, 4);
+		rm.loadAi(new Ai(rm));
 
 	}// initializeGame
 

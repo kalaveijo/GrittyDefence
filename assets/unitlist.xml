@@ -6,7 +6,7 @@
 		<speed>1</speed>
 		<range>2</range>
 		<atkspeed>1</atkspeed>
-		<ai>enemy</ai>
+		<player>enemy</player>
 		<bitmapcontainergroup>rifleman</bitmapcontainergroup>
 	</unit>
 </unitlist>

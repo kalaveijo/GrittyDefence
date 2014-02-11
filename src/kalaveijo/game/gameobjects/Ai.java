@@ -24,6 +24,15 @@ public class Ai {
 		this.u = u;
 	} // Constructor
 
+	public Ai(Unit u) {
+		this.currentPosX = u.getPosX();
+		this.currentPosY = u.getPosY();
+		this.targetX = currentPosX; // currently not used in anything
+		this.targetY = currentPosY; // currently not used in anything
+		this.range = u.getRange();
+		this.u = u;
+	} // Constructor
+
 	/*
 	 * called by Unit move, checks what unit needs to do next and orders it
 	 */

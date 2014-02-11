@@ -44,8 +44,11 @@ public class XMLLoader {
 				int speed = Integer.parseInt(getValue(e, "speed"));
 				int range = Integer.parseInt(getValue(e, "range"));
 				int atkspeed = Integer.parseInt(getValue(e, "atkspeed"));
-
-				String temp = "herp";
+				String player = getValue(e, "player");
+				String bitmapcontainergroup = getValue(e,
+						"bitmapcontainergroup");
+				om.addEntityTemplate(new EntityTemplate(om, name, health,
+						speed, range, atkspeed, player, bitmapcontainergroup));
 			}
 		} catch (Exception e) {
 			Log.d("XML I/O", e.toString());

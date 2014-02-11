@@ -60,6 +60,19 @@ public class ObjectManager {
 		return true;
 	}// spawnPlayerUnit
 
+	public boolean spawnEnemyUnit(Entity u, int x, int y) {
+
+		// if place is occupied, fail
+		if (!mapLocationIsFree(x, y)) {
+			return false;
+		}
+
+		Point point = new Point(x * Options.TILE_SIZE, y * Options.TILE_SIZE);
+		enemyUnit.add(u);
+		u.spawn(point, x, y);
+		return true;
+	}// spawnPlayerUnit
+
 	// checks if give tile in x,y is free, returns true if tile is free
 	public boolean mapLocationIsFree(int x, int y) {
 		for (Entity u : enemyUnit) {

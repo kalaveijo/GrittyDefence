@@ -21,6 +21,21 @@ public class Unit extends Entity implements Tickable {
 		super.status = IDLE;
 	}
 
+	public Unit(long id, ObjectManager om, String name, int health, int speed,
+			int range, int atkSpeed, String bitmapContainerGroup) {
+		super(id, om);
+		super.name = name;
+		super.health = health;
+		super.speed = speed;
+		super.range = range;
+		super.atkSpeed = atkSpeed;
+		super.status = IDLE;
+	}
+
+	public void loadAi(Ai ai) {
+		this.ai = ai;
+	}
+
 	@Override
 	public void loadBitmap(Bitmap m) {
 		// TODO Auto-generated method stub
@@ -31,7 +46,7 @@ public class Unit extends Entity implements Tickable {
 	public void draw(Canvas c) {
 		if (location != null) {
 			Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-			mPaint.setColor(Color.BLUE);
+			mPaint.setColor(Color.YELLOW);
 			c.drawCircle(location.x + offSetX, location.y + offSetY,
 					Options.TILE_SIZE / 2, mPaint);
 			// offSetX/Y are from superclass
@@ -42,7 +57,8 @@ public class Unit extends Entity implements Tickable {
 	public void move() {
 		if (posX != -1) {
 			// AI does decision making here
-			ai.assesAction();
+			if (ai != null)
+				ai.assesAction();
 			moveStatus();
 		}
 	}
@@ -58,7 +74,6 @@ public class Unit extends Entity implements Tickable {
 		this.location = location;
 		this.posX = x;
 		this.posY = y;
-		this.ai = new Ai(getPosX(), getPosY(), getRange(), this);
 	}
 
 	/*

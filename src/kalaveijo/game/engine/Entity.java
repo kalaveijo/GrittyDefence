@@ -32,9 +32,7 @@ public class Entity implements Tickable {
 	protected int nextTileY = 0;
 	protected Bitmap[] picture;
 	protected BitmapContainerGroup bmContainerGroup;
-	protected String bitmapcontainergroup; // used by rendered to load correct
-											// bmContainerGroup
-
+	protected String bitmapContainerGroup;
 	protected String name;
 	protected ObjectManager om;
 
