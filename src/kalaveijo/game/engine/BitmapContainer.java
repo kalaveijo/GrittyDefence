@@ -22,6 +22,7 @@ public class BitmapContainer {
 	public static final int DOWN = 1;
 	public static final int LEFT = 2;
 	public static final int RIGHT = 3;
+	public static final int SPAWN = 4;
 
 	public BitmapContainer(Bitmap pic, String name, int type, int frame,
 			boolean alwaysRender, BitmapContainerGroup group) {
