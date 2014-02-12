@@ -1,11 +1,17 @@
 package kalaveijo.game.engine;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import kalaveijo.game.gameobjects.Map;
+import kalaveijo.game.gameobjects.MapTile;
+import kalaveijo.game.gameobjects.MovementHelper;
+import kalaveijo.game.gameobjects.SpawnTile;
 import kalaveijo.game.grittydefence.GameSurfaceView;
+import kalaveijo.game.util.Options;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -14,6 +20,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 import android.content.res.AssetManager;
+import android.graphics.Point;
 import android.util.Log;
 
 /*
@@ -57,7 +64,80 @@ public class XMLLoader {
 	}
 
 	public void loadMap() {
+		try {
 
+			Map map;
+			MapTile[][] tiles;
+			MovementHelper[][] helpers;
+			ArrayList<SpawnTile> spawners = new ArrayList<SpawnTile>();
+			int x;
+			int y;
+			String name;
+
+			AssetManager assetManager = cv.getContext().getAssets();
+			Document entitylist = readXml(assetManager.open("maplist.xml"));
+			NodeList nodeList = entitylist.getElementsByTagName("map");
+
+			for (int i = 0; i < nodeList.getLength(); i++) {
+				Element e = (Element) nodeList.item(i);
+				x = Integer.parseInt(getValue(e, "x"));
+				y = Integer.parseInt(getValue(e, "y"));
+
+				// find tiles
+				tiles = new MapTile[x][y];
+				int tx = 0;
+				int ty = 0;
+				nodeList = entitylist.getElementsByTagName("tile");
+				for (i = 0; i < nodeList.getLength(); i++) {
+					tiles[tx][ty] = new MapTile(om.getNextFreeId(), om,
+							new Point(tx * Options.TILE_SIZE, ty
+									* Options.TILE_SIZE),
+							Integer.parseInt(getValue(e, "type")));
+
+					tx++;
+					if (tx >= x) {
+						tx = 0;
+						ty++;
+					}
+				}
+
+				// find movement helpers
+				helpers = new MovementHelper[x][y];
+				tx = 0;
+				ty = 0;
+				nodeList = entitylist.getElementsByTagName("helper");
+				for (i = 0; i < nodeList.getLength(); i++) {
+
+					helpers[tx][ty] = new MovementHelper(om.getNextFreeId(),
+							om, MovementHelper.parseDirection(getValue(e,
+									"direction")),
+							new Point(tx * Options.TILE_SIZE, ty
+									* Options.TILE_SIZE));
+
+					tx++;
+					if (tx >= x) {
+						tx = 0;
+						ty++;
+					}
+				}
+
+				// find movement helpers
+				spawners = new ArrayList<SpawnTile>();
+				nodeList = entitylist.getElementsByTagName("spawn");
+				for (i = 0; i < nodeList.getLength(); i++) {
+					spawners.add(new SpawnTile(om.getNextFreeId(), om, Integer
+							.parseInt(getValue(e, "x")), Integer
+							.parseInt(getValue(e, "y"))));
+				}
+
+				map = new Map(om.getNextFreeId(), om, x, y, tiles, helpers,
+						spawners);
+
+				om.addMap(map);
+			}
+		} catch (Exception e) {
+			Log.d("XML I/O", e.toString());
+		}
 	}
 
 	// reads inputstream and outputs document

@@ -61,6 +61,7 @@ public class GameThread extends Thread {
 				if (firstRun) { //
 					initializeGame(mCanvas); // loads all game objects
 					xmlLoader.loadEntities();
+					xmlLoader.loadMap();
 					renderer.load();
 					firstRun = false;
 				}// if
