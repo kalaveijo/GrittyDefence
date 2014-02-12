@@ -1,5 +1,7 @@
 package kalaveijo.game.gameobjects;
 
+import java.util.ArrayList;
+
 import kalaveijo.game.engine.Entity;
 import kalaveijo.game.engine.ObjectManager;
 import kalaveijo.game.util.Options;
@@ -18,6 +20,7 @@ public class Map extends Entity {
 	private final int sizeY;
 	private MapTile[][] tiles;
 	private MovementHelper[][] helpers;
+	private ArrayList<SpawnTile> spawners;
 	private Bitmap fullMap;
 	private boolean needsReDraw = true;
 
@@ -28,13 +31,9 @@ public class Map extends Entity {
 		sizeY = 20;
 		tiles = new MapTile[sizeX][sizeY];
 		helpers = new MovementHelper[sizeX][sizeY];
+		spawners = new ArrayList<SpawnTile>();
 
-		for (int i = 0; i < sizeX; i++) {
-			for (int e = 0; e < sizeY; e++) {
-				tiles[i][e] = new MapTile(om.getNextFreeId(), om, new Point(
-						(i * Options.TILE_SIZE), (e * Options.TILE_SIZE)), 0);
-			}// for
-		}// for
+		placeMapTiles();
 		placeHelpers();
 
 	}// Constructor
@@ -45,12 +44,9 @@ public class Map extends Entity {
 		sizeY = y;
 		tiles = new MapTile[sizeX][sizeY];
 		helpers = new MovementHelper[sizeX][sizeY];
-		for (int i = 0; i < sizeX; i++) {
-			for (int e = 0; e < sizeY; e++) {
-				tiles[i][e] = new MapTile(om.getNextFreeId(), om, new Point(
-						(i * Options.TILE_SIZE), (e * Options.TILE_SIZE)), 0);
-			}// for
-		}// for
+		spawners = new ArrayList<SpawnTile>();
+
+		placeMapTiles();
 		placeHelpers();
 	}// constructor with size parameters given
 
@@ -120,6 +116,15 @@ public class Map extends Entity {
 				helpers[i][e] = new MovementHelper(om.getNextFreeId(), om,
 						direction, new Point((i * Options.TILE_SIZE),
 								(e * Options.TILE_SIZE)));
+			}// for
+		}// for
+	}
+
+	private void placeMapTiles() {
+		for (int i = 0; i < sizeX; i++) {
+			for (int e = 0; e < sizeY; e++) {
+				tiles[i][e] = new MapTile(om.getNextFreeId(), om, new Point(
+						(i * Options.TILE_SIZE), (e * Options.TILE_SIZE)), 0);
 			}// for
 		}// for
 	}
