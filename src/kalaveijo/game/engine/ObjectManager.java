@@ -24,7 +24,6 @@ public class ObjectManager {
 	}// Constructor
 
 	public void addMap(Map map) {
-		map = null;
 		if (map != null) {
 			this.map.add(map);
 		} else {
