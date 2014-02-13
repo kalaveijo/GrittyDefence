@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wavelist>
+    <wave>
+        <name>riflemanWave</name>
+        <number>1</number>
+        <includedunits>
+            <unit>rifleman</unit>
+            <unit>rifleman</unit>
+            <unit>rifleman</unit>
+        </includedunits>
+    </wave>
+</wavelist>
