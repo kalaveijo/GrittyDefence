@@ -50,16 +50,6 @@ public class Map extends Entity {
 		placeHelpers();
 	}// constructor with size parameters given
 
-	public Map(long id, ObjectManager om, int x, int y, MapTile[][] tiles,
-			MovementHelper[][] helpers, ArrayList<SpawnTile> spawners) {
-		super(id, om);
-		this.sizeX = x;
-		this.sizeY = y;
-		this.tiles = tiles;
-		this.helpers = helpers;
-		this.spawners = spawners;
-	}
-
 	public MapTile[][] getTiles() {
 		return this.tiles;
 	}// getTiles

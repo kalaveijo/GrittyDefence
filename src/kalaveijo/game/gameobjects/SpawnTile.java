@@ -9,7 +9,7 @@ import android.graphics.Paint;
 
 public class SpawnTile extends Entity {
 
-	public SpawnTile(long id, ObjectManager om, int posX, int posY) {
+	SpawnTile(int id, ObjectManager om, int posX, int posY) {
 		super(id, om);
 		super.setPosX(posX);
 		super.setPosY(posY);
