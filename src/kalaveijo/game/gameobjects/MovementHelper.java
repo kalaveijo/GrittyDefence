@@ -62,6 +62,7 @@ public class MovementHelper extends Entity implements Tickable {
 			if (Options.DEBUG) {
 				if (bmContainerGroup != null) {
 					// write nullchecks you shit
+					// lol no
 					if (direction == UP) {
 						canvas.drawBitmap(bmContainerGroup
 								.findBitmapContainerByType(BitmapContainer.UP)
@@ -103,5 +104,25 @@ public class MovementHelper extends Entity implements Tickable {
 	// loads all pictures
 	public void loadBitmap(Bitmap[] bm) {
 		this.picture = bm;
+	}
+
+	public static int parseDirection(String direction) {
+		int convertedDirection = 0;
+		if (direction.equals("up")) {
+			convertedDirection = UP;
+		}
+		if (direction.equals("down")) {
+			convertedDirection = DOWN;
+		}
+
+		if (direction.equals("left")) {
+			convertedDirection = LEFT;
+		}
+
+		if (direction.equals("right")) {
+			convertedDirection = RIGHT;
+		}
+
+		return convertedDirection;
 	}
 }
