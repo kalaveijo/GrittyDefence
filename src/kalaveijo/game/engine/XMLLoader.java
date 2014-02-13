@@ -82,6 +82,7 @@ public class XMLLoader {
 				Element e = (Element) nodeList.item(i);
 				x = Integer.parseInt(getValue(e, "x"));
 				y = Integer.parseInt(getValue(e, "y"));
+				name = getValue(e, "name");
 
 				// find tiles
 				tiles = new MapTile[x][y];
@@ -134,8 +135,8 @@ public class XMLLoader {
 							.parseInt(getValue(e, "y"))));
 				}
 
-				map = new Map(om.getNextFreeId(), om, x, y, tiles, helpers,
-						spawners);
+				map = new Map(om.getNextFreeId(), name, om, x, y, tiles,
+						helpers, spawners);
 
 				om.addMap(map);
 			}

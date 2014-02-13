@@ -1,11 +1,13 @@
 package kalaveijo.game.gameobjects;
 
 import kalaveijo.game.engine.BitmapContainer;
+import kalaveijo.game.engine.BitmapContainerGroup;
 import kalaveijo.game.engine.Entity;
 import kalaveijo.game.engine.ObjectManager;
 import kalaveijo.game.util.Options;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 
 public class SpawnTile extends Entity {
 
@@ -13,6 +15,8 @@ public class SpawnTile extends Entity {
 		super(id, om);
 		super.setPosX(posX);
 		super.setPosY(posY);
+		super.location = new Point(posX * Options.TILE_SIZE, posY
+				* Options.TILE_SIZE);
 	}
 
 	public void draw(Canvas c) {
@@ -27,5 +31,9 @@ public class SpawnTile extends Entity {
 
 			}
 		}
+	}
+
+	public void setBitmapContainerGroup(BitmapContainerGroup bcg) {
+		this.bmContainerGroup = bcg;
 	}
 }

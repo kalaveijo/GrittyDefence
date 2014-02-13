@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.MovementHelper;
+import kalaveijo.game.gameobjects.SpawnTile;
 import kalaveijo.game.grittydefence.GameSurfaceView;
 import kalaveijo.game.grittydefence.R;
 import kalaveijo.game.util.Options;
@@ -158,13 +159,19 @@ public class Renderer {
 			for (int i = 0; i < map.getSizeX(); i++) {
 				for (int e = 0; e < map.getSizeY(); e++) {
 					BitmapContainerGroup bcg = findContainer("MovementHelper");
-					String temp = "";
 					if (bcg != null) {
 						mh[i][e].setBmContainerGroup(bcg);
 					}
 				}// for
 			}// for
 
+			ArrayList<SpawnTile> alst = map.getSpawners();
+			for (SpawnTile st : alst) {
+				BitmapContainerGroup bcg = findContainer("SpawnTile");
+				if (bcg != null) {
+					st.setBmContainerGroup(bcg);
+				}
+			}
 		}
 
 	}
@@ -200,6 +207,16 @@ public class Renderer {
 				Options.TILE_SIZE, true);
 		bmg.addBitmapContainer(new BitmapContainer(picture, "Right_arrow",
 				BitmapContainer.RIGHT, 0, false, bmg));
+
+		bitmapContainers.add(bmg);
+		//
+		bmg = new BitmapContainerGroup("SpawnTile");
+		picture = BitmapFactory.decodeResource(cv.getResources(),
+				R.drawable.spawn);
+		picture = Bitmap.createScaledBitmap(picture, Options.TILE_SIZE,
+				Options.TILE_SIZE, true);
+		bmg.addBitmapContainer(new BitmapContainer(picture, "spawn",
+				BitmapContainer.SPAWN, 0, false, bmg));
 
 		bitmapContainers.add(bmg);
 	}

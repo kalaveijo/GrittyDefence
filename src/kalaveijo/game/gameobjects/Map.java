@@ -50,9 +50,11 @@ public class Map extends Entity {
 		placeHelpers();
 	}// constructor with size parameters given
 
-	public Map(long id, ObjectManager om, int x, int y, MapTile[][] tiles,
-			MovementHelper[][] helpers, ArrayList<SpawnTile> spawners) {
+	public Map(long id, String name, ObjectManager om, int x, int y,
+			MapTile[][] tiles, MovementHelper[][] helpers,
+			ArrayList<SpawnTile> spawners) {
 		super(id, om);
+		this.name = name;
 		this.sizeX = x;
 		this.sizeY = y;
 		this.tiles = tiles;
@@ -88,6 +90,14 @@ public class Map extends Entity {
 					}
 				}// for
 			}// for
+
+			// draw spawners
+			if (Options.DEBUG) {
+				for (SpawnTile st : spawners) {
+					st.draw(temporaryCanvas);
+				}
+			}
+
 			needsReDraw = false;
 			c.drawBitmap(fullMap, 0, 0, new Paint());
 		} else {
@@ -145,5 +155,9 @@ public class Map extends Entity {
 
 	public int getSizeY() {
 		return this.sizeY;
+	}
+
+	public ArrayList<SpawnTile> getSpawners() {
+		return spawners;
 	}
 }

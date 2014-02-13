@@ -38,13 +38,13 @@ public class GameThread extends Thread {
 		xmlLoader = new XMLLoader(objectManager, cv);
 		renderer = new Renderer(objectManager, this, cv);
 		Unit rm = new Unit(objectManager.getNextFreeId(), objectManager);
-		objectManager.spawnPlayerUnit(rm, 4, 4);
+		objectManager.spawnPlayerUnit(rm, 4, 5);
 		rm.loadAi(new Ai(rm));
 		rm = new Unit(objectManager.getNextFreeId(), objectManager);
-		objectManager.spawnPlayerUnit(rm, 5, 4);
+		objectManager.spawnPlayerUnit(rm, 5, 5);
 		rm.loadAi(new Ai(rm));
 		rm = new Unit(objectManager.getNextFreeId(), objectManager);
-		objectManager.spawnPlayerUnit(rm, 9, 4);
+		objectManager.spawnPlayerUnit(rm, 9, 5);
 		rm.loadAi(new Ai(rm));
 
 	}// initializeGame
