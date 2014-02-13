@@ -9,4 +9,10 @@
             </wave>
         </waves>
     </mission>
+    
+    <mission>
+        <map>tutorial</map>
+        <name>randomMission</name>
+    </mission>
+    
 </missionlist>

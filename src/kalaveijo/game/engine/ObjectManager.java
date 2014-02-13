@@ -3,6 +3,7 @@ package kalaveijo.game.engine;
 import java.util.ArrayList;
 
 import kalaveijo.game.gameobjects.Map;
+import kalaveijo.game.gameobjects.Mission;
 import kalaveijo.game.util.Options;
 import android.graphics.Point;
 
@@ -15,7 +16,9 @@ public class ObjectManager {
 	private ArrayList<Entity> entityTemplates = new ArrayList<Entity>();
 	private ArrayList<Entity> playerUnit = new ArrayList<Entity>();
 	private ArrayList<Entity> enemyUnit = new ArrayList<Entity>();
-	private ArrayList<ArrayList> mapUnits = new ArrayList<ArrayList>();
+	private ArrayList<Entity> mapUnits = new ArrayList<Entity>();
+	private ArrayList<Mission> missions = new ArrayList<Mission>();
+
 	private ArrayList<Map> map = new ArrayList<Map>();
 
 	public ObjectManager() {
@@ -31,7 +34,7 @@ public class ObjectManager {
 		}
 	}
 
-	public ArrayList<ArrayList> getMapUnits() {
+	public ArrayList<Entity> getMapUnits() {
 		return mapUnits;
 	}
 
@@ -39,7 +42,7 @@ public class ObjectManager {
 		entityTemplates.add(entity);
 	}
 
-	public void setMapUnits(ArrayList<ArrayList> mapUnits) {
+	public void setMapUnits(ArrayList<Entity> mapUnits) {
 		this.mapUnits = mapUnits;
 	}
 
@@ -122,7 +125,7 @@ public class ObjectManager {
 		return i;
 	}// getNextFreeId
 
-	public void addToMapUnits(ArrayList al) {
+	public void addToMapUnits(Entity al) {
 		this.mapUnits.add(al);
 	}
 
@@ -134,6 +137,14 @@ public class ObjectManager {
 		for (Entity u : getEnemyUnits()) {
 			u.move();
 		}
+	}
+
+	public ArrayList<Mission> getMissions() {
+		return missions;
+	}
+
+	public void addToMissions(Mission missions) {
+		this.missions.add(missions);
 	}
 
 }// class

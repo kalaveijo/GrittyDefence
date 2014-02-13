@@ -8,6 +8,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.MapTile;
+import kalaveijo.game.gameobjects.Mission;
+import kalaveijo.game.gameobjects.MissionWave;
 import kalaveijo.game.gameobjects.MovementHelper;
 import kalaveijo.game.gameobjects.SpawnTile;
 import kalaveijo.game.grittydefence.GameSurfaceView;
@@ -143,6 +145,49 @@ public class XMLLoader {
 		} catch (Exception e) {
 			Log.d("XML I/O", e.toString());
 		}
+	}
+
+	// loads all missions and associated waves
+	public void loadMissions() {
+		try {
+
+			Mission mission;
+			String name;
+			String map;
+			String[] waves;
+
+			AssetManager assetManager = cv.getContext().getAssets();
+			Document entitylist = readXml(assetManager.open("missionlist.xml"));
+			NodeList nodeList = entitylist.getElementsByTagName("mission");
+
+			for (int i = 0; i < nodeList.getLength(); i++) {
+				Element e = (Element) nodeList.item(i);
+
+				// store mission name
+
+				// store map name
+
+				// loop all waves into String[]
+
+				// loadWaves(String[])
+			}
+
+		} catch (Exception e) {
+			Log.d("MissionLoadError", e.toString());
+		}
+	}
+
+	// loads waves, each array pointer has wave name
+	public ArrayList<MissionWave> loadWaves(String[] waves) {
+		ArrayList<MissionWave> waveList = new ArrayList<MissionWave>();
+
+		// open wavelist.xml
+
+		// find correct wave information by name
+
+		// store wave into arraylist
+
+		return waveList;
 	}
 
 	// reads inputstream and outputs document
