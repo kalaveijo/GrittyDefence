@@ -89,6 +89,7 @@ public class XMLLoader {
 				int ty = 0;
 				nodeList = entitylist.getElementsByTagName("tile");
 				for (i = 0; i < nodeList.getLength(); i++) {
+					e = (Element) nodeList.item(i);
 					tiles[tx][ty] = new MapTile(om.getNextFreeId(), om,
 							new Point(tx * Options.TILE_SIZE, ty
 									* Options.TILE_SIZE),
@@ -107,6 +108,7 @@ public class XMLLoader {
 				ty = 0;
 				nodeList = entitylist.getElementsByTagName("helper");
 				for (i = 0; i < nodeList.getLength(); i++) {
+					e = (Element) nodeList.item(i);
 
 					helpers[tx][ty] = new MovementHelper(om.getNextFreeId(),
 							om, MovementHelper.parseDirection(getValue(e,
@@ -124,7 +126,9 @@ public class XMLLoader {
 				// find movement helpers
 				spawners = new ArrayList<SpawnTile>();
 				nodeList = entitylist.getElementsByTagName("spawn");
+
 				for (i = 0; i < nodeList.getLength(); i++) {
+					e = (Element) nodeList.item(i);
 					spawners.add(new SpawnTile(om.getNextFreeId(), om, Integer
 							.parseInt(getValue(e, "x")), Integer
 							.parseInt(getValue(e, "y"))));
