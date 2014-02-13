@@ -1446,6 +1446,16 @@
                 <x>19</x>
                 <y>5</y>
             </spawn>
+            
+            <spawn>
+                <x>19</x>
+                <y>6</y>
+            </spawn>
+            
+            <spawn>
+                <x>18</x>
+                <y>5</y>
+            </spawn>
         </spawntiles>
         
     </map>
