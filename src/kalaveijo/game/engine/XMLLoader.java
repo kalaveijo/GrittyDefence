@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import kalaveijo.game.engine.template.EntityTemplate;
+import kalaveijo.game.engine.template.MissionWaveTemplate;
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.MapTile;
 import kalaveijo.game.gameobjects.Mission;
@@ -164,12 +166,22 @@ public class XMLLoader {
 				Element e = (Element) nodeList.item(i);
 
 				// store mission name
+				name = getValue(e, "name");
 
 				// store map name
+				map = getValue(e, "map");
 
 				// loop all waves into String[]
+				NodeList waveNodeList = e.getElementsByTagName("wave");
+				waves = new String[e.getElementsByTagName("wave").getLength()];
+				for(int ii = 0; ii < e.getElementsByTagName("wave").getLength(); ii++){
+					Element ee = (Element) nodeList.item(i);
+					waves[ii] = getValue(ee, "wavename");
+				}
 
 				// loadWaves(String[])
+				ArrayList<MissionWaveTemplate> waveList = loadWaves(waves);
+				
 			}
 
 		} catch (Exception e) {
@@ -178,15 +190,29 @@ public class XMLLoader {
 	}
 
 	// loads waves, each array pointer has wave name
-	public ArrayList<MissionWave> loadWaves(String[] waves) {
-		ArrayList<MissionWave> waveList = new ArrayList<MissionWave>();
-
+	public ArrayList<MissionWaveTemplate> loadWaves(String[] waves) {
+		ArrayList<MissionWaveTemplate> waveList = new ArrayList<MissionWaveTemplate>();
+		try{
 		// open wavelist.xml
-
+		AssetManager assetManager = cv.getContext().getAssets();
+		Document entitylist = readXml(assetManager.open("wavelist.xml"));
+		NodeList nodeList = entitylist.getElementsByTagName("wave");
+		
 		// find correct wave information by name
+		for(int i=0; i <nodeList.getLength(); i++){
+			Element e = (Element) nodeList.item(i);
+			for(int o = 0; o < waves.length; o++){
+			if(getValue(e, "name").equals(waves[o])){
+				//waveList.add(new MissionWaveTemplate(om.getNextFreeId(), ))
+			}
+			}
+		}
 
 		// store wave into arraylist
 
+		}catch(Exception e){
+			Log.d("loadWave Failure", e.toString());
+		}
 		return waveList;
 	}
 

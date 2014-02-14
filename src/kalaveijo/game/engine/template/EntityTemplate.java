@@ -1,5 +1,7 @@
-package kalaveijo.game.engine;
+package kalaveijo.game.engine.template;
 
+import kalaveijo.game.engine.Entity;
+import kalaveijo.game.engine.ObjectManager;
 import kalaveijo.game.gameobjects.Ai;
 import kalaveijo.game.gameobjects.Unit;
 
@@ -9,7 +11,7 @@ public class EntityTemplate extends Entity {
 	private String player;
 
 	// takes all values needed for unit
-	EntityTemplate(ObjectManager om, String name, int health, int speed,
+	public EntityTemplate(ObjectManager om, String name, int health, int speed,
 			int range, int atkspeed, String player, String bitmapContainerGroup) {
 		super.om = om;
 		super.name = name;

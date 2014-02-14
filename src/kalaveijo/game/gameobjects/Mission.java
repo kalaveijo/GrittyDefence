@@ -7,14 +7,26 @@ import java.util.ArrayList;
  */
 public class Mission {
 
-	private String name;
-	private Map map;
-	private ArrayList<MissionWave> waveList;
+	protected String name;
+	protected Map map;
+	protected ArrayList<MissionWave> waveList;
 
-	Mission(String name, Map map, ArrayList<MissionWave> waveList) {
+	public Mission(String name, Map map, ArrayList<MissionWave> waveList) {
 		this.name = name;
 		this.map = map;
 		this.waveList = waveList;
 	}
 
+	
+	public String getName() {
+		return name;
+	}
+
+	public Map getMap() {
+		return map;
+	}
+
+	public ArrayList<MissionWave> getWaveList() {
+		return waveList;
+	}
 }

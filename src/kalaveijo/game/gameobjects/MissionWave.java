@@ -7,10 +7,10 @@ import java.util.ArrayList;
  */
 public class MissionWave {
 
-	private int waveNumber;
-	private ArrayList<Unit> enemyUnitList;
+	protected int waveNumber;
+	protected ArrayList<Unit> enemyUnitList;
 
-	MissionWave(int waveNumber, ArrayList<Unit> enemyUnitList) {
+	public MissionWave(int waveNumber, ArrayList<Unit> enemyUnitList) {
 		this.waveNumber = waveNumber;
 		this.enemyUnitList = enemyUnitList;
 	}
