@@ -7,10 +7,10 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import kalaveijo.game.engine.template.EntityTemplate;
+import kalaveijo.game.engine.template.MissionTemplate;
 import kalaveijo.game.engine.template.MissionWaveTemplate;
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.MapTile;
-import kalaveijo.game.gameobjects.Mission;
 import kalaveijo.game.gameobjects.MovementHelper;
 import kalaveijo.game.gameobjects.SpawnTile;
 import kalaveijo.game.grittydefence.GameSurfaceView;
@@ -150,15 +150,12 @@ public class XMLLoader {
 	}
 
 	// loads all missions and associated waves
-	public void loadMissions() {
+	public ArrayList<MissionTemplate> loadMissions() {
+		ArrayList<MissionTemplate> missionTemplateList = new ArrayList<MissionTemplate>();
 		try {
-
-			Mission mission;
 			String name;
 			String map;
 			String[] waves;
-
-			ArrayList<MissionWaveTemplate> waveList = loadWaves();
 
 			AssetManager assetManager = cv.getContext().getAssets();
 			Document entitylist = readXml(assetManager.open("missionlist.xml"));
@@ -182,13 +179,12 @@ public class XMLLoader {
 					waves[ii] = getValue(ee, "wavename");
 				}
 
-				// loadWaves(String[])
-
 			}
 
 		} catch (Exception e) {
 			Log.d("MissionLoadError", e.toString());
 		}
+		return missionTemplateList;
 	}
 
 	// loads waves, each array pointer has wave name

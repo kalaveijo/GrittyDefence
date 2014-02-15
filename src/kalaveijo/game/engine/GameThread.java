@@ -37,6 +37,7 @@ public class GameThread extends Thread {
 		objectManager = new ObjectManager();
 		xmlLoader = new XMLLoader(objectManager, cv);
 		renderer = new Renderer(objectManager, this, cv);
+
 		Unit rm = new Unit(objectManager.getNextFreeId(), objectManager);
 		objectManager.spawnPlayerUnit(rm, 4, 5);
 		rm.loadAi(new Ai(rm));

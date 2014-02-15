@@ -14,11 +14,13 @@ public class ObjectManager {
 
 	private long idCount = 0;
 	private ArrayList<Entity> entityTemplates = new ArrayList<Entity>();
+
+	private TemplateManager tm;
+
 	private ArrayList<Entity> playerUnit = new ArrayList<Entity>();
 	private ArrayList<Entity> enemyUnit = new ArrayList<Entity>();
 	private ArrayList<Entity> mapUnits = new ArrayList<Entity>();
 	private ArrayList<Mission> missions = new ArrayList<Mission>();
-
 	private ArrayList<Map> map = new ArrayList<Map>();
 
 	public ObjectManager() {
@@ -145,6 +147,14 @@ public class ObjectManager {
 
 	public void addToMissions(Mission missions) {
 		this.missions.add(missions);
+	}
+
+	public TemplateManager getTemplateManager() {
+		return tm;
+	}
+
+	public void setTemplateManager(TemplateManager tm) {
+		this.tm = tm;
 	}
 
 }// class
