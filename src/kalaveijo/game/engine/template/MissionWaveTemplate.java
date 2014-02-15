@@ -1,18 +1,25 @@
 package kalaveijo.game.engine.template;
 
-import java.util.ArrayList;
-
 import kalaveijo.game.gameobjects.MissionWave;
-import kalaveijo.game.gameobjects.Unit;
 
+/*
+ * Stores template for single wave. Creates instance when needed
+ */
 public class MissionWaveTemplate extends MissionWave {
 
-	MissionWaveTemplate(int waveNumber, ArrayList<Unit> enemyUnitList) {
-		super(waveNumber, enemyUnitList);
+	private String[] units;
+
+	public MissionWaveTemplate(int waveNumber, String name,
+			String[] enemyUnitList) {
+		super(waveNumber, name, null);
+		this.units = enemyUnitList;
 	}
-	
-	public MissionWave createInstance(){
-		return new MissionWave(this.waveNumber, this.enemyUnitList);
+
+	// parse template and create single disposable wave object with
+	// related units
+	public MissionWave createInstance() {
+		// return new MissionWave(this.waveNumber, this.enemyUnitList);
+		return null;
 	}
 
 }

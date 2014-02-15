@@ -11,7 +11,6 @@ import kalaveijo.game.engine.template.MissionWaveTemplate;
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.MapTile;
 import kalaveijo.game.gameobjects.Mission;
-import kalaveijo.game.gameobjects.MissionWave;
 import kalaveijo.game.gameobjects.MovementHelper;
 import kalaveijo.game.gameobjects.SpawnTile;
 import kalaveijo.game.grittydefence.GameSurfaceView;
@@ -31,6 +30,7 @@ import android.util.Log;
  * Generic class that will load and parse xml into entities
  * Courtesy of http://theopentutorials.com/tutorials/android/xml/android-simple-xml-dom-parser/
  */
+// useful http://stackoverflow.com/questions/6604876/parsing-xml-with-nodelist-and-documentbuilder
 public class XMLLoader {
 
 	private ObjectManager om;
@@ -158,6 +158,8 @@ public class XMLLoader {
 			String map;
 			String[] waves;
 
+			ArrayList<MissionWaveTemplate> waveList = loadWaves();
+
 			AssetManager assetManager = cv.getContext().getAssets();
 			Document entitylist = readXml(assetManager.open("missionlist.xml"));
 			NodeList nodeList = entitylist.getElementsByTagName("mission");
@@ -174,14 +176,14 @@ public class XMLLoader {
 				// loop all waves into String[]
 				NodeList waveNodeList = e.getElementsByTagName("wave");
 				waves = new String[e.getElementsByTagName("wave").getLength()];
-				for(int ii = 0; ii < e.getElementsByTagName("wave").getLength(); ii++){
+				for (int ii = 0; ii < e.getElementsByTagName("wave")
+						.getLength(); ii++) {
 					Element ee = (Element) nodeList.item(i);
 					waves[ii] = getValue(ee, "wavename");
 				}
 
 				// loadWaves(String[])
-				ArrayList<MissionWaveTemplate> waveList = loadWaves(waves);
-				
+
 			}
 
 		} catch (Exception e) {
@@ -190,30 +192,40 @@ public class XMLLoader {
 	}
 
 	// loads waves, each array pointer has wave name
-	public ArrayList<MissionWaveTemplate> loadWaves(String[] waves) {
-		ArrayList<MissionWaveTemplate> waveList = new ArrayList<MissionWaveTemplate>();
-		try{
-		// open wavelist.xml
-		AssetManager assetManager = cv.getContext().getAssets();
-		Document entitylist = readXml(assetManager.open("wavelist.xml"));
-		NodeList nodeList = entitylist.getElementsByTagName("wave");
-		
-		// find correct wave information by name
-		for(int i=0; i <nodeList.getLength(); i++){
-			Element e = (Element) nodeList.item(i);
-			for(int o = 0; o < waves.length; o++){
-			if(getValue(e, "name").equals(waves[o])){
-				//waveList.add(new MissionWaveTemplate(om.getNextFreeId(), ))
-			}
-			}
-		}
+	public ArrayList<MissionWaveTemplate> loadWaves() {
+		ArrayList<MissionWaveTemplate> waveArrayList = new ArrayList<MissionWaveTemplate>();
+		try {
 
-		// store wave into arraylist
+			String name;
+			int number;
+			String units[];
 
-		}catch(Exception e){
+			// open wavelist.xml
+			AssetManager assetManager = cv.getContext().getAssets();
+			Document entitylist = readXml(assetManager.open("wavelist.xml"));
+			NodeList waveList = entitylist.getElementsByTagName("wave");
+
+			// collect information for all waves into templates
+			for (int i = 0; i < waveList.getLength(); i++) {
+				Element wave = (Element) waveList.item(i);
+
+				name = getValue(wave, "name");
+				number = Integer.parseInt(getValue(wave, "number"));
+
+				// find units
+				NodeList unitList = wave.getElementsByTagName("includedunits");
+				units = new String[unitList.getLength()];
+				for (int e = 0; e < unitList.getLength(); e++) {
+					Element unit = (Element) unitList.item(i);
+					units[e] = getValue(unit, "unit");
+				}
+				waveArrayList.add(new MissionWaveTemplate(number, name, units));
+			}
+
+		} catch (Exception e) {
 			Log.d("loadWave Failure", e.toString());
 		}
-		return waveList;
+		return waveArrayList;
 	}
 
 	// reads inputstream and outputs document

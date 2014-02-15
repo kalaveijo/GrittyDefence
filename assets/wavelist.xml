@@ -5,7 +5,11 @@
         <number>1</number>
         <includedunits>
             <unit>rifleman</unit>
+        </includedunits>
+        <includedunits>
             <unit>rifleman</unit>
+        </includedunits>
+        <includedunits>
             <unit>rifleman</unit>
         </includedunits>
     </wave>
