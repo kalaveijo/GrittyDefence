@@ -128,7 +128,7 @@ public class XMLLoader {
 					}
 				}
 
-				// find movement helpers
+				// find spawnpoints
 				spawners = new ArrayList<SpawnTile>();
 				nodeList = entitylist.getElementsByTagName("spawn");
 

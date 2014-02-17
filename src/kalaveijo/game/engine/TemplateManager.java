@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import kalaveijo.game.engine.template.EntityTemplate;
 import kalaveijo.game.engine.template.MissionTemplate;
 import kalaveijo.game.engine.template.MissionWaveTemplate;
+import kalaveijo.game.gameobjects.Mission;
 
 /*
  * Holds all templates and gives out instances
@@ -24,6 +25,12 @@ public class TemplateManager {
 		this.entityTemplates = entityTemplates;
 		this.missionTemplates = missionTemplates;
 		this.waveTemplates = waveTemplates;
+	}
+
+	// creates a mission
+	public Mission createMission(String missionName) {
+
+		return null;
 	}
 
 }
