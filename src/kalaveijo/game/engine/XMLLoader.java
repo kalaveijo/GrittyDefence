@@ -42,7 +42,8 @@ public class XMLLoader {
 	}
 
 	// reads all entities from xml and creates templates from them
-	public void loadEntities() {
+	public ArrayList<EntityTemplate> loadEntities() {
+		ArrayList<EntityTemplate> entityList = new ArrayList<EntityTemplate>();
 		try {
 			AssetManager assetManager = cv.getContext().getAssets();
 			Document entitylist = readXml(assetManager.open("unitlist.xml"));
@@ -58,16 +59,19 @@ public class XMLLoader {
 				String player = getValue(e, "player");
 				String bitmapcontainergroup = getValue(e,
 						"bitmapcontainergroup");
-				om.addEntityTemplate(new EntityTemplate(om, name, health,
-						speed, range, atkspeed, player, bitmapcontainergroup));
+				EntityTemplate et = new EntityTemplate(om, name, health, speed,
+						range, atkspeed, player, bitmapcontainergroup);
+				entityList.add(et);
+				om.addEntityTemplate(et);
 			}
 		} catch (Exception e) {
 			Log.d("XML I/O", e.toString());
 		}
+		return entityList;
 
 	}
 
-	public void loadMap() {
+	public void loadMaps() {
 		try {
 
 			Map map;
@@ -178,6 +182,8 @@ public class XMLLoader {
 					Element ee = (Element) nodeList.item(i);
 					waves[ii] = getValue(ee, "wavename");
 				}
+
+				missionTemplateList.add(new MissionTemplate(name, map, waves));
 
 			}
 

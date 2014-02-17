@@ -16,13 +16,13 @@ import android.graphics.Point;
  */
 public class Map extends Entity {
 
-	private final int sizeX;
-	private final int sizeY;
-	private MapTile[][] tiles;
-	private MovementHelper[][] helpers;
-	private ArrayList<SpawnTile> spawners;
-	private Bitmap fullMap;
-	private boolean needsReDraw = true;
+	protected final int sizeX;
+	protected final int sizeY;
+	protected MapTile[][] tiles;
+	protected MovementHelper[][] helpers;
+	protected ArrayList<SpawnTile> spawners;
+	protected Bitmap fullMap;
+	protected boolean needsReDraw = true;
 
 	// default constructor
 	public Map(long id, ObjectManager om) {

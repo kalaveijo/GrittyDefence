@@ -1,14 +1,15 @@
 package kalaveijo.game.engine.template;
 
-import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.Mission;
 
 public class MissionTemplate extends Mission {
 
 	String[] waveList;
+	String map;
 
-	MissionTemplate(String name, Map map, String[] waveList) {
-		super(name, map, null);
+	public MissionTemplate(String name, String map, String[] waveList) {
+		super(name, null, null);
+		this.map = map;
 		this.waveList = waveList;
 	}
 
