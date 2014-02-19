@@ -43,6 +43,8 @@ public class MapTemplate extends Map {
 			for (int e = 0; e < getSizeY(); e++) {
 				newTiles[i][e] = new MapTile(om.getNextFreeId(), om,
 						tiles[i][e].getLocation(), tiles[i][e].getTileType());
+
+				// need to add images to tiles here
 			}
 		}
 		return newTiles;
@@ -51,12 +53,14 @@ public class MapTemplate extends Map {
 	private MovementHelper[][] reCreateMovementHelpers() {
 
 		MovementHelper[][] newHelpers = new MovementHelper[getSizeX()][getSizeY()];
-
 		for (int i = 0; i < getSizeX(); i++) {
 			for (int e = 0; e < getSizeY(); e++) {
-				newHelpers[i][e] = new MovementHelper(om.getNextFreeId(), om,
-						helpers[i][e].getDirection(),
+				MovementHelper newHelper = new MovementHelper(
+						om.getNextFreeId(), om, helpers[i][e].getDirection(),
 						helpers[i][e].getLocation());
+				newHelper.setBmContainerGroup(helpers[i][e]
+						.getBmContainerGroup());
+				newHelpers[i][e] = newHelper;
 			}
 		}
 
@@ -67,8 +71,11 @@ public class MapTemplate extends Map {
 		ArrayList<SpawnTile> newSpawns = new ArrayList<SpawnTile>();
 
 		for (SpawnTile spawn : spawners) {
-			newSpawns.add(new SpawnTile(om.getNextFreeId(), om,
-					spawn.getPosX(), spawn.getPosY()));
+
+			SpawnTile st = new SpawnTile(om.getNextFreeId(), om,
+					spawn.getPosX(), spawn.getPosY());
+			st.setBmContainerGroup(spawn.getBmContainerGroup());
+			newSpawns.add(st);
 		}
 
 		return newSpawns;
