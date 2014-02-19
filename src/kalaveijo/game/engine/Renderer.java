@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import kalaveijo.game.engine.manager.ObjectManager;
 import kalaveijo.game.engine.manager.TemplateManager;
+import kalaveijo.game.engine.template.MapTemplate;
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.MovementHelper;
 import kalaveijo.game.gameobjects.SpawnTile;
@@ -155,6 +156,8 @@ public class Renderer {
 
 	}
 
+	// might actually to spin this into proper function that takes care of map
+	// related pairings
 	public void debugPairContainers() {
 
 		ArrayList<Map> al = om.getMap();
@@ -179,8 +182,32 @@ public class Renderer {
 			}
 		}
 
+		ArrayList<MapTemplate> altem = tm.getMapTemplates();
+
+		for (Map map : altem) {
+			MovementHelper[][] mh = map.getHelpers();
+			for (int i = 0; i < map.getSizeX(); i++) {
+				for (int e = 0; e < map.getSizeY(); e++) {
+					BitmapContainerGroup bcg = findContainer("MovementHelper");
+					if (bcg != null) {
+						mh[i][e].setBmContainerGroup(bcg);
+					}
+				}// for
+			}// for
+
+			ArrayList<SpawnTile> alst = map.getSpawners();
+			for (SpawnTile st : alst) {
+				BitmapContainerGroup bcg = findContainer("SpawnTile");
+				if (bcg != null) {
+					st.setBmContainerGroup(bcg);
+				}
+			}
+		}
+
 	}
 
+	// might actually to spin this into proper function that takes care of map
+	// piece loadings
 	public void debugBitmapLoad(ArrayList<BitmapContainerGroup> bitmapContainers) {
 		BitmapContainerGroup bmg = new BitmapContainerGroup("MovementHelper");
 		Bitmap picture;

@@ -37,6 +37,7 @@ public class EntityTemplate extends Entity {
 		} else if (player.equals("enemy")) {
 			ai = new Ai(u); // actually needs player Ai implementation
 		}
+		u.loadAi(ai);
 		return u;
 	}
 }

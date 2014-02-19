@@ -36,7 +36,7 @@ public class GameThread extends Thread {
 		mRun = run;
 	}// setRunning
 
-	// Initializes all gamelogic related stuff
+	// Initializes engine
 	public void initializeGame(Canvas c) {
 		objectManager = new ObjectManager();
 		templateManager = new TemplateManager(objectManager);

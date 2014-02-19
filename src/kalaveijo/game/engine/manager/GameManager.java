@@ -1,6 +1,12 @@
 package kalaveijo.game.engine.manager;
 
+import java.util.ArrayList;
+
+import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.Mission;
+import kalaveijo.game.gameobjects.MissionWave;
+import kalaveijo.game.gameobjects.SpawnTile;
+import kalaveijo.game.gameobjects.Unit;
 
 /*
  * Handles game progression, kinda works like dungeon master
@@ -34,12 +40,36 @@ public class GameManager {
 		// instantiate new objects from templates
 
 		// remove previous objects from object manager
+		objectManager.getEnemyUnits().clear();
+		objectManager.getPlayerUnits().clear();
+		objectManager.getMap().clear();
+		objectManager.getMapUnits().clear();
 
 		// add objects to object manager
+		objectManager.getMap().add(currentMission.getMap());
+		spawnWave(waveNumber);
 
 	}
 
 	private void spawnWave(int waveNumber) {
+		Map map = currentMission.getMap();
+		ArrayList<SpawnTile> spawns = map.getSpawners();
+		int i = 0;
+		// find correct wave
+		for (MissionWave wave : currentMission.getWaveList()) {
+			if (wave.getWaveNumber() == waveNumber) {
+				// Spawn units
+				for (Unit u : wave.getEnemyUnitList()) {
+					// find spawn points and place unit there
+					if (i < spawns.size()) {
+						objectManager.spawnEnemyUnit(u,
+								spawns.get(i).getPosX(), spawns.get(i)
+										.getPosY());
+						i++;
+					}
+				}
+			}
+		}
 
 	}
 
