@@ -21,6 +21,7 @@ public class GameThread extends Thread {
 	private Renderer renderer;
 	private TemplateManager templateManager;
 	private ObjectManager objectManager;
+	private GameManager gameManager;
 	private XMLLoader xmlLoader;
 
 	public GameThread(SurfaceHolder sHolder, GameSurfaceView cv) {
@@ -36,6 +37,7 @@ public class GameThread extends Thread {
 	public void initializeGame(Canvas c) {
 		objectManager = new ObjectManager();
 		templateManager = new TemplateManager(objectManager);
+		gameManager = new GameManager(objectManager, templateManager);
 		xmlLoader = new XMLLoader(objectManager, cv, templateManager);
 		renderer = new Renderer(objectManager, this, cv);
 
@@ -62,10 +64,16 @@ public class GameThread extends Thread {
 				mCanvas = mHolder.lockCanvas();
 				if (firstRun) { //
 					initializeGame(mCanvas); // loads all game objects
-					xmlLoader.loadEntities();
-					xmlLoader.loadMaps();
-					xmlLoader.loadMissions();
+					templateManager
+							.setEntityTemplates(xmlLoader.loadEntities());
+					templateManager.setMapTemplates(xmlLoader.loadMaps());
+					templateManager.setMissionTemplates(xmlLoader
+							.loadMissions());
+					templateManager.setWaveTemplates(xmlLoader.loadWaves());
 					renderer.load();
+					gameManager.changeMission("tutorialMission"); // TODO change
+																	// to
+					// dynamic
 					firstRun = false;
 				}// if
 
