@@ -2,6 +2,7 @@ package kalaveijo.game.engine.template;
 
 import kalaveijo.game.engine.Entity;
 import kalaveijo.game.engine.ObjectManager;
+import kalaveijo.game.engine.TemplateManager;
 import kalaveijo.game.gameobjects.Ai;
 import kalaveijo.game.gameobjects.Unit;
 
@@ -9,10 +10,12 @@ import kalaveijo.game.gameobjects.Unit;
 public class EntityTemplate extends Entity {
 
 	private String player;
+	private TemplateManager tm;
 
 	// takes all values needed for unit
 	public EntityTemplate(ObjectManager om, String name, int health, int speed,
-			int range, int atkspeed, String player, String bitmapContainerGroup) {
+			int range, int atkspeed, String player,
+			String bitmapContainerGroup, TemplateManager tm) {
 		super.om = om;
 		super.name = name;
 		super.health = health;
@@ -21,6 +24,7 @@ public class EntityTemplate extends Entity {
 		super.atkSpeed = atkSpeed;
 		this.player = player;
 		super.bitmapContainerGroup = bitmapContainerGroup;
+		this.tm = tm;
 	}
 
 	public Unit createUnit() {

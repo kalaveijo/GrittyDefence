@@ -150,4 +150,12 @@ public class Entity implements Tickable {
 		location.y = posY * Options.TILE_SIZE;
 	}
 
+	public Point getLocation() {
+		return location;
+	}
+
+	public String getName() {
+		return name;
+	}
+
 }

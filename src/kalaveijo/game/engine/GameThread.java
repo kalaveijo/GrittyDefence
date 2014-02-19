@@ -19,7 +19,7 @@ public class GameThread extends Thread {
 	private int fps = 0;
 	private boolean firstRun = true;
 	private Renderer renderer;
-
+	private TemplateManager templateManager;
 	private ObjectManager objectManager;
 	private XMLLoader xmlLoader;
 
@@ -35,7 +35,8 @@ public class GameThread extends Thread {
 	// Initializes all gamelogic related stuff
 	public void initializeGame(Canvas c) {
 		objectManager = new ObjectManager();
-		xmlLoader = new XMLLoader(objectManager, cv);
+		templateManager = new TemplateManager(objectManager);
+		xmlLoader = new XMLLoader(objectManager, cv, templateManager);
 		renderer = new Renderer(objectManager, this, cv);
 
 		Unit rm = new Unit(objectManager.getNextFreeId(), objectManager);

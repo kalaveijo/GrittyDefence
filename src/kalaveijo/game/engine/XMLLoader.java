@@ -7,6 +7,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import kalaveijo.game.engine.template.EntityTemplate;
+import kalaveijo.game.engine.template.MapTemplate;
 import kalaveijo.game.engine.template.MissionTemplate;
 import kalaveijo.game.engine.template.MissionWaveTemplate;
 import kalaveijo.game.gameobjects.Map;
@@ -35,10 +36,12 @@ public class XMLLoader {
 
 	private ObjectManager om;
 	private GameSurfaceView cv;
+	private TemplateManager tm;
 
-	public XMLLoader(ObjectManager om, GameSurfaceView cv) {
+	public XMLLoader(ObjectManager om, GameSurfaceView cv, TemplateManager tm) {
 		this.om = om;
 		this.cv = cv;
+		this.tm = tm;
 	}
 
 	// reads all entities from xml and creates templates from them
@@ -60,7 +63,7 @@ public class XMLLoader {
 				String bitmapcontainergroup = getValue(e,
 						"bitmapcontainergroup");
 				EntityTemplate et = new EntityTemplate(om, name, health, speed,
-						range, atkspeed, player, bitmapcontainergroup);
+						range, atkspeed, player, bitmapcontainergroup, tm);
 				entityList.add(et);
 				om.addEntityTemplate(et);
 			}
@@ -71,7 +74,8 @@ public class XMLLoader {
 
 	}
 
-	public void loadMaps() {
+	public ArrayList<MapTemplate> loadMaps() {
+		ArrayList<MapTemplate> mapTemplate = new ArrayList<MapTemplate>();
 		try {
 
 			Map map;
@@ -145,12 +149,14 @@ public class XMLLoader {
 
 				map = new Map(om.getNextFreeId(), name, om, x, y, tiles,
 						helpers, spawners);
-
+				mapTemplate.add(new MapTemplate(om.getNextFreeId(), om, name,
+						x, y, tiles, helpers, spawners, tm));
 				om.addMap(map);
 			}
 		} catch (Exception e) {
 			Log.d("XML I/O", e.toString());
 		}
+		return mapTemplate;
 	}
 
 	// loads all missions and associated waves
@@ -183,7 +189,8 @@ public class XMLLoader {
 					waves[ii] = getValue(ee, "wavename");
 				}
 
-				missionTemplateList.add(new MissionTemplate(name, map, waves));
+				missionTemplateList.add(new MissionTemplate(name, map, waves,
+						tm));
 
 			}
 
@@ -221,7 +228,8 @@ public class XMLLoader {
 					Element unit = (Element) unitList.item(i);
 					units[e] = getValue(unit, "unit");
 				}
-				waveArrayList.add(new MissionWaveTemplate(number, name, units));
+				waveArrayList.add(new MissionWaveTemplate(number, name, units,
+						tm));
 			}
 
 		} catch (Exception e) {

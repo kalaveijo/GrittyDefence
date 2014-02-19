@@ -3,6 +3,7 @@ package kalaveijo.game.engine.template;
 import java.util.ArrayList;
 
 import kalaveijo.game.engine.ObjectManager;
+import kalaveijo.game.engine.TemplateManager;
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.MapTile;
 import kalaveijo.game.gameobjects.MovementHelper;
@@ -10,10 +11,13 @@ import kalaveijo.game.gameobjects.SpawnTile;
 
 public class MapTemplate extends Map {
 
+	private TemplateManager tm;
+
 	public MapTemplate(long id, ObjectManager om, String name, int x, int y,
 			MapTile[][] tiles, MovementHelper[][] helpers,
-			ArrayList<SpawnTile> spawners) {
+			ArrayList<SpawnTile> spawners, TemplateManager tm) {
 		super(id, name, om, x, y, tiles, helpers, spawners);
+		this.tm = tm;
 	}
 
 	public String getName() {
@@ -22,7 +26,13 @@ public class MapTemplate extends Map {
 
 	public Map createInstance() {
 		MapTile[][] newTiles = reCreateMapTiles();
-		return null;
+		MovementHelper[][] newHelpers = reCreateMovementHelpers();
+		ArrayList<SpawnTile> newSpawns = reCreateSpawners();
+
+		Map newMap = new Map(om.getNextFreeId(), this.name, om, this.sizeX,
+				this.sizeY, newTiles, newHelpers, newSpawns);
+
+		return newMap;
 	}
 
 	private MapTile[][] reCreateMapTiles() {
@@ -39,6 +49,28 @@ public class MapTemplate extends Map {
 	}
 
 	private MovementHelper[][] reCreateMovementHelpers() {
-		return null;
+
+		MovementHelper[][] newHelpers = new MovementHelper[getSizeX()][getSizeY()];
+
+		for (int i = 0; i < getSizeX(); i++) {
+			for (int e = 0; e < getSizeY(); e++) {
+				newHelpers[i][e] = new MovementHelper(om.getNextFreeId(), om,
+						helpers[i][e].getDirection(),
+						helpers[i][e].getLocation());
+			}
+		}
+
+		return newHelpers;
+	}
+
+	private ArrayList<SpawnTile> reCreateSpawners() {
+		ArrayList<SpawnTile> newSpawns = new ArrayList<SpawnTile>();
+
+		for (SpawnTile spawn : spawners) {
+			newSpawns.add(new SpawnTile(om.getNextFreeId(), om,
+					spawn.getPosX(), spawn.getPosY()));
+		}
+
+		return newSpawns;
 	}
 }

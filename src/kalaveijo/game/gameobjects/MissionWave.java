@@ -26,4 +26,8 @@ public class MissionWave {
 		return this.enemyUnitList;
 	}
 
+	public String getName() {
+		return name;
+	}
+
 }
