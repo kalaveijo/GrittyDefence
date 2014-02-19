@@ -1,5 +1,8 @@
 package kalaveijo.game.engine;
 
+import kalaveijo.game.engine.manager.GameManager;
+import kalaveijo.game.engine.manager.ObjectManager;
+import kalaveijo.game.engine.manager.TemplateManager;
 import kalaveijo.game.gameobjects.Ai;
 import kalaveijo.game.gameobjects.Unit;
 import kalaveijo.game.grittydefence.GameSurfaceView;
@@ -39,7 +42,7 @@ public class GameThread extends Thread {
 		templateManager = new TemplateManager(objectManager);
 		gameManager = new GameManager(objectManager, templateManager);
 		xmlLoader = new XMLLoader(objectManager, cv, templateManager);
-		renderer = new Renderer(objectManager, this, cv);
+		renderer = new Renderer(objectManager, this, cv, templateManager);
 
 		Unit rm = new Unit(objectManager.getNextFreeId(), objectManager);
 		objectManager.spawnPlayerUnit(rm, 4, 5);

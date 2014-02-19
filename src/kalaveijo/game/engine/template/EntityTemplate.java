@@ -1,8 +1,8 @@
 package kalaveijo.game.engine.template;
 
 import kalaveijo.game.engine.Entity;
-import kalaveijo.game.engine.ObjectManager;
-import kalaveijo.game.engine.TemplateManager;
+import kalaveijo.game.engine.manager.ObjectManager;
+import kalaveijo.game.engine.manager.TemplateManager;
 import kalaveijo.game.gameobjects.Ai;
 import kalaveijo.game.gameobjects.Unit;
 

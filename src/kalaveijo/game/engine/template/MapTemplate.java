@@ -2,8 +2,8 @@ package kalaveijo.game.engine.template;
 
 import java.util.ArrayList;
 
-import kalaveijo.game.engine.ObjectManager;
-import kalaveijo.game.engine.TemplateManager;
+import kalaveijo.game.engine.manager.ObjectManager;
+import kalaveijo.game.engine.manager.TemplateManager;
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.MapTile;
 import kalaveijo.game.gameobjects.MovementHelper;

@@ -2,7 +2,7 @@ package kalaveijo.game.engine.template;
 
 import java.util.ArrayList;
 
-import kalaveijo.game.engine.TemplateManager;
+import kalaveijo.game.engine.manager.TemplateManager;
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.Mission;
 import kalaveijo.game.gameobjects.MissionWave;

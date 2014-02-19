@@ -1,5 +1,6 @@
 package kalaveijo.game.engine;
 
+import kalaveijo.game.engine.manager.ObjectManager;
 import kalaveijo.game.gameobjects.Ai;
 import kalaveijo.game.util.Options;
 import android.graphics.Bitmap;

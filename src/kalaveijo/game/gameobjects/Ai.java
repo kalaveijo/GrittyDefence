@@ -3,7 +3,7 @@ package kalaveijo.game.gameobjects;
 import java.util.ArrayList;
 
 import kalaveijo.game.engine.Entity;
-import kalaveijo.game.engine.ObjectManager;
+import kalaveijo.game.engine.manager.ObjectManager;
 
 /*
  * Handles decision making by units

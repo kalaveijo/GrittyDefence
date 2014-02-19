@@ -3,7 +3,7 @@ package kalaveijo.game.gameobjects;
 import kalaveijo.game.engine.BitmapContainer;
 import kalaveijo.game.engine.BitmapContainerGroup;
 import kalaveijo.game.engine.Entity;
-import kalaveijo.game.engine.ObjectManager;
+import kalaveijo.game.engine.manager.ObjectManager;
 import kalaveijo.game.util.Options;
 import android.graphics.Canvas;
 import android.graphics.Paint;

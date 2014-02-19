@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import kalaveijo.game.engine.manager.ObjectManager;
+import kalaveijo.game.engine.manager.TemplateManager;
 import kalaveijo.game.engine.template.EntityTemplate;
 import kalaveijo.game.engine.template.MapTemplate;
 import kalaveijo.game.engine.template.MissionTemplate;

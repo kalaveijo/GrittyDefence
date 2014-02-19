@@ -2,6 +2,8 @@ package kalaveijo.game.engine;
 
 import java.util.ArrayList;
 
+import kalaveijo.game.engine.manager.ObjectManager;
+import kalaveijo.game.engine.manager.TemplateManager;
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.MovementHelper;
 import kalaveijo.game.gameobjects.SpawnTile;
@@ -23,12 +25,15 @@ public class Renderer {
 	GameThread gThread;
 	ArrayList<BitmapContainerGroup> bitmapContainers;
 	GameSurfaceView cv;
+	TemplateManager tm;
 
-	public Renderer(ObjectManager om, GameThread gThread, GameSurfaceView cv) {
+	public Renderer(ObjectManager om, GameThread gThread, GameSurfaceView cv,
+			TemplateManager tm) {
 		this.om = om;
 		this.gThread = gThread;
 		this.cv = cv;
 		this.bitmapContainers = new ArrayList<BitmapContainerGroup>();
+		this.tm = tm;
 	}
 
 	// for some reason this causes heavy load, need to debug later, use

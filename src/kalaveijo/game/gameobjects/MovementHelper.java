@@ -2,8 +2,8 @@ package kalaveijo.game.gameobjects;
 
 import kalaveijo.game.engine.BitmapContainer;
 import kalaveijo.game.engine.Entity;
-import kalaveijo.game.engine.ObjectManager;
 import kalaveijo.game.engine.Tickable;
+import kalaveijo.game.engine.manager.ObjectManager;
 import kalaveijo.game.util.Options;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;

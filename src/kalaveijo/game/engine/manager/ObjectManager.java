@@ -1,7 +1,8 @@
-package kalaveijo.game.engine;
+package kalaveijo.game.engine.manager;
 
 import java.util.ArrayList;
 
+import kalaveijo.game.engine.Entity;
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.Mission;
 import kalaveijo.game.util.Options;

@@ -1,4 +1,4 @@
-package kalaveijo.game.engine;
+package kalaveijo.game.engine.manager;
 
 import kalaveijo.game.gameobjects.Mission;
 
