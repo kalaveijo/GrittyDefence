@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import kalaveijo.game.engine.manager.ObjectManager;
 import kalaveijo.game.engine.manager.TemplateManager;
+import kalaveijo.game.engine.template.EntityTemplate;
 import kalaveijo.game.engine.template.MapTemplate;
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.MovementHelper;
@@ -14,7 +15,9 @@ import kalaveijo.game.util.Options;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.util.DisplayMetrics;
 
 /*
  * Handles all rendering and image processing related stuff
@@ -142,6 +145,7 @@ public class Renderer {
 	public void loadBitmaps(ArrayList<BitmapContainerGroup> BitmapContainers) {
 
 		// load xml file
+		ArrayList<String> fileNameList = createRequiredContainerList();
 
 		// parse xml file and create container for all sprite groups
 		// here be haxorz
@@ -206,6 +210,80 @@ public class Renderer {
 
 	}
 
+	// reads all entity templates and creates list with filenames
+	private ArrayList<String> createRequiredContainerList() {
+		ArrayList<String> fileList = new ArrayList<String>();
+		ArrayList<EntityTemplate> entityList = tm.getEntityTemplates();
+
+		for (EntityTemplate et : entityList) {
+			fileList.add(et.getBitmapContainerGroup());
+		}
+
+		return fileList;
+	}
+
+	private void parseFilesIntoBitmapContainerGroups(ArrayList<String> fileList) {
+
+		// go through all filenames
+		for (String fileName : fileList) {
+
+		}
+
+	}
+
+	// loads default spritesheet for entities who dont have
+	private void loadDefaultSprites() {
+
+		// create container
+		BitmapContainerGroup defaultGroup = new BitmapContainerGroup("default");
+		// load spritesheet
+		Bitmap defaultSpriteSheet = BitmapFactory.decodeResource(
+				cv.getResources(), R.drawable.default_spritesheet);
+
+		defaultGroup = parseSpritesheetIntoContainers(defaultGroup,
+				defaultSpriteSheet);
+
+	}
+
+	// hacks and slashes sheet into separate
+	private BitmapContainerGroup parseSpritesheetIntoContainers(
+			BitmapContainerGroup containerGroup, Bitmap spriteSheet) {
+
+		Bitmap parsedBitmap = Bitmap.createBitmap(Options.TILE_SIZE,
+				Options.TILE_SIZE, Bitmap.Config.ARGB_8888);
+		// Canvas canvas = new Canvas(parsedBitmap);
+		// canvas.save();
+		// Paint paint = new Paint();
+
+		for (int row = 0; row < 20; row++) {
+			for (int frame = 0; frame < 4; frame++) {
+
+				String name;
+				int type;
+
+				/*
+				 * Rect source = new Rect(row * Options.TILE_SIZE, frame
+				 * Options.TILE_SIZE, (row * Options.TILE_SIZE) +
+				 * Options.TILE_SIZE, (frame * Options.TILE_SIZE) +
+				 * Options.TILE_SIZE); Rect destination = new Rect(0, 0,
+				 * Options.TILE_SIZE, Options.TILE_SIZE);
+				 * canvas.drawBitmap(parsedBitmap, source, destination, paint);
+				 * canvas.restore();
+				 */
+
+				// create new bitmap for container
+				Bitmap singleBitmap = Bitmap.createBitmap(parsedBitmap, row
+						* Options.TILE_SIZE, frame * Options.TILE_SIZE,
+						Options.TILE_SIZE, Options.TILE_SIZE);
+
+				// BitmapContainer = new BitmapContainer(singleBitmap);
+
+			}
+		}
+
+		return containerGroup;
+	}
+
 	// might actually to spin this into proper function that takes care of map
 	// piece loadings
 	public void debugBitmapLoad(ArrayList<BitmapContainerGroup> bitmapContainers) {
@@ -253,4 +331,20 @@ public class Renderer {
 		bitmapContainers.add(bmg);
 	}
 
+	private String parseCorrectName(int row, int frame) {
+		String returnString = "";
+
+		return returnString;
+	}
+
+	// courtesy of
+	// http://stackoverflow.com/questions/7925278/drawing-mirrored-bitmaps-in-android
+	private Bitmap flip(Bitmap d) {
+		Matrix m = new Matrix();
+		m.preScale(-1, 1);
+		Bitmap dst = Bitmap.createBitmap(d, 0, 0, d.getWidth(), d.getHeight(),
+				m, false);
+		dst.setDensity(DisplayMetrics.DENSITY_DEFAULT);
+		return dst;
+	}
 }

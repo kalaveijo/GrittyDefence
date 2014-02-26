@@ -25,3 +25,7 @@ idle_down
 
 idle_left_up
 idle_left_down
+
+
+// 4 sprites per status
+256x1280

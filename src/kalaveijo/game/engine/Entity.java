@@ -159,4 +159,8 @@ public class Entity implements Tickable {
 		return name;
 	}
 
+	public String getBitmapContainerGroup() {
+		return bitmapContainerGroup;
+	}
+
 }
