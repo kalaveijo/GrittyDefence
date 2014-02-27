@@ -258,7 +258,7 @@ public class Renderer {
 		for (int row = 0; row < 20; row++) {
 			for (int frame = 0; frame < 4; frame++) {
 
-				String name;
+				String name = "";
 				int type;
 
 				/*
@@ -276,7 +276,171 @@ public class Renderer {
 						* Options.TILE_SIZE, frame * Options.TILE_SIZE,
 						Options.TILE_SIZE, Options.TILE_SIZE);
 
-				// BitmapContainer = new BitmapContainer(singleBitmap);
+				//
+
+				// create special cases where need to flip sprite
+
+				switch (row) {
+
+				// move_left
+				case 0:
+					type = BitmapContainer.move_left;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							singleBitmap);
+					type = BitmapContainer.move_right;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							flip(singleBitmap));
+					break;
+				// move_up
+				case 1:
+					type = BitmapContainer.move_up;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							singleBitmap);
+					break;
+				// move_down
+				case 2:
+					type = BitmapContainer.move_down;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							singleBitmap);
+					break;
+				// move_left_up
+				case 3:
+					type = BitmapContainer.move_left_up;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							singleBitmap);
+					type = BitmapContainer.move_right_up;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							flip(singleBitmap));
+					break;
+				// move_left_down
+				case 4:
+					type = BitmapContainer.move_left_down;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							singleBitmap);
+					type = BitmapContainer.move_right_down;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							flip(singleBitmap));
+					break;
+				// attack_left
+				case 5:
+					type = BitmapContainer.attack_left;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							singleBitmap);
+					type = BitmapContainer.attack_right;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							flip(singleBitmap));
+					break;
+				// attack_up
+				case 6:
+					type = BitmapContainer.attack_up;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							singleBitmap);
+					break;
+				// attack_down
+				case 7:
+					type = BitmapContainer.attack_down;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							singleBitmap);
+					break;
+				// attack_left_up
+				case 8:
+					type = BitmapContainer.attack_left_up;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							singleBitmap);
+					type = BitmapContainer.attack_right_up;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							flip(singleBitmap));
+					break;
+				// attack_left_down
+				case 9:
+					type = BitmapContainer.attack_left_down;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							singleBitmap);
+					type = BitmapContainer.attack_right_down;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							flip(singleBitmap));
+					break;
+				// die_left
+				case 10:
+					type = BitmapContainer.die_left;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							singleBitmap);
+					type = BitmapContainer.die_right;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							flip(singleBitmap));
+					break;
+				// die_up
+				case 11:
+					type = BitmapContainer.die_up;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							singleBitmap);
+					break;
+				// die_down
+				case 12:
+					type = BitmapContainer.die_down;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							singleBitmap);
+					break;
+				// die_left_up
+				case 13:
+					type = BitmapContainer.die_left_up;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							singleBitmap);
+					type = BitmapContainer.die_right_up;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							flip(singleBitmap));
+					break;
+				// die_left_down
+				case 14:
+					type = BitmapContainer.die_left_down;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							singleBitmap);
+					type = BitmapContainer.die_right_down;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							flip(singleBitmap));
+					break;
+				// idle_left
+				case 15:
+					type = BitmapContainer.idle_left;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							singleBitmap);
+					type = BitmapContainer.idle_right;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							flip(singleBitmap));
+					break;
+				// idle_up
+				case 16:
+					type = BitmapContainer.idle_up;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							singleBitmap);
+					break;
+
+				// idle_down
+				case 17:
+					type = BitmapContainer.idle_down;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							singleBitmap);
+					break;
+				// idle_left_up
+				case 18:
+					type = BitmapContainer.idle_left_up;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							singleBitmap);
+					type = BitmapContainer.idle_right_up;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							flip(singleBitmap));
+					break;
+				// idle_left_down
+				case 19:
+					type = BitmapContainer.idle_left_down;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							singleBitmap);
+					type = BitmapContainer.idle_right_down;
+					pairContainerWithGroup(containerGroup, type, frame, name,
+							flip(singleBitmap));
+					break;
+
+				}
 
 			}
 		}
@@ -335,6 +499,15 @@ public class Renderer {
 		String returnString = "";
 
 		return returnString;
+	}
+
+	private void pairContainerWithGroup(BitmapContainerGroup bcg, int type,
+			int frame, String name, Bitmap picture) {
+
+		BitmapContainer bc = new BitmapContainer(picture, name, type, frame,
+				true, bcg);
+		bcg.addBitmapContainer(bc);
+
 	}
 
 	// courtesy of
