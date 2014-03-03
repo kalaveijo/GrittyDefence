@@ -147,10 +147,9 @@ public class Renderer {
 		// load default sprites
 		loadDefaultSprites(BitmapContainers);
 
-		// load xml file
-		ArrayList<String> fileNameList = createRequiredContainerList();
+		// loads rest of the sprites
+		loadSprites(BitmapContainers);
 
-		// parse xml file and create container for all sprite groups
 		// here be haxorz
 		debugBitmapLoad(BitmapContainers);
 
@@ -159,6 +158,23 @@ public class Renderer {
 	public void pairContainersWithEntities() {
 
 		// loop through all entities and pair correct containers
+		for (Entity e : tm.getEntityTemplates()) {
+			for (BitmapContainerGroup bcg : bitmapContainers) {
+				// see if can find correct container group
+				if (e.getBitmapContainerGroup().equals(bcg.getName())) {
+					e.setBmContainerGroup(bcg);
+				} else {
+					// if not, find default group
+					for (BitmapContainerGroup bcg2 : bitmapContainers) {
+						if (bcg2.getName().equals("default")) {
+							e.setBmContainerGroup(bcg2);
+						}
+					}
+				}
+			}
+
+		}
+
 		debugPairContainers();
 
 	}
@@ -515,6 +531,11 @@ public class Renderer {
 		BitmapContainer bc = new BitmapContainer(picture, name, type, frame,
 				true, bcg);
 		bcg.addBitmapContainer(bc);
+
+	}
+
+	// attempts to load all sprites from templates into bitmapContainerGroups
+	private void loadSprites(ArrayList<BitmapContainerGroup> bitmapContainers) {
 
 	}
 
