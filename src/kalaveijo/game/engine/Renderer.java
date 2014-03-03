@@ -144,6 +144,9 @@ public class Renderer {
 	// needs argument where to load all container groups
 	public void loadBitmaps(ArrayList<BitmapContainerGroup> BitmapContainers) {
 
+		// load default sprites
+		loadDefaultSprites(BitmapContainers);
+
 		// load xml file
 		ArrayList<String> fileNameList = createRequiredContainerList();
 
@@ -232,7 +235,8 @@ public class Renderer {
 	}
 
 	// loads default spritesheet for entities who dont have
-	private void loadDefaultSprites() {
+	private void loadDefaultSprites(
+			ArrayList<BitmapContainerGroup> bitmapContainers) {
 
 		// create container
 		BitmapContainerGroup defaultGroup = new BitmapContainerGroup("default");
@@ -242,6 +246,7 @@ public class Renderer {
 
 		defaultGroup = parseSpritesheetIntoContainers(defaultGroup,
 				defaultSpriteSheet);
+		bitmapContainers.add(defaultGroup);
 
 	}
 
@@ -249,8 +254,10 @@ public class Renderer {
 	private BitmapContainerGroup parseSpritesheetIntoContainers(
 			BitmapContainerGroup containerGroup, Bitmap spriteSheet) {
 
-		Bitmap parsedBitmap = Bitmap.createBitmap(Options.TILE_SIZE,
-				Options.TILE_SIZE, Bitmap.Config.ARGB_8888);
+		/*
+		 * Bitmap parsedBitmap = Bitmap.createBitmap(Options.TILE_SIZE,
+		 * Options.TILE_SIZE, Bitmap.Config.ARGB_8888);
+		 */
 		// Canvas canvas = new Canvas(parsedBitmap);
 		// canvas.save();
 		// Paint paint = new Paint();
@@ -272,8 +279,8 @@ public class Renderer {
 				 */
 
 				// create new bitmap for container
-				Bitmap singleBitmap = Bitmap.createBitmap(parsedBitmap, row
-						* Options.TILE_SIZE, frame * Options.TILE_SIZE,
+				Bitmap singleBitmap = Bitmap.createBitmap(spriteSheet, frame
+						* Options.TILE_SIZE, row * Options.TILE_SIZE,
 						Options.TILE_SIZE, Options.TILE_SIZE);
 
 				//
@@ -495,6 +502,7 @@ public class Renderer {
 		bitmapContainers.add(bmg);
 	}
 
+	// not in use currently
 	private String parseCorrectName(int row, int frame) {
 		String returnString = "";
 
