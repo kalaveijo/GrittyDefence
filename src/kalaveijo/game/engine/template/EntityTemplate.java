@@ -30,7 +30,7 @@ public class EntityTemplate extends Entity {
 	public Unit createUnit() {
 		Unit u = new Unit(super.om.getNextFreeId(), super.om, super.name,
 				super.health, super.speed, super.range, super.atkSpeed,
-				super.bitmapContainerGroup);
+				super.bitmapContainerGroup, super.getBmContainerGroup());
 		Ai ai = null;
 		if (player.equals("player")) {
 			ai = new Ai(u); // actually needs player Ai implementation

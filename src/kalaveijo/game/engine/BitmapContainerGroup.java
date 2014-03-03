@@ -62,4 +62,13 @@ public class BitmapContainerGroup {
 		}
 		return null;
 	}
+
+	public BitmapContainer findBitmapContainerByTypeAndFrame(int type, int frame) {
+		for (BitmapContainer bmc : group) {
+			if (bmc.getType() == type && bmc.getFrame() == frame) {
+				return bmc;
+			}
+		}
+		return null;
+	}
 }

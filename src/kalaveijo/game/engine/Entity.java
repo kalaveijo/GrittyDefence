@@ -36,6 +36,7 @@ public class Entity implements Tickable {
 	protected String bitmapContainerGroup;
 	protected String name;
 	protected ObjectManager om;
+	protected Animator animator;
 
 	public BitmapContainerGroup getBmContainerGroup() {
 		return bmContainerGroup;
@@ -48,11 +49,12 @@ public class Entity implements Tickable {
 	public Entity(long id, ObjectManager om) {
 		this.id = id;
 		this.om = om;
+		this.animator = new Animator(this);
 	}
 
 	// used when making empty templates
 	public Entity() {
-
+		this.animator = new Animator(this);
 	}
 
 	public int getPosX() {
