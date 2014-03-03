@@ -11,6 +11,7 @@ public class Animator {
 	private Entity e;
 	private int frame = 0;
 	private int lastStatus = 0; // 0 is IDLE
+	private int lastMoveDirection = BitmapContainer.move_right;
 
 	public Animator(Entity e) {
 		this.e = e;
@@ -53,10 +54,8 @@ public class Animator {
 			// todo
 			break;
 		case Unit.IDLE:
-			// just randomising some direction
-			int i = (int) Math.floor((Math.random() * 3));
 			// if going up
-			if (i == 0) {
+			if (lastMoveDirection == BitmapContainer.move_up) {
 				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
 						BitmapContainer.idle_up, frame);
 				if (bc != null) {
@@ -65,7 +64,7 @@ public class Animator {
 			}
 
 			// if going down
-			if (i == 1) {
+			if (lastMoveDirection == BitmapContainer.move_down) {
 				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
 						BitmapContainer.idle_down, frame);
 				if (bc != null) {
@@ -74,7 +73,7 @@ public class Animator {
 			}
 
 			// if going left
-			if (i == 2) {
+			if (lastMoveDirection == BitmapContainer.move_left) {
 				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
 						BitmapContainer.idle_left, frame);
 				if (bc != null) {
@@ -83,7 +82,7 @@ public class Animator {
 			}
 
 			// if going right
-			if (i == 3) {
+			if (lastMoveDirection == BitmapContainer.move_right) {
 				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
 						BitmapContainer.idle_right, frame);
 				if (bc != null) {
@@ -103,6 +102,7 @@ public class Animator {
 			if (e.getPosY() > e.getNextTileY()) {
 				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
 						BitmapContainer.move_up, frame);
+				lastMoveDirection = BitmapContainer.move_up;
 				if (bc != null) {
 					return bc.getPicture();
 				}
@@ -112,6 +112,7 @@ public class Animator {
 			if (e.getPosY() < e.getNextTileY()) {
 				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
 						BitmapContainer.move_down, frame);
+				lastMoveDirection = BitmapContainer.move_down;
 				if (bc != null) {
 					return bc.getPicture();
 				}
@@ -121,6 +122,7 @@ public class Animator {
 			if (e.getPosX() > e.getNextTileX()) {
 				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
 						BitmapContainer.move_left, frame);
+				lastMoveDirection = BitmapContainer.move_left;
 				if (bc != null) {
 					return bc.getPicture();
 				}
@@ -130,6 +132,7 @@ public class Animator {
 			if (e.getPosX() < e.getNextTileX()) {
 				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
 						BitmapContainer.move_right, frame);
+				lastMoveDirection = BitmapContainer.move_right;
 				if (bc != null) {
 					return bc.getPicture();
 				}
