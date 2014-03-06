@@ -11,11 +11,12 @@ public class EntityTemplate extends Entity {
 
 	private String player;
 	private TemplateManager tm;
+	private String projectile;
 
 	// takes all values needed for unit
 	public EntityTemplate(ObjectManager om, String name, int health, int speed,
 			int range, int atkspeed, String player,
-			String bitmapContainerGroup, TemplateManager tm) {
+			String bitmapContainerGroup, TemplateManager tm, String projectile) {
 		super.om = om;
 		super.name = name;
 		super.health = health;
@@ -25,12 +26,14 @@ public class EntityTemplate extends Entity {
 		this.player = player;
 		super.bitmapContainerGroup = bitmapContainerGroup;
 		this.tm = tm;
+		this.projectile = projectile;
 	}
 
 	public Unit createUnit() {
 		Unit u = new Unit(super.om.getNextFreeId(), super.om, super.name,
 				super.health, super.speed, super.range, super.atkSpeed,
-				super.bitmapContainerGroup, super.getBmContainerGroup());
+				super.bitmapContainerGroup, super.getBmContainerGroup(),
+				projectile);
 		Ai ai = null;
 		if (player.equals("player")) {
 			ai = new Ai(u); // actually needs player Ai implementation

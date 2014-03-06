@@ -18,4 +18,7 @@ public abstract class Effect {
 
 	}
 
+	public void causeDamage(int i) {
+
+	}
 }

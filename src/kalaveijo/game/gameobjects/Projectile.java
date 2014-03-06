@@ -16,6 +16,7 @@ public class Projectile extends Entity {
 	private MapLocation currentLocation;
 	protected String effect;
 	private Effect parsedEffect;
+	private int damage;
 
 	public Projectile(long id, ObjectManager om, MapLocation targetLocation,
 			MapLocation currentLocation, int health, String effect, int damage) {
@@ -24,12 +25,14 @@ public class Projectile extends Entity {
 		this.currentLocation = currentLocation;
 		this.health = health;
 		super.status = Entity.MOVING;
+		this.damage = damage;
 		this.parsedEffect = convertEffect(effect);
 	}
 
 	public void move() {
 		if (health == 0) {
 			causeDamage();
+			parsedEffect = null;
 			om.getLiveProjectiles().remove(this);
 		} else {
 			health--;
@@ -37,21 +40,23 @@ public class Projectile extends Entity {
 	}
 
 	public void draw(Canvas c) {
-		parsedEffect.draw(c);
+		if (parsedEffect != null)
+			parsedEffect.draw(c);
 	}
 
 	private void causeDamage() {
-		// cause damage according to effect
+		if (parsedEffect != null)
+			parsedEffect.causeDamage(damage);
 	}
 
 	private Effect convertEffect(String effect) {
 
 		if (effect.equals("singleshot")) {
-			return new SingleshotEffect(null);
+			return new SingleshotEffect(currentLocation, targetLocation, health);
 		}
 
 		// if all fails, default singleshot
-		return new SingleshotEffect(null);
+		return new SingleshotEffect(currentLocation, targetLocation, health);
 	}
 
 }

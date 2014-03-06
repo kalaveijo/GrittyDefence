@@ -61,11 +61,13 @@ public class XMLLoader {
 				int speed = Integer.parseInt(getValue(e, "speed"));
 				int range = Integer.parseInt(getValue(e, "range"));
 				int atkspeed = Integer.parseInt(getValue(e, "atkspeed"));
+				String projectile = getValue(e, "projectile");
 				String player = getValue(e, "player");
 				String bitmapcontainergroup = getValue(e,
 						"bitmapcontainergroup");
 				EntityTemplate et = new EntityTemplate(om, name, health, speed,
-						range, atkspeed, player, bitmapcontainergroup, tm);
+						range, atkspeed, player, bitmapcontainergroup, tm,
+						projectile);
 				entityList.add(et);
 				om.addEntityTemplate(et);
 			}

@@ -6,6 +6,7 @@ import kalaveijo.game.engine.template.EntityTemplate;
 import kalaveijo.game.engine.template.MapTemplate;
 import kalaveijo.game.engine.template.MissionTemplate;
 import kalaveijo.game.engine.template.MissionWaveTemplate;
+import kalaveijo.game.engine.template.ProjectileTemplate;
 import kalaveijo.game.gameobjects.Mission;
 import android.util.Log;
 
@@ -18,6 +19,7 @@ public class TemplateManager {
 	private ArrayList<MissionTemplate> missionTemplates = new ArrayList<MissionTemplate>();
 	private ArrayList<MissionWaveTemplate> waveTemplates = new ArrayList<MissionWaveTemplate>();
 	private ArrayList<MapTemplate> mapTemplates = new ArrayList<MapTemplate>();
+	private ArrayList<ProjectileTemplate> projTemplates = new ArrayList<ProjectileTemplate>();
 	private ObjectManager om;
 
 	public TemplateManager(ObjectManager om) {

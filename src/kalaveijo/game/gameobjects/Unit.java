@@ -13,6 +13,8 @@ import android.graphics.Point;
 
 public class Unit extends Entity implements Tickable {
 
+	String projectile;
+
 	public Unit(long id, ObjectManager om) {
 		super(id, om);
 		super.health = 10;
@@ -24,7 +26,7 @@ public class Unit extends Entity implements Tickable {
 
 	public Unit(long id, ObjectManager om, String name, int health, int speed,
 			int range, int atkSpeed, String bitmapContainerGroup,
-			BitmapContainerGroup bcg) {
+			BitmapContainerGroup bcg, String projectile) {
 		super(id, om);
 		super.name = name;
 		super.health = health;
@@ -33,6 +35,7 @@ public class Unit extends Entity implements Tickable {
 		super.atkSpeed = atkSpeed;
 		super.status = IDLE;
 		super.bmContainerGroup = bcg;
+		this.projectile = projectile;
 	}
 
 	public void loadAi(Ai ai) {
