@@ -22,6 +22,7 @@ public class ObjectManager {
 	private ArrayList<Entity> enemyUnit = new ArrayList<Entity>();
 	private ArrayList<Entity> mapUnits = new ArrayList<Entity>();
 	private ArrayList<Mission> missions = new ArrayList<Mission>();
+	private ArrayList<Entity> liveProjectiles = new ArrayList<Entity>();
 	private ArrayList<Map> map = new ArrayList<Map>();
 
 	public ObjectManager() {
@@ -156,6 +157,10 @@ public class ObjectManager {
 
 	public void setTemplateManager(TemplateManager tm) {
 		this.tm = tm;
+	}
+
+	public ArrayList<Entity> getLiveProjectiles() {
+		return liveProjectiles;
 	}
 
 }// class

@@ -7,6 +7,7 @@
 		<range>2</range>
 		<atkspeed>1</atkspeed>
 		<player>enemy</player>
+		<projectile>bullet</projectile>
 		<bitmapcontainergroup>rifleman</bitmapcontainergroup>
 	</unit>
 </unitlist>
