@@ -23,9 +23,12 @@ public class SingleshotEffect extends Effect {
 			int health) {
 		super(startLocation);
 		this.endLocation = endLocation;
-		currentPoint = convertToPoint(startLocation);
-		endPoint = convertToPoint(endLocation);
-		calculateIncrements();
+		if (startLocation != null)
+			currentPoint = convertToPoint(startLocation);
+		if (endLocation != null)
+			endPoint = convertToPoint(endLocation);
+		if (startLocation != null)
+			calculateIncrements();
 	}
 
 	public void draw(Canvas c) {

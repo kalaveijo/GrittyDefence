@@ -4,5 +4,6 @@
         <name>bullet</name>
         <effect>singleshot</effect>
         <health>10</health>
+        <bitmapcontainergroup>bullet</bitmapcontainergroup>
     </projectile>
 </projectilelist>

@@ -3,8 +3,6 @@ package kalaveijo.game.engine;
 import kalaveijo.game.engine.manager.GameManager;
 import kalaveijo.game.engine.manager.ObjectManager;
 import kalaveijo.game.engine.manager.TemplateManager;
-import kalaveijo.game.gameobjects.Ai;
-import kalaveijo.game.gameobjects.Unit;
 import kalaveijo.game.grittydefence.GameSurfaceView;
 import kalaveijo.game.util.Options;
 import android.graphics.Canvas;
@@ -44,15 +42,14 @@ public class GameThread extends Thread {
 		xmlLoader = new XMLLoader(objectManager, cv, templateManager);
 		renderer = new Renderer(objectManager, this, cv, templateManager);
 
-		Unit rm = new Unit(objectManager.getNextFreeId(), objectManager);
-		objectManager.spawnPlayerUnit(rm, 4, 5);
-		rm.loadAi(new Ai(rm));
-		rm = new Unit(objectManager.getNextFreeId(), objectManager);
-		objectManager.spawnPlayerUnit(rm, 5, 5);
-		rm.loadAi(new Ai(rm));
-		rm = new Unit(objectManager.getNextFreeId(), objectManager);
-		objectManager.spawnPlayerUnit(rm, 9, 5);
-		rm.loadAi(new Ai(rm));
+		/*
+		 * Unit rm = new Unit(objectManager.getNextFreeId(), objectManager);
+		 * objectManager.spawnPlayerUnit(rm, 4, 5); rm.loadAi(new Ai(rm)); rm =
+		 * new Unit(objectManager.getNextFreeId(), objectManager);
+		 * objectManager.spawnPlayerUnit(rm, 5, 5); rm.loadAi(new Ai(rm)); rm =
+		 * new Unit(objectManager.getNextFreeId(), objectManager);
+		 * objectManager.spawnPlayerUnit(rm, 9, 5); rm.loadAi(new Ai(rm));
+		 */
 
 	}// initializeGame
 
@@ -67,6 +64,8 @@ public class GameThread extends Thread {
 				mCanvas = mHolder.lockCanvas();
 				if (firstRun) { //
 					initializeGame(mCanvas); // loads all game objects
+					templateManager.setProjTemplates(xmlLoader
+							.loadProjectiles());
 					templateManager
 							.setEntityTemplates(xmlLoader.loadEntities());
 					templateManager.setMapTemplates(xmlLoader.loadMaps());

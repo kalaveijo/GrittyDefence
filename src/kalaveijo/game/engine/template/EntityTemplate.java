@@ -1,5 +1,7 @@
 package kalaveijo.game.engine.template;
 
+import java.util.ArrayList;
+
 import kalaveijo.game.engine.Entity;
 import kalaveijo.game.engine.manager.ObjectManager;
 import kalaveijo.game.engine.manager.TemplateManager;
@@ -30,10 +32,19 @@ public class EntityTemplate extends Entity {
 	}
 
 	public Unit createUnit() {
-		Unit u = new Unit(super.om.getNextFreeId(), super.om, super.name,
-				super.health, super.speed, super.range, super.atkSpeed,
-				super.bitmapContainerGroup, super.getBmContainerGroup(),
-				projectile);
+		Unit u = null;
+		if (tm.getProjTemplates() != null) {
+			u = new Unit(super.om.getNextFreeId(), super.om, super.name,
+					super.health, super.speed, super.range, super.atkSpeed,
+					super.bitmapContainerGroup, super.getBmContainerGroup(),
+					pairProjectileTemplate());
+		} else {
+			u = new Unit(super.om.getNextFreeId(), super.om, super.name,
+					super.health, super.speed, super.range, super.atkSpeed,
+					super.bitmapContainerGroup, super.getBmContainerGroup(),
+					null);
+		}
+
 		Ai ai = null;
 		if (player.equals("player")) {
 			ai = new Ai(u); // actually needs player Ai implementation
@@ -42,5 +53,18 @@ public class EntityTemplate extends Entity {
 		}
 		u.loadAi(ai);
 		return u;
+	}
+
+	private ProjectileTemplate pairProjectileTemplate() {
+		ProjectileTemplate projTemp = null;
+		ArrayList<ProjectileTemplate> projList = tm.getProjTemplates();
+
+		for (ProjectileTemplate pt : projList) {
+			if (pt.getName().equals(this.projectile)) {
+				projTemp = pt;
+			}
+		}
+
+		return projTemp;
 	}
 }

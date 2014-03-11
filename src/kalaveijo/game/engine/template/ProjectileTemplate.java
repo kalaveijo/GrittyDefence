@@ -6,7 +6,7 @@ import kalaveijo.game.util.MapLocation;
 
 public class ProjectileTemplate extends Projectile {
 
-	public ProjectileTemplate(int id, ObjectManager om, int health,
+	public ProjectileTemplate(long id, ObjectManager om, int health,
 			String bitmapContainerGroup, String name, String effect) {
 		super(id, om, null, null, health, effect, 0);
 		super.name = name;

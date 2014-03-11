@@ -4,6 +4,7 @@ import kalaveijo.game.engine.BitmapContainerGroup;
 import kalaveijo.game.engine.Entity;
 import kalaveijo.game.engine.Tickable;
 import kalaveijo.game.engine.manager.ObjectManager;
+import kalaveijo.game.engine.template.ProjectileTemplate;
 import kalaveijo.game.util.Options;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -13,7 +14,7 @@ import android.graphics.Point;
 
 public class Unit extends Entity implements Tickable {
 
-	String projectile;
+	ProjectileTemplate projectile;
 
 	public Unit(long id, ObjectManager om) {
 		super(id, om);
@@ -26,7 +27,7 @@ public class Unit extends Entity implements Tickable {
 
 	public Unit(long id, ObjectManager om, String name, int health, int speed,
 			int range, int atkSpeed, String bitmapContainerGroup,
-			BitmapContainerGroup bcg, String projectile) {
+			BitmapContainerGroup bcg, ProjectileTemplate projectile) {
 		super(id, om);
 		super.name = name;
 		super.health = health;

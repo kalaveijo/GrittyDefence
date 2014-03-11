@@ -12,6 +12,7 @@ import kalaveijo.game.engine.template.EntityTemplate;
 import kalaveijo.game.engine.template.MapTemplate;
 import kalaveijo.game.engine.template.MissionTemplate;
 import kalaveijo.game.engine.template.MissionWaveTemplate;
+import kalaveijo.game.engine.template.ProjectileTemplate;
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.MapTile;
 import kalaveijo.game.gameobjects.MovementHelper;
@@ -240,6 +241,35 @@ public class XMLLoader {
 			Log.d("loadWave Failure", e.toString());
 		}
 		return waveArrayList;
+	}
+
+	public ArrayList<ProjectileTemplate> loadProjectiles() {
+		ArrayList<ProjectileTemplate> projTemplate = new ArrayList<ProjectileTemplate>();
+
+		try {
+			AssetManager assetManager = cv.getContext().getAssets();
+			Document entitylist = readXml(assetManager
+					.open("projectilelist.xml"));
+			NodeList projList = entitylist.getElementsByTagName("projectile");
+
+			// collect information for all waves into templates
+			for (int i = 0; i < projList.getLength(); i++) {
+				Element proj = (Element) projList.item(i);
+
+				String name = getValue(proj, "name");
+				int health = Integer.parseInt(getValue(proj, "health"));
+				String effect = getValue(proj, "effect");
+				String bitmapContainerGroup = getValue(proj,
+						"bitmapcontainergroup");
+
+				projTemplate.add(new ProjectileTemplate(om.getNextFreeId(), om,
+						health, bitmapContainerGroup, name, effect));
+			}
+		} catch (Exception e) {
+			Log.d("loadProjectile Failure", e.toString());
+		}
+
+		return projTemplate;
 	}
 
 	// reads inputstream and outputs document

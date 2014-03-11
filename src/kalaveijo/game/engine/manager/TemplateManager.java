@@ -75,4 +75,12 @@ public class TemplateManager {
 		this.mapTemplates = mapTemplates;
 	}
 
+	public ArrayList<ProjectileTemplate> getProjTemplates() {
+		return projTemplates;
+	}
+
+	public void setProjTemplates(ArrayList<ProjectileTemplate> projTemplates) {
+		this.projTemplates = projTemplates;
+	}
+
 }
