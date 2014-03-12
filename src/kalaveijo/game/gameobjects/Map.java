@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import kalaveijo.game.engine.Entity;
 import kalaveijo.game.engine.manager.ObjectManager;
+import kalaveijo.game.util.MapLocation;
 import kalaveijo.game.util.Options;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -159,5 +160,19 @@ public class Map extends Entity {
 
 	public ArrayList<SpawnTile> getSpawners() {
 		return spawners;
+	}
+
+	public MapTile getTile(MapLocation ml) {
+
+		for (int i = 0; i < sizeX; i++) {
+			for (int e = 0; e < sizeY; e++) {
+				if (i == ml.x && e == ml.y) {
+					if (ml.x > -1 && ml.y > -1 && ml.x < this.sizeX + 1
+							&& ml.y < this.sizeY + 1)
+						return tiles[i][e];
+				}
+			}// for
+		}// for
+		return null;
 	}
 }

@@ -90,4 +90,8 @@ public class Ai {
 			}
 		}
 	}
+
+	private void checkAttack() {
+
+	}
 }
