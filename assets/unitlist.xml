@@ -10,4 +10,14 @@
 		<projectile>bullet</projectile>
 		<bitmapcontainergroup>rifleman</bitmapcontainergroup>
 	</unit>
+	<unit>
+		<name>machinegunner</name>
+		<health>10</health>
+		<speed>1</speed>
+		<range>2</range>
+		<atkspeed>1</atkspeed>
+		<player>player</player>
+		<projectile>bullet</projectile>
+		<bitmapcontainergroup>machinegunner</bitmapcontainergroup>
+	</unit>
 </unitlist>

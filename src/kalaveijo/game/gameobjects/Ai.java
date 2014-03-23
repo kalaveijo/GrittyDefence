@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import kalaveijo.game.engine.Entity;
 import kalaveijo.game.engine.manager.ObjectManager;
+import kalaveijo.game.util.MapLocation;
 
 /*
  * Handles decision making by units
@@ -44,13 +45,20 @@ public class Ai {
 			this.currentPosX = u.getPosX();
 			this.currentPosY = u.getPosY();
 			// Check if enemies are nearby
+			checkAttack();
+		}
+		// if not attacking
+		if (u.getStatus() == Entity.IDLE) {
+			u.resetSpritePosition();
+			this.currentPosX = u.getPosX();
+			this.currentPosY = u.getPosY();
 
 			// Check where to move
 			checkMovement();
 		}
 	}
 
-	private void checkMovement() {
+	protected void checkMovement() {
 
 		int possibleTargetX = currentPosX;
 		int possibleTargetY = currentPosY;
@@ -91,7 +99,84 @@ public class Ai {
 		}
 	}
 
-	private void checkAttack() {
+	protected void checkAttack() {
+		ArrayList<MapLocation> targetList = getTilesOnRange(u.getPosX(),
+				u.getPosY(), u.getRange(), u.getObjectManager());
+		// go throught targets in range
+		/*
+		 * paska implementaatio, pitäisi duunaa että se ei katso joka vitun
+		 * entityä pelistä vaan oikeasti tutkisi mitä siellä alueella on
+		 */
+		for (MapLocation ml : targetList) {
+			for (Entity e : u.getObjectManager().getPlayerUnits()) {
+				if (e.getPosX() == ml.x && e.getPosY() == ml.y) {
+					// fire projectile at target
+					u.attack(new MapLocation(e.getPosX(), e.getPosY()));
 
+					/*
+					 * Range needs to be changed to come from the unit (prolly
+					 * not stored atm)
+					 */
+					u.setStatus(Entity.ATTACKING);
+				}
+			}
+
+		}
+
+	}
+
+	// see getTilesOnRangeAlgorithm.png from project_files
+	public ArrayList<MapLocation> getTilesOnRange(int startX, int startY,
+			int range, ObjectManager om) {
+		Map map = null;
+		for (Map m : om.getMap()) {
+			map = m;
+		}
+		int currentX = startX;
+		int currentY = startY;
+
+		ArrayList<MapLocation> selectedTiles = new ArrayList<MapLocation>();
+
+		// miten monta kierrosta halutaan
+		for (int i = 1; i < range + 1; i++) {
+
+			currentX = currentX - i;
+			selectedTiles.add(new MapLocation(currentX, currentY));
+			for (int e = 0; e < i; e++) {
+				currentX = currentX + 1;
+				currentY = currentY - 1;
+
+				if (currentX > -1 && currentY > -1 && currentX < map.getSizeX()
+						&& currentY < map.getSizeY())
+					selectedTiles.add(new MapLocation(currentX, currentY));
+			}
+			for (int e = 0; e < i; e++) {
+				currentX = currentX + 1;
+				currentY = currentY + 1;
+
+				if (currentX > -1 && currentY > -1 && currentX < map.getSizeX()
+						&& currentY < map.getSizeY())
+					selectedTiles.add(new MapLocation(currentX, currentY));
+			}
+			for (int e = 0; e < i; e++) {
+				currentX = currentX - 1;
+				currentY = currentY + 1;
+
+				if (currentX > -1 && currentY > -1 && currentX < map.getSizeX()
+						&& currentY < map.getSizeY())
+					selectedTiles.add(new MapLocation(currentX, currentY));
+			}
+
+			for (int e = 0; e < i - 1; e++) {
+				currentX = currentX - 1;
+				currentY = currentY - 1;
+				if (currentX > -1 && currentY > -1 && currentX < map.getSizeX()
+						&& currentY < map.getSizeY())
+					selectedTiles.add(new MapLocation(currentX, currentY));
+			}
+
+			currentY = currentY - 1;
+		}
+		return selectedTiles;
 	}
 }

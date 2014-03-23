@@ -154,6 +154,10 @@ public class Unit extends Entity implements Tickable {
 		}
 	}
 
+	public ProjectileTemplate getProjectile() {
+		return projectile;
+	}
+
 	// used to check if movement logic works
 	public void debugOrder() {
 		if (Options.DEBUG) {
@@ -168,29 +172,5 @@ public class Unit extends Entity implements Tickable {
 				projectile.createProjectile(ml, new MapLocation(location.x,
 						location.y), 1));
 	}
-	/*
-	 * public ArrayList<MapLocation> getEnemiesOnRange(int startX, int startY,
-	 * int range, Map map) { int currentX = startX; int currentY = startY;
-	 * 
-	 * ArrayList<MapLocation> selectedTiles = new ArrayList<MapLocation>();
-	 * 
-	 * // miten monta kierrosta halutaan for (int i = 1; i < range + 1; i++) {
-	 * 
-	 * currentX = currentX - i; selectedTiles.add(new MapLocation(currentX,
-	 * currentY)); for (int e = 0; e < i; e++) { currentX = currentX + 1;
-	 * currentY = currentY - 1; MapTile mt = map.getTile(new
-	 * MapLocation(currentX, currentY)); if (mt != null) selectedTiles.add(mt);
-	 * } for (int e = 0; e < i; e++) { currentX = currentX + 1; currentY =
-	 * currentY + 1; MapTile mt = map.getTile(new MapLocation(currentX,
-	 * currentY)); if (mt != null) selectedTiles.add(mt); } for (int e = 0; e <
-	 * i; e++) { currentX = currentX - 1; currentY = currentY + 1; MapTile mt =
-	 * map.getTile(new MapLocation(currentX, currentY)); if (mt != null)
-	 * selectedTiles.add(mt); }
-	 * 
-	 * for (int e = 0; e < i - 1; e++) { currentX = currentX - 1; currentY =
-	 * currentY - 1; MapTile mt = map.getTile(new MapLocation(currentX,
-	 * currentY)); if (mt != null) selectedTiles.add(mt); }
-	 * 
-	 * currentY = currentY - 1; } return selectedTiles; }
-	 */
+
 }

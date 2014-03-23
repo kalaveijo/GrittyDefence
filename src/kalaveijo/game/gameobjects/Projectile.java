@@ -52,11 +52,13 @@ public class Projectile extends Entity {
 	private Effect convertEffect(String effect) {
 
 		if (effect.equals("singleshot")) {
-			return new SingleshotEffect(currentLocation, targetLocation, health);
+			return new SingleshotEffect(currentLocation, targetLocation,
+					super.health);
 		}
 
 		// if all fails, default singleshot
-		return new SingleshotEffect(currentLocation, targetLocation, health);
+		return new SingleshotEffect(currentLocation, targetLocation,
+				super.health);
 	}
 
 }

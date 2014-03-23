@@ -141,6 +141,9 @@ public class ObjectManager {
 		for (Entity u : getEnemyUnits()) {
 			u.move();
 		}
+		for (Entity p : getLiveProjectiles()) {
+			p.move();
+		}
 	}
 
 	public ArrayList<Mission> getMissions() {

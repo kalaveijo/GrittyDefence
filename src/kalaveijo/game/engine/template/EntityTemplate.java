@@ -6,6 +6,7 @@ import kalaveijo.game.engine.Entity;
 import kalaveijo.game.engine.manager.ObjectManager;
 import kalaveijo.game.engine.manager.TemplateManager;
 import kalaveijo.game.gameobjects.Ai;
+import kalaveijo.game.gameobjects.DefenceAi;
 import kalaveijo.game.gameobjects.Unit;
 
 //template object that is used to create Units
@@ -47,9 +48,9 @@ public class EntityTemplate extends Entity {
 
 		Ai ai = null;
 		if (player.equals("player")) {
-			ai = new Ai(u); // actually needs player Ai implementation
+			ai = new DefenceAi(u);
 		} else if (player.equals("enemy")) {
-			ai = new Ai(u); // actually needs player Ai implementation
+			ai = new Ai(u);
 		}
 		u.loadAi(ai);
 		return u;

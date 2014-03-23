@@ -22,6 +22,7 @@ public class SingleshotEffect extends Effect {
 	public SingleshotEffect(MapLocation startLocation, MapLocation endLocation,
 			int health) {
 		super(startLocation);
+		this.health = health;
 		this.endLocation = endLocation;
 		if (startLocation != null)
 			currentPoint = convertToPoint(startLocation);
@@ -29,10 +30,11 @@ public class SingleshotEffect extends Effect {
 			endPoint = convertToPoint(endLocation);
 		if (startLocation != null)
 			calculateIncrements();
+
 	}
 
 	public void draw(Canvas c) {
-		c.drawCircle(currentPoint.x, currentPoint.y, 1, new Paint());
+		c.drawCircle(currentPoint.x, currentPoint.y, 5, new Paint());
 		currentPoint.x = currentPoint.x + iX;
 		currentPoint.y = currentPoint.y + iY;
 	}
@@ -47,8 +49,8 @@ public class SingleshotEffect extends Effect {
 
 	// calculate how many steps can be taken
 	private void calculateIncrements() {
-		iX = (int) Math.floor((endPoint.x - currentPoint.x) / health);
-		iY = (int) Math.floor((endPoint.y - currentPoint.y) / health);
+		iX = (int) Math.floor((endPoint.x - currentPoint.x) / this.health);
+		iY = (int) Math.floor((endPoint.y - currentPoint.y) / this.health);
 	}
 
 }

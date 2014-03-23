@@ -3,6 +3,8 @@ package kalaveijo.game.engine;
 import kalaveijo.game.engine.manager.GameManager;
 import kalaveijo.game.engine.manager.ObjectManager;
 import kalaveijo.game.engine.manager.TemplateManager;
+import kalaveijo.game.engine.template.EntityTemplate;
+import kalaveijo.game.gameobjects.Unit;
 import kalaveijo.game.grittydefence.GameSurfaceView;
 import kalaveijo.game.util.Options;
 import android.graphics.Canvas;
@@ -42,15 +44,6 @@ public class GameThread extends Thread {
 		xmlLoader = new XMLLoader(objectManager, cv, templateManager);
 		renderer = new Renderer(objectManager, this, cv, templateManager);
 
-		/*
-		 * Unit rm = new Unit(objectManager.getNextFreeId(), objectManager);
-		 * objectManager.spawnPlayerUnit(rm, 4, 5); rm.loadAi(new Ai(rm)); rm =
-		 * new Unit(objectManager.getNextFreeId(), objectManager);
-		 * objectManager.spawnPlayerUnit(rm, 5, 5); rm.loadAi(new Ai(rm)); rm =
-		 * new Unit(objectManager.getNextFreeId(), objectManager);
-		 * objectManager.spawnPlayerUnit(rm, 9, 5); rm.loadAi(new Ai(rm));
-		 */
-
 	}// initializeGame
 
 	/*
@@ -73,9 +66,8 @@ public class GameThread extends Thread {
 							.loadMissions());
 					templateManager.setWaveTemplates(xmlLoader.loadWaves());
 					renderer.load();
-					gameManager.changeMission("tutorialMission"); // TODO change
-																	// to
-					// dynamic
+					gameManager.changeMission("tutorialMission");
+					debugCreatePlayerUnit(); // just debug, comment out
 					firstRun = false;
 				}// if
 
@@ -141,5 +133,15 @@ public class GameThread extends Thread {
 	// Passes user events to gameobjects, needs ArrayList<GuiEvent> as param
 	public void handleEvents() {
 
+	}
+
+	public void debugCreatePlayerUnit() {
+		for (EntityTemplate et : templateManager.getEntityTemplates()) {
+			if (et.getName().equals("machinegunner")) {
+				Unit u = et.createUnit();
+				objectManager.spawnPlayerUnit(u, 4, 4);
+			}
+
+		}
 	}
 }

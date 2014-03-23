@@ -11,6 +11,7 @@ public class ProjectileTemplate extends Projectile {
 		super(id, om, null, null, health, effect, 0);
 		super.name = name;
 		super.bitmapContainerGroup = bitmapContainerGroup;
+		super.effect = effect;
 	}
 
 	public Projectile createProjectile(MapLocation targetLocation,

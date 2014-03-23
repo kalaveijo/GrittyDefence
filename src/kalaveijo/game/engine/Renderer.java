@@ -114,6 +114,10 @@ public class Renderer {
 			u.draw(c);
 		}// for
 
+		for (Entity p : om.getLiveProjectiles()) {
+			p.draw(c);
+		}
+
 	}// drawUnits
 
 	protected void drawMap(Canvas c) {
