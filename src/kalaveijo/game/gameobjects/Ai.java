@@ -100,6 +100,7 @@ public class Ai {
 	}
 
 	protected void checkAttack() {
+		boolean hasAttacked = false;
 		ArrayList<MapLocation> targetList = getTilesOnRange(u.getPosX(),
 				u.getPosY(), u.getRange(), u.getObjectManager());
 		// go throught targets in range
@@ -110,14 +111,17 @@ public class Ai {
 		for (MapLocation ml : targetList) {
 			for (Entity e : u.getObjectManager().getPlayerUnits()) {
 				if (e.getPosX() == ml.x && e.getPosY() == ml.y) {
-					// fire projectile at target
-					u.attack(new MapLocation(e.getPosX(), e.getPosY()));
+					if (!hasAttacked) {
+						// fire projectile at target
+						u.attack(new MapLocation(e.getPosX(), e.getPosY()));
 
-					/*
-					 * Range needs to be changed to come from the unit (prolly
-					 * not stored atm)
-					 */
-					u.setStatus(Entity.ATTACKING);
+						/*
+						 * Range needs to be changed to come from the unit
+						 * (prolly not stored atm)
+						 */
+						u.setStatus(Entity.ATTACKING);
+						hasAttacked = true;
+					}
 				}
 			}
 
