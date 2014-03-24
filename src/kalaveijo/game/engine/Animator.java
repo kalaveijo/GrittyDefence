@@ -90,6 +90,39 @@ public class Animator {
 				}
 			}
 
+			// välisuunnat
+			if (lastMoveDirection == BitmapContainer.move_right_up) {
+				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
+						BitmapContainer.idle_right_up, frame);
+				if (bc != null) {
+					return bc.getPicture();
+				}
+			}
+
+			if (lastMoveDirection == BitmapContainer.move_right_down) {
+				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
+						BitmapContainer.idle_right_down, frame);
+				if (bc != null) {
+					return bc.getPicture();
+				}
+			}
+
+			if (lastMoveDirection == BitmapContainer.move_left_up) {
+				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
+						BitmapContainer.idle_left_up, frame);
+				if (bc != null) {
+					return bc.getPicture();
+				}
+			}
+
+			if (lastMoveDirection == BitmapContainer.move_left_down) {
+				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
+						BitmapContainer.idle_left_down, frame);
+				if (bc != null) {
+					return bc.getPicture();
+				}
+			}
+
 			bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
 					BitmapContainer.idle_right, frame);
 			if (bc != null) {
