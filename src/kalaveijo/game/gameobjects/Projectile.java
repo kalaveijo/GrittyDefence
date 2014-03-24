@@ -33,7 +33,8 @@ public class Projectile extends Entity {
 		if (health == 0) {
 			causeDamage();
 			parsedEffect = null;
-			om.getLiveProjectiles().remove(this);
+			// om.getLiveProjectiles().remove(this); causes crash
+			om.getRemoveList().add(this);
 		} else {
 			health--;
 		}

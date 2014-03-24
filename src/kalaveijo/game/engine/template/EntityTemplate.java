@@ -18,14 +18,14 @@ public class EntityTemplate extends Entity {
 
 	// takes all values needed for unit
 	public EntityTemplate(ObjectManager om, String name, int health, int speed,
-			int range, int atkspeed, String player,
-			String bitmapContainerGroup, TemplateManager tm, String projectile) {
+			int range, int aSpeed, String player, String bitmapContainerGroup,
+			TemplateManager tm, String projectile) {
 		super.om = om;
 		super.name = name;
 		super.health = health;
 		super.speed = speed;
 		super.range = range;
-		super.atkSpeed = atkSpeed;
+		this.atkSpeed = aSpeed;
 		this.player = player;
 		super.bitmapContainerGroup = bitmapContainerGroup;
 		this.tm = tm;

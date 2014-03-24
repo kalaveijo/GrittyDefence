@@ -169,8 +169,8 @@ public class Unit extends Entity implements Tickable {
 
 	public void attack(MapLocation ml) {
 		om.getLiveProjectiles().add(
-				projectile.createProjectile(ml, new MapLocation(location.x,
-						location.y), 1));
+				projectile.createProjectile(ml, new MapLocation(this.getPosX(),
+						this.getPosY()), 1));
 	}
 
 }

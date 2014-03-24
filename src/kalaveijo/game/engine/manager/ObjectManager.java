@@ -24,6 +24,7 @@ public class ObjectManager {
 	private ArrayList<Mission> missions = new ArrayList<Mission>();
 	private ArrayList<Entity> liveProjectiles = new ArrayList<Entity>();
 	private ArrayList<Map> map = new ArrayList<Map>();
+	private ArrayList<Entity> removeList = new ArrayList<Entity>();
 
 	public ObjectManager() {
 		// initialize map
@@ -144,6 +145,12 @@ public class ObjectManager {
 		for (Entity p : getLiveProjectiles()) {
 			p.move();
 		}
+		// remove objects
+		for (Entity e : getRemoveList()) {
+			getPlayerUnits().remove(e);
+			getEnemyUnits().remove(e);
+			getLiveProjectiles().remove(e);
+		}
 	}
 
 	public ArrayList<Mission> getMissions() {
@@ -164,6 +171,10 @@ public class ObjectManager {
 
 	public ArrayList<Entity> getLiveProjectiles() {
 		return liveProjectiles;
+	}
+
+	public ArrayList<Entity> getRemoveList() {
+		return removeList;
 	}
 
 }// class
