@@ -2,6 +2,7 @@ package kalaveijo.game.engine;
 
 import kalaveijo.game.engine.manager.ObjectManager;
 import kalaveijo.game.gameobjects.Ai;
+import kalaveijo.game.util.MapLocation;
 import kalaveijo.game.util.Options;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -16,6 +17,15 @@ public class Entity implements Tickable {
 	public static final int MOVING = 1;
 	public static final int ATTACKING = 2;
 	public static final int DYING = 3;
+
+	public static final int UP = 0;
+	public static final int UP_RIGHT = 1;
+	public static final int RIGHT = 2;
+	public static final int DOWN_RIGHT = 3;
+	public static final int DOWN = 4;
+	public static final int DOWN_LEFT = 5;
+	public static final int LEFT = 6;
+	public static final int UP_LEFT = 7;
 
 	protected int offSetX = Options.TILE_SIZE / 2,
 			offSetY = Options.TILE_SIZE / 2;
@@ -37,6 +47,7 @@ public class Entity implements Tickable {
 	protected String name;
 	protected ObjectManager om;
 	protected Animator animator;
+	protected int currentDirection = RIGHT;
 
 	public BitmapContainerGroup getBmContainerGroup() {
 		return bmContainerGroup;
@@ -163,6 +174,19 @@ public class Entity implements Tickable {
 
 	public String getBitmapContainerGroup() {
 		return bitmapContainerGroup;
+	}
+
+	public int getCurrentDirection() {
+		return currentDirection;
+	}
+
+	public static int calculateDirection(MapLocation startPoint,
+			MapLocation endPoint) {
+		int direction = RIGHT;
+		int a = startPoint.y - endPoint.y;
+		int b = startPoint.x - startPoint.x;
+
+		return direction;
 	}
 
 }
