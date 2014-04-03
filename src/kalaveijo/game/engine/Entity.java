@@ -180,13 +180,108 @@ public class Entity implements Tickable {
 		return currentDirection;
 	}
 
-	public static int calculateDirection(MapLocation startPoint,
-			MapLocation endPoint) {
-		int direction = RIGHT;
-		int a = startPoint.y - endPoint.y;
-		int b = startPoint.x - startPoint.x;
+	public int calculateDirection(MapLocation startPoint, MapLocation endPoint) {
+		int direction = currentDirection;
+		int a = Math.abs(startPoint.y - endPoint.y);
+		int b = Math.abs(startPoint.x - startPoint.x);
+		double degree = 0;
+		if (b != 0)
+			degree = Math.atan(a / b);
 
-		return direction;
+		// if were not moving on x
+		if (startPoint.x - endPoint.x == 0) {
+
+			// if nothing has been changed
+			if (startPoint.y - endPoint.y == 0) {
+				return direction;
+			}
+
+			// if moving down
+			if (startPoint.y - endPoint.y > 0)
+				return direction = DOWN;
+
+			// if moving up
+			if (startPoint.y - endPoint.y < 0)
+				return direction = UP;
+
+			// if were not moving on y
+		} else if (startPoint.y - endPoint.y == 0) {
+
+			// if moving right
+			if (startPoint.x - endPoint.x > 0)
+				return direction = RIGHT;
+
+			// if moving up
+			if (startPoint.x - endPoint.x < 0)
+				return direction = LEFT;
+		}
+
+		// check direction on x is on LEFT
+		if (startPoint.x - endPoint.x < 0) {
+
+			// if UP
+			if (startPoint.y - endPoint.y < 0) {
+
+				// if between
+				if (degree > 30 && degree < 60) {
+					return direction = UP_LEFT;
+
+					// if horizontal
+				} else if (degree > 30) {
+					return direction = LEFT;
+					// if vertical
+				} else {
+					return direction = UP;
+				}
+
+				// else DOWN
+			} else {
+				// if between
+				if (degree > 30 && degree < 60) {
+					return direction = DOWN_LEFT;
+
+					// if horizontal
+				} else if (degree > 30) {
+					return direction = LEFT;
+					// if vertical
+				} else {
+					return direction = DOWN;
+				}
+			}
+
+			// if not, LEFT, its RIGHT
+		} else {
+
+			// if UP
+			if (startPoint.y - endPoint.y < 0) {
+
+				// if between
+				if (degree > 30 && degree < 60) {
+					return direction = UP_RIGHT;
+
+					// if horizontal
+				} else if (degree > 30) {
+					return direction = RIGHT;
+					// if vertical
+				} else {
+					return direction = UP;
+				}
+
+				// else DOWN
+			} else {
+				// if between
+				if (degree > 30 && degree < 60) {
+					return direction = DOWN_RIGHT;
+
+					// if horizontal
+				} else if (degree > 30) {
+					return direction = RIGHT;
+					// if vertical
+				} else {
+					return direction = DOWN;
+				}
+			}
+
+		}
 	}
-
 }

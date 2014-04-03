@@ -104,6 +104,10 @@ public class Unit extends Entity implements Tickable {
 					actionLeft = Options.GAME_SPEED;
 					status = IDLE;
 				} else {
+
+					currentDirection = calculateDirection(new MapLocation(posX,
+							posY), new MapLocation(nextTileX, nextTileY));
+
 					actionLeft = actionLeft - atkSpeed;
 					// else continnue attacking
 				}
@@ -121,6 +125,10 @@ public class Unit extends Entity implements Tickable {
 					posY = nextTileY;
 					status = IDLE;
 				} else {
+
+					currentDirection = calculateDirection(new MapLocation(posX,
+							posY), new MapLocation(nextTileX, nextTileY));
+
 					// calculate movement step amount for sprite
 					int spriteMoveAmount = Options.TILE_SIZE
 							/ (Options.GAME_SPEED / speed);
