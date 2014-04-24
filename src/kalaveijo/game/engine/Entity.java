@@ -186,7 +186,7 @@ public class Entity implements Tickable {
 		int b = Math.abs(startPoint.x - startPoint.x);
 		double degree = 0;
 		if (b != 0)
-			degree = Math.atan(a / b);
+			degree = Math.toDegrees(Math.atan(a / b));
 
 		// if were not moving on x
 		if (startPoint.x - endPoint.x == 0) {

@@ -151,6 +151,7 @@ public class ObjectManager {
 			getEnemyUnits().remove(e);
 			getLiveProjectiles().remove(e);
 		}
+		getRemoveList().clear();
 	}
 
 	public ArrayList<Mission> getMissions() {
