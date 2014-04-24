@@ -8,10 +8,10 @@ import android.graphics.Canvas;
  */
 public abstract class Effect {
 
-	private MapLocation startLocation;
+	protected MapLocation startLocation;
 
 	public Effect(MapLocation startLocation) {
-
+		this.startLocation = startLocation;
 	}
 
 	public void draw(Canvas c) {
@@ -21,6 +21,6 @@ public abstract class Effect {
 	public void causeDamage(int i) {
 
 	}
-	
-	//daasdasd
+
+	// daasdasd
 }

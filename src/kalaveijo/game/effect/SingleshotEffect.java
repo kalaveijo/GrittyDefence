@@ -1,6 +1,9 @@
 package kalaveijo.game.effect;
 
 import kalaveijo.game.engine.Effect;
+import kalaveijo.game.engine.Entity;
+import kalaveijo.game.engine.manager.ObjectManager;
+import kalaveijo.game.gameobjects.Unit;
 import kalaveijo.game.util.MapLocation;
 import kalaveijo.game.util.Options;
 import android.graphics.Canvas;
@@ -18,12 +21,16 @@ public class SingleshotEffect extends Effect {
 	int iX;
 	int iY;
 	int health;
+	ObjectManager om;
+	int damage;
 
 	public SingleshotEffect(MapLocation startLocation, MapLocation endLocation,
-			int health) {
+			int health, ObjectManager om, int damage) {
 		super(startLocation);
+		this.om = om;
 		this.health = health;
 		this.endLocation = endLocation;
+		this.damage = damage;
 		if (startLocation != null)
 			currentPoint = convertToPoint(startLocation);
 		if (endLocation != null)
@@ -41,6 +48,13 @@ public class SingleshotEffect extends Effect {
 
 	public void causeDamage(int i) {
 		// write special conditions how damage is caused
+		Entity e = om.getEntityByPosition(endLocation);
+		if (e != null && e instanceof Unit) {
+			Unit u = (Unit) e;
+			int direction = u.calculateDirection(startLocation, endLocation);
+			u.setLastHitDirection(direction);
+			u.getDamage(damage);
+		}
 	}
 
 	private Point convertToPoint(MapLocation ml) {

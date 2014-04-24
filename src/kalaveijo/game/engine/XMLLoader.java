@@ -258,12 +258,13 @@ public class XMLLoader {
 
 				String name = getValue(proj, "name");
 				int health = Integer.parseInt(getValue(proj, "health"));
+				int damage = Integer.parseInt(getValue(proj, "damage"));
 				String effect = getValue(proj, "effect");
 				String bitmapContainerGroup = getValue(proj,
 						"bitmapcontainergroup");
 
 				projTemplate.add(new ProjectileTemplate(om.getNextFreeId(), om,
-						health, bitmapContainerGroup, name, effect));
+						health, bitmapContainerGroup, name, effect, damage));
 			}
 		} catch (Exception e) {
 			Log.d("loadProjectile Failure", e.toString());

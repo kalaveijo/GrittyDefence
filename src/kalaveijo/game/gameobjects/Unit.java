@@ -15,7 +15,9 @@ import android.graphics.Point;
 
 public class Unit extends Entity implements Tickable {
 
-	ProjectileTemplate projectile;
+	protected ProjectileTemplate projectile;
+	// used in cool death
+	protected int lastHitDirection = Entity.UP;
 
 	public Unit(long id, ObjectManager om) {
 		super(id, om);
@@ -71,7 +73,7 @@ public class Unit extends Entity implements Tickable {
 	public void move() {
 		if (posX != -1) {
 			// AI does decision making here
-			if (ai != null)
+			if (ai != null && health > 0)
 				ai.assesAction();
 			moveStatus();
 		}
@@ -171,6 +173,15 @@ public class Unit extends Entity implements Tickable {
 		}
 	}
 
+	public void getDamage(int damage) {
+		if (health > 0) {
+			health = health - damage;
+			if (health < 1) {
+				status = Entity.DYING;
+			}
+		}
+	}
+
 	public void attack(MapLocation ml) {
 		// change direction
 		this.currentDirection = calculateDirection(new MapLocation(posX, posY),
@@ -189,6 +200,14 @@ public class Unit extends Entity implements Tickable {
 		this.setStatus(Entity.MOVING);
 		currentDirection = calculateDirection(new MapLocation(posX, posY),
 				new MapLocation(nextTileX, nextTileY));
+	}
+
+	public int getLastHitDirection() {
+		return lastHitDirection;
+	}
+
+	public void setLastHitDirection(int lastHitDirection) {
+		this.lastHitDirection = lastHitDirection;
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import kalaveijo.game.engine.Entity;
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.Mission;
+import kalaveijo.game.util.MapLocation;
 import kalaveijo.game.util.Options;
 import android.graphics.Point;
 
@@ -178,4 +179,18 @@ public class ObjectManager {
 		return removeList;
 	}
 
+	public Entity getEntityByPosition(MapLocation ml) {
+
+		for (Entity e : playerUnit) {
+			if (e.getPosX() == ml.x && e.getPosY() == ml.y)
+				return e;
+		}
+
+		for (Entity e : enemyUnit) {
+			if (e.getPosX() == ml.x && e.getPosY() == ml.y)
+				return e;
+		}
+
+		return null;
+	}
 }// class

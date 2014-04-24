@@ -4,6 +4,7 @@
         <name>bullet</name>
         <effect>singleshot</effect>
         <health>10</health>
+        <damage>1</damage>
         <bitmapcontainergroup>bullet</bitmapcontainergroup>
     </projectile>
 </projectilelist>

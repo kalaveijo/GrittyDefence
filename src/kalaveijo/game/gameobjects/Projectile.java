@@ -33,7 +33,6 @@ public class Projectile extends Entity {
 		if (health == 0) {
 			causeDamage();
 			parsedEffect = null;
-			// om.getLiveProjectiles().remove(this); causes crash
 			om.getRemoveList().add(this);
 		} else {
 			health--;
@@ -54,12 +53,12 @@ public class Projectile extends Entity {
 
 		if (effect.equals("singleshot")) {
 			return new SingleshotEffect(currentLocation, targetLocation,
-					super.health);
+					super.health, om, damage);
 		}
 
 		// if all fails, default singleshot
 		return new SingleshotEffect(currentLocation, targetLocation,
-				super.health);
+				super.health, om, damage);
 	}
 
 }
