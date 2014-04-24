@@ -163,15 +163,19 @@ public class Renderer {
 
 		// loop through all entities and pair correct containers
 		for (Entity e : tm.getEntityTemplates()) {
+			boolean hasGroup = false;
 			for (BitmapContainerGroup bcg : bitmapContainers) {
-				// see if can find correct container group
-				if (e.getBitmapContainerGroup().equals(bcg.getName())) {
-					e.setBmContainerGroup(bcg);
-				} else {
-					// if not, find default group
-					for (BitmapContainerGroup bcg2 : bitmapContainers) {
-						if (bcg2.getName().equals("default")) {
-							e.setBmContainerGroup(bcg2);
+				if (hasGroup == false) {
+					// see if can find correct container group
+					if (e.getBitmapContainerGroup().equals(bcg.getName())) {
+						e.setBmContainerGroup(bcg);
+						hasGroup = true;
+					} else {
+						// if not, find default group
+						for (BitmapContainerGroup bcg2 : bitmapContainers) {
+							if (bcg2.getName().equals("default")) {
+								e.setBmContainerGroup(bcg2);
+							}
 						}
 					}
 				}
@@ -249,7 +253,23 @@ public class Renderer {
 
 		// go through all filenames
 		for (String fileName : fileList) {
+			// find if file exists
+			int id = cv.getResources().getIdentifier(fileName, "drawable",
+					cv.getContext().getPackageName());
+			// if file exists, create container
+			if (id != 0) {
+				// create container
+				BitmapContainerGroup bitmapGroup = new BitmapContainerGroup(
+						fileName);
+				// load spritesheet
+				Bitmap defaultSpriteSheet = BitmapFactory.decodeResource(
+						cv.getResources(), id);
 
+				bitmapGroup = parseSpritesheetIntoContainers(bitmapGroup,
+						defaultSpriteSheet);
+				bitmapContainers.add(bitmapGroup);
+
+			}
 		}
 
 	}
@@ -540,6 +560,11 @@ public class Renderer {
 
 	// attempts to load all sprites from templates into bitmapContainerGroups
 	private void loadSprites(ArrayList<BitmapContainerGroup> bitmapContainers) {
+		parseFilesIntoBitmapContainerGroups(createRequiredContainerList());
+
+		// find list of files that needs to be loaded
+
+		// load said list into containers
 
 	}
 
