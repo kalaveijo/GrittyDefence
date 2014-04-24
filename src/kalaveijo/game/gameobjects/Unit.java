@@ -104,10 +104,6 @@ public class Unit extends Entity implements Tickable {
 					actionLeft = Options.GAME_SPEED;
 					status = IDLE;
 				} else {
-
-					currentDirection = calculateDirection(new MapLocation(posX,
-							posY), new MapLocation(nextTileX, nextTileY));
-
 					actionLeft = actionLeft - atkSpeed;
 					// else continnue attacking
 				}
@@ -176,9 +172,23 @@ public class Unit extends Entity implements Tickable {
 	}
 
 	public void attack(MapLocation ml) {
+		// change direction
+		this.currentDirection = calculateDirection(new MapLocation(posX, posY),
+				ml);
+
+		// shoot projectile
 		om.getLiveProjectiles().add(
 				projectile.createProjectile(ml, new MapLocation(this.getPosX(),
 						this.getPosY()), 1));
+	}
+
+	// point target for unit and change status to moving
+	public void orderMove(int possibleTargetX, int possibleTargetY) {
+		this.setNextTileX(possibleTargetX);
+		this.setNextTileY(possibleTargetY);
+		this.setStatus(Entity.MOVING);
+		currentDirection = calculateDirection(new MapLocation(posX, posY),
+				new MapLocation(nextTileX, nextTileY));
 	}
 
 }

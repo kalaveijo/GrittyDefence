@@ -11,7 +11,6 @@ public class Animator {
 	private Entity e;
 	private int frame = 0;
 	private int lastStatus = 0; // 0 is IDLE
-	private int lastMoveDirection = BitmapContainer.move_right;
 
 	public Animator(Entity e) {
 		this.e = e;
@@ -23,7 +22,7 @@ public class Animator {
 		checkIfStatusChanged();
 
 		if (e.getBmContainerGroup() != null) {
-			Bitmap b = findCorrectBitmap(e.getStatus());
+			Bitmap b = findCorrectBitmap();
 			if (frame < 3) {
 				frame++;
 			} else {
@@ -44,18 +43,164 @@ public class Animator {
 		}
 	}
 
-	private Bitmap findCorrectBitmap(int status) {
+	private Bitmap findCorrectBitmap() {
 		BitmapContainer bc;
-		switch (status) {
+		switch (e.status) {
 		case Unit.ATTACKING:
-			// todo
+			// if going up
+			if (e.currentDirection == Entity.UP) {
+				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
+						BitmapContainer.attack_up, frame);
+				if (bc != null) {
+					return bc.getPicture();
+				}
+			}
+
+			// if going down
+			if (e.currentDirection == Entity.DOWN) {
+				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
+						BitmapContainer.attack_down, frame);
+				if (bc != null) {
+					return bc.getPicture();
+				}
+			}
+
+			// if going left
+			if (e.currentDirection == Entity.LEFT) {
+				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
+						BitmapContainer.attack_left, frame);
+				if (bc != null) {
+					return bc.getPicture();
+				}
+			}
+
+			// if going right
+			if (e.currentDirection == Entity.RIGHT) {
+				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
+						BitmapContainer.attack_right, frame);
+				if (bc != null) {
+					return bc.getPicture();
+				}
+			}
+
+			// välisuunnat
+			if (e.currentDirection == Entity.UP_RIGHT) {
+				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
+						BitmapContainer.attack_right_up, frame);
+				if (bc != null) {
+					return bc.getPicture();
+				}
+			}
+
+			if (e.currentDirection == Entity.DOWN_RIGHT) {
+				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
+						BitmapContainer.attack_right_down, frame);
+				if (bc != null) {
+					return bc.getPicture();
+				}
+			}
+
+			if (e.currentDirection == Entity.UP_LEFT) {
+				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
+						BitmapContainer.attack_left_up, frame);
+				if (bc != null) {
+					return bc.getPicture();
+				}
+			}
+
+			if (e.currentDirection == Entity.DOWN_LEFT) {
+				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
+						BitmapContainer.attack_left_down, frame);
+				if (bc != null) {
+					return bc.getPicture();
+				}
+			}
+
+			bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
+					BitmapContainer.attack_right, frame);
+			if (bc != null) {
+				return bc.getPicture();
+			}
 			break;
 		case Unit.DYING:
-			// todo
+			// if going up
+			if (e.currentDirection == Entity.UP) {
+				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
+						BitmapContainer.die_up, frame);
+				if (bc != null) {
+					return bc.getPicture();
+				}
+			}
+
+			// if going down
+			if (e.currentDirection == Entity.DOWN) {
+				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
+						BitmapContainer.die_down, frame);
+				if (bc != null) {
+					return bc.getPicture();
+				}
+			}
+
+			// if going left
+			if (e.currentDirection == Entity.LEFT) {
+				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
+						BitmapContainer.die_left, frame);
+				if (bc != null) {
+					return bc.getPicture();
+				}
+			}
+
+			// if going right
+			if (e.currentDirection == Entity.RIGHT) {
+				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
+						BitmapContainer.die_right, frame);
+				if (bc != null) {
+					return bc.getPicture();
+				}
+			}
+
+			// välisuunnat
+			if (e.currentDirection == Entity.UP_RIGHT) {
+				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
+						BitmapContainer.die_right_up, frame);
+				if (bc != null) {
+					return bc.getPicture();
+				}
+			}
+
+			if (e.currentDirection == Entity.DOWN_RIGHT) {
+				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
+						BitmapContainer.die_right_down, frame);
+				if (bc != null) {
+					return bc.getPicture();
+				}
+			}
+
+			if (e.currentDirection == Entity.UP_LEFT) {
+				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
+						BitmapContainer.die_left_up, frame);
+				if (bc != null) {
+					return bc.getPicture();
+				}
+			}
+
+			if (e.currentDirection == Entity.DOWN_LEFT) {
+				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
+						BitmapContainer.die_left_down, frame);
+				if (bc != null) {
+					return bc.getPicture();
+				}
+			}
+
+			bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
+					BitmapContainer.die_right, frame);
+			if (bc != null) {
+				return bc.getPicture();
+			}
 			break;
 		case Unit.IDLE:
 			// if going up
-			if (lastMoveDirection == BitmapContainer.move_up) {
+			if (e.currentDirection == Entity.UP) {
 				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
 						BitmapContainer.idle_up, frame);
 				if (bc != null) {
@@ -64,7 +209,7 @@ public class Animator {
 			}
 
 			// if going down
-			if (lastMoveDirection == BitmapContainer.move_down) {
+			if (e.currentDirection == Entity.DOWN) {
 				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
 						BitmapContainer.idle_down, frame);
 				if (bc != null) {
@@ -73,7 +218,7 @@ public class Animator {
 			}
 
 			// if going left
-			if (lastMoveDirection == BitmapContainer.move_left) {
+			if (e.currentDirection == Entity.LEFT) {
 				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
 						BitmapContainer.idle_left, frame);
 				if (bc != null) {
@@ -82,7 +227,7 @@ public class Animator {
 			}
 
 			// if going right
-			if (lastMoveDirection == BitmapContainer.move_right) {
+			if (e.currentDirection == Entity.RIGHT) {
 				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
 						BitmapContainer.idle_right, frame);
 				if (bc != null) {
@@ -91,7 +236,7 @@ public class Animator {
 			}
 
 			// välisuunnat
-			if (lastMoveDirection == BitmapContainer.move_right_up) {
+			if (e.currentDirection == Entity.UP_RIGHT) {
 				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
 						BitmapContainer.idle_right_up, frame);
 				if (bc != null) {
@@ -99,7 +244,7 @@ public class Animator {
 				}
 			}
 
-			if (lastMoveDirection == BitmapContainer.move_right_down) {
+			if (e.currentDirection == Entity.DOWN_RIGHT) {
 				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
 						BitmapContainer.idle_right_down, frame);
 				if (bc != null) {
@@ -107,7 +252,7 @@ public class Animator {
 				}
 			}
 
-			if (lastMoveDirection == BitmapContainer.move_left_up) {
+			if (e.currentDirection == Entity.UP_LEFT) {
 				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
 						BitmapContainer.idle_left_up, frame);
 				if (bc != null) {
@@ -115,7 +260,7 @@ public class Animator {
 				}
 			}
 
-			if (lastMoveDirection == BitmapContainer.move_left_down) {
+			if (e.currentDirection == Entity.DOWN_LEFT) {
 				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
 						BitmapContainer.idle_left_down, frame);
 				if (bc != null) {
@@ -135,7 +280,7 @@ public class Animator {
 			if (e.getPosY() > e.getNextTileY()) {
 				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
 						BitmapContainer.move_up, frame);
-				lastMoveDirection = BitmapContainer.move_up;
+
 				if (bc != null) {
 					return bc.getPicture();
 				}
@@ -145,7 +290,7 @@ public class Animator {
 			if (e.getPosY() < e.getNextTileY()) {
 				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
 						BitmapContainer.move_down, frame);
-				lastMoveDirection = BitmapContainer.move_down;
+
 				if (bc != null) {
 					return bc.getPicture();
 				}
@@ -155,7 +300,7 @@ public class Animator {
 			if (e.getPosX() > e.getNextTileX()) {
 				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
 						BitmapContainer.move_left, frame);
-				lastMoveDirection = BitmapContainer.move_left;
+
 				if (bc != null) {
 					return bc.getPicture();
 				}
@@ -165,7 +310,7 @@ public class Animator {
 			if (e.getPosX() < e.getNextTileX()) {
 				bc = e.getBmContainerGroup().findBitmapContainerByTypeAndFrame(
 						BitmapContainer.move_right, frame);
-				lastMoveDirection = BitmapContainer.move_right;
+
 				if (bc != null) {
 					return bc.getPicture();
 				}

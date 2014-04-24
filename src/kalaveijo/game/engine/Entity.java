@@ -183,7 +183,7 @@ public class Entity implements Tickable {
 	public int calculateDirection(MapLocation startPoint, MapLocation endPoint) {
 		int direction = currentDirection;
 		int a = Math.abs(startPoint.y - endPoint.y);
-		int b = Math.abs(startPoint.x - startPoint.x);
+		int b = Math.abs(startPoint.x - endPoint.x);
 		double degree = 0;
 		if (b != 0)
 			degree = Math.toDegrees(Math.atan(a / b));
@@ -197,30 +197,30 @@ public class Entity implements Tickable {
 			}
 
 			// if moving down
-			if (startPoint.y - endPoint.y > 0)
+			if (startPoint.y - endPoint.y < 0)
 				return direction = DOWN;
 
 			// if moving up
-			if (startPoint.y - endPoint.y < 0)
+			if (startPoint.y - endPoint.y > 0)
 				return direction = UP;
 
 			// if were not moving on y
 		} else if (startPoint.y - endPoint.y == 0) {
 
 			// if moving right
-			if (startPoint.x - endPoint.x > 0)
+			if (startPoint.x - endPoint.x < 0)
 				return direction = RIGHT;
 
 			// if moving up
-			if (startPoint.x - endPoint.x < 0)
+			if (startPoint.x - endPoint.x > 0)
 				return direction = LEFT;
 		}
 
 		// check direction on x is on LEFT
-		if (startPoint.x - endPoint.x < 0) {
+		if (startPoint.x - endPoint.x > 0) {
 
 			// if UP
-			if (startPoint.y - endPoint.y < 0) {
+			if (startPoint.y - endPoint.y > 0) {
 
 				// if between
 				if (degree > 30 && degree < 60) {
@@ -253,7 +253,7 @@ public class Entity implements Tickable {
 		} else {
 
 			// if UP
-			if (startPoint.y - endPoint.y < 0) {
+			if (startPoint.y - endPoint.y > 0) {
 
 				// if between
 				if (degree > 30 && degree < 60) {
