@@ -60,6 +60,13 @@ public class EntityTemplate extends Entity {
 		ProjectileTemplate projTemp = null;
 		ArrayList<ProjectileTemplate> projList = tm.getProjTemplates();
 
+		// just in case, load default "bullet" projectile
+		for (ProjectileTemplate pt : projList) {
+			if (pt.getName().equals("bullet")) {
+				projTemp = pt;
+			}
+		}
+
 		for (ProjectileTemplate pt : projList) {
 			if (pt.getName().equals(this.projectile)) {
 				projTemp = pt;

@@ -17,7 +17,7 @@
 		<range>2</range>
 		<atkspeed>1</atkspeed>
 		<player>player</player>
-		<projectile>bullet</projectile>
+		<projectile>machinefire</projectile>
 		<bitmapcontainergroup>machinegunner</bitmapcontainergroup>
 	</unit>
 </unitlist>
