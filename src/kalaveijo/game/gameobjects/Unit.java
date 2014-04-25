@@ -185,6 +185,7 @@ public class Unit extends Entity implements Tickable {
 		if (health > 0) {
 			health = health - damage;
 			if (health < 1) {
+				actionLeft = Options.GAME_SPEED;
 				status = Entity.DYING;
 			}
 		}

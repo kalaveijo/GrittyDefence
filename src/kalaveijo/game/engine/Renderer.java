@@ -123,18 +123,18 @@ public class Renderer {
 			for (Map m : om.getMap()) {
 				MapTile mt = m.getTile(b.getMl());
 				if (mt != null) {
-					Bitmap bi = mt.getBitmap();
+					Bitmap bi = m.getFullMap();
 
 					if (bi == null)
 						bi = Bitmap.createBitmap(Options.TILE_SIZE,
 								Options.TILE_SIZE, Bitmap.Config.ARGB_8888);
 
 					deathCollectorCanvas = new Canvas(bi);
-					deathCollectorCanvas.drawBitmap(b.getPicture(), 0, 0,
-							new Paint());
-					mt.loadBitmap(bi);
+					deathCollectorCanvas.drawBitmap(b.getPicture(),
+							b.getLocation().x, b.getLocation().y, new Paint());
+					// mt.loadBitmap(bi);
 					// need to force redraw, otherwise map wont be updated
-					m.forceReDraw();
+					// m.forceReDraw();
 				}
 			}
 		}
@@ -605,6 +605,7 @@ public class Renderer {
 
 	}
 
+	// gets final bitmap positions from dying characters, called automagically
 	private void getDeathListFromObjectManager() {
 		ArrayList<Entity> deathlist = om.getDeathList();
 		if (!deathlist.isEmpty()) {
