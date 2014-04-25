@@ -11,6 +11,7 @@ public class Animator {
 	private Entity e;
 	private int frame = 0;
 	private int lastStatus = 0; // 0 is IDLE
+	private boolean skipFrame = false;
 
 	public Animator(Entity e) {
 		this.e = e;
@@ -20,13 +21,19 @@ public class Animator {
 	public Bitmap animate() {
 		// find unit state
 		checkIfStatusChanged();
-
 		if (e.getBmContainerGroup() != null) {
 			Bitmap b = findCorrectBitmap();
-			if (frame < 3) {
-				frame++;
+			// every other frame is skipped, less frantic
+			if (!skipFrame) {
+				if (frame < 3) {
+					frame++;
+					skipFrame = true;
+				} else {
+					frame = 0;
+					skipFrame = true;
+				}
 			} else {
-				frame = 0;
+				skipFrame = false;
 			}
 			return b;
 		} else {
