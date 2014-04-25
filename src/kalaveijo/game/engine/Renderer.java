@@ -7,11 +7,15 @@ import kalaveijo.game.engine.manager.TemplateManager;
 import kalaveijo.game.engine.template.EntityTemplate;
 import kalaveijo.game.engine.template.MapTemplate;
 import kalaveijo.game.gameobjects.Map;
+import kalaveijo.game.gameobjects.MapTile;
 import kalaveijo.game.gameobjects.MovementHelper;
 import kalaveijo.game.gameobjects.SpawnTile;
 import kalaveijo.game.grittydefence.GameSurfaceView;
 import kalaveijo.game.grittydefence.R;
+import kalaveijo.game.util.MapLocation;
+import kalaveijo.game.util.Methods;
 import kalaveijo.game.util.Options;
+import kalaveijo.game.util.PositionedBitmapWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -30,6 +34,8 @@ public class Renderer {
 	ArrayList<BitmapContainerGroup> bitmapContainers;
 	GameSurfaceView cv;
 	TemplateManager tm;
+	Canvas deathCollectorCanvas;
+	ArrayList<PositionedBitmapWrapper> deathCollectorList;
 
 	public Renderer(ObjectManager om, GameThread gThread, GameSurfaceView cv,
 			TemplateManager tm) {
@@ -38,6 +44,7 @@ public class Renderer {
 		this.cv = cv;
 		this.bitmapContainers = new ArrayList<BitmapContainerGroup>();
 		this.tm = tm;
+		deathCollectorList = new ArrayList<PositionedBitmapWrapper>();
 	}
 
 	// for some reason this causes heavy load, need to debug later, use
@@ -82,6 +89,9 @@ public class Renderer {
 		// draw map
 		drawMap(canvas);
 
+		// draw bodies
+		drawBodies(canvas);
+
 		// draw units
 		drawUnits(canvas);
 
@@ -103,6 +113,33 @@ public class Renderer {
 			m.draw(c);
 		}
 	}// drawMap
+
+	protected void drawBodies(Canvas c) {
+
+		getDeathListFromObjectManager();
+
+		// draw dead sprites into a map tiles
+		for (PositionedBitmapWrapper b : deathCollectorList) {
+			for (Map m : om.getMap()) {
+				MapTile mt = m.getTile(b.getMl());
+				if (mt != null) {
+					Bitmap bi = mt.getBitmap();
+
+					if (bi == null)
+						bi = Bitmap.createBitmap(Options.TILE_SIZE,
+								Options.TILE_SIZE, Bitmap.Config.ARGB_8888);
+
+					deathCollectorCanvas = new Canvas(bi);
+					deathCollectorCanvas.drawBitmap(b.getPicture(), 0, 0,
+							new Paint());
+					mt.loadBitmap(bi);
+					// need to force redraw, otherwise map wont be updated
+					m.forceReDraw();
+				}
+			}
+		}
+		deathCollectorList.clear();
+	}
 
 	protected void drawUnits(Canvas c) {
 
@@ -566,6 +603,23 @@ public class Renderer {
 
 		// load said list into containers
 
+	}
+
+	private void getDeathListFromObjectManager() {
+		ArrayList<Entity> deathlist = om.getDeathList();
+		if (!deathlist.isEmpty()) {
+			for (Entity e : deathlist) {
+				Bitmap bm = e
+						.getBmContainerGroup()
+						.findBitmapContainerByTypeAndFrame(
+								Methods.convertDirectionToBitmapTypeDie(e.currentDirection),
+								3).getPicture();
+				deathCollectorList.add(new PositionedBitmapWrapper(bm, e
+						.getLocation(), new MapLocation(e.getPosX(), e
+						.getPosY())));
+			}
+			om.emptyDeathList();
+		}
 	}
 
 	// courtesy of

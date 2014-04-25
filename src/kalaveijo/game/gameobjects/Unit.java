@@ -151,6 +151,14 @@ public class Unit extends Entity implements Tickable {
 				break;
 
 			case DYING:
+
+				if (actionLeft - speed < 0) {
+					// die :(
+					om.addToDeathList(this);
+				} else {
+					actionLeft = actionLeft - speed;
+				}
+
 				break;
 
 			}

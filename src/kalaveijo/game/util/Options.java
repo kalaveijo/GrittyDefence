@@ -11,7 +11,7 @@ public final class Options {
 											// crash :)
 	public static final int GAME_SPEED = 12;
 	// desired fps
-	public final static int MAX_FPS = 60;
+	public final static int MAX_FPS = 35;
 	// maximum number of frames to be skipped
 	public final static int MAX_FRAME_SKIPS = 5;
 	// the frame period

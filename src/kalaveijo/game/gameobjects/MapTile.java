@@ -25,14 +25,20 @@ public class MapTile extends Entity implements Tickable {
 
 	@Override
 	public void draw(Canvas c) {
-		// c.drawBitmap(picture, location.x, location.y, mPaint);
-		Rect r = new Rect(location.x, location.y, location.x
-				+ Options.TILE_SIZE, location.y + Options.TILE_SIZE);
-		Paint p = new Paint();
-		p.setColor(Color.GRAY);
-		p.setStyle(Paint.Style.STROKE);
-		p.setStrokeWidth(3);
-		c.drawRect(r, p);
+
+		if (picture != null) {
+			c.drawBitmap(picture, location.x, location.y, new Paint());
+		} else {
+
+			Rect r = new Rect(location.x, location.y, location.x
+					+ Options.TILE_SIZE, location.y + Options.TILE_SIZE);
+			Paint p = new Paint();
+			p.setColor(Color.GRAY);
+			p.setStyle(Paint.Style.STROKE);
+			p.setStrokeWidth(3);
+			c.drawRect(r, p);
+
+		}
 	}
 
 	@Override
@@ -64,6 +70,10 @@ public class MapTile extends Entity implements Tickable {
 	// should load bitmap related to type of terrain, implement later
 	public void loadBitmap(Bitmap m) {
 		this.picture = m;
+	}
+
+	public Bitmap getBitmap() {
+		return this.picture;
 	}
 
 }

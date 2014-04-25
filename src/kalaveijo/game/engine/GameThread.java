@@ -140,6 +140,8 @@ public class GameThread extends Thread {
 			if (et.getName().equals("machinegunner")) {
 				Unit u = et.createUnit();
 				objectManager.spawnPlayerUnit(u, 4, 4);
+				u = et.createUnit();
+				objectManager.spawnPlayerUnit(u, 7, 3);
 			}
 
 		}

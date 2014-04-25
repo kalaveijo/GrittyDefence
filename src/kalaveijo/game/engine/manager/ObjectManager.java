@@ -26,6 +26,7 @@ public class ObjectManager {
 	private ArrayList<Entity> liveProjectiles = new ArrayList<Entity>();
 	private ArrayList<Map> map = new ArrayList<Map>();
 	private ArrayList<Entity> removeList = new ArrayList<Entity>();
+	private ArrayList<Entity> deathlist = new ArrayList<Entity>();
 
 	public ObjectManager() {
 		// initialize map
@@ -192,5 +193,18 @@ public class ObjectManager {
 		}
 
 		return null;
+	}
+
+	public void addToDeathList(Entity e) {
+		deathlist.add(e);
+		removeList.add(e);
+	}
+
+	public ArrayList<Entity> getDeathList() {
+		return this.deathlist;
+	}
+
+	public void emptyDeathList() {
+		this.deathlist.clear();
 	}
 }// class

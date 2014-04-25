@@ -75,11 +75,11 @@ public class Map extends Entity {
 
 		// if map havent been processed into one bitmap or needs redraw
 		if (needsReDraw || fullMap == null) {
-			if (fullMap == null) {
-				// create bitmap sized of whole map
-				fullMap = Bitmap.createBitmap(sizeX * Options.TILE_SIZE, sizeY
-						* Options.TILE_SIZE, Bitmap.Config.ARGB_8888);
-			}
+			// if (fullMap == null) {
+			// create bitmap sized of whole map
+			fullMap = Bitmap.createBitmap(sizeX * Options.TILE_SIZE, sizeY
+					* Options.TILE_SIZE, Bitmap.Config.ARGB_8888);
+			// }
 			// draw map into fullMap
 			Canvas temporaryCanvas = new Canvas(fullMap);
 			temporaryCanvas.drawColor(Color.GREEN);
@@ -174,5 +174,9 @@ public class Map extends Entity {
 			}// for
 		}// for
 		return null;
+	}
+
+	public void forceReDraw() {
+		needsReDraw = true;
 	}
 }
