@@ -157,6 +157,63 @@ public class Unit extends Entity implements Tickable {
 					om.addToDeathList(this);
 				} else {
 					actionLeft = actionLeft - speed;
+					int rand;
+					switch (lastHitDirection) {
+					case Entity.UP:
+						rand = (int) Math.random() * 10;
+						if (rand == 0 || rand >= 3)
+							rand = 1;
+						location.y = location.y - rand;
+						break;
+					case Entity.UP_LEFT:
+						rand = (int) Math.random() * 10;
+						if (rand == 0 || rand >= 3)
+							rand = 1;
+						location.y = location.y - rand;
+						location.x = location.x - rand;
+						break;
+					case Entity.LEFT:
+						rand = (int) Math.random() * 10;
+						if (rand == 0 || rand >= 3)
+							rand = 1;
+						location.x = location.x - rand;
+						break;
+					case Entity.DOWN_LEFT:
+						rand = (int) Math.random() * 10;
+						if (rand == 0 || rand >= 3)
+							rand = 1;
+						location.y = location.y + rand;
+						location.x = location.x - rand;
+
+						break;
+					case Entity.DOWN:
+						rand = (int) Math.random() * 10;
+						if (rand == 0 || rand >= 3)
+							rand = 1;
+						location.y = location.y + rand;
+						break;
+					case Entity.DOWN_RIGHT:
+						rand = (int) Math.random() * 10;
+						if (rand == 0 || rand >= 3)
+							rand = 1;
+						location.y = location.y + rand;
+						location.x = location.x + rand;
+						break;
+					case Entity.RIGHT:
+						rand = (int) Math.random() * 10;
+						if (rand == 0 || rand >= 3)
+							rand = 1;
+						location.x = location.x + rand;
+						break;
+					case Entity.UP_RIGHT:
+						rand = (int) Math.random() * 10;
+						if (rand == 0 || rand >= 3)
+							rand = 1;
+						location.y = location.y - rand;
+						location.x = location.x + rand;
+						break;
+
+					}
 				}
 
 				break;

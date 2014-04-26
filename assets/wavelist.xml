@@ -12,5 +12,11 @@
         <includedunits>
             <unit>rifleman</unit>
         </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
     </wave>
 </wavelist>

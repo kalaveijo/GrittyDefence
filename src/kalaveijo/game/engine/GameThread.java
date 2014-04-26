@@ -142,6 +142,10 @@ public class GameThread extends Thread {
 				objectManager.spawnPlayerUnit(u, 4, 4);
 				u = et.createUnit();
 				objectManager.spawnPlayerUnit(u, 7, 3);
+				u = et.createUnit();
+				objectManager.spawnPlayerUnit(u, 7, 7);
+				u = et.createUnit();
+				objectManager.spawnPlayerUnit(u, 4, 5);
 			}
 
 		}
