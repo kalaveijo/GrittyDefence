@@ -16,8 +16,10 @@ public class GameManager {
 	private TemplateManager templateManager;
 	private ObjectManager objectManager;
 	private Mission currentMission;
-	private boolean isBuildPhase = false;
+	private boolean isBuildPhase = true;
+	private boolean playerEndedBuildPhase = false;
 	private int waveNumber = 1;
+	private int amountOfWaves = 1;
 
 	public GameManager(ObjectManager om, TemplateManager tm) {
 		this.templateManager = tm;
@@ -29,9 +31,9 @@ public class GameManager {
 	// called in GameThread.tick();
 	public void assesGameSituation() {
 
-		// check if there are still enemy units on game area
+		checkIfBuildPhase();
 
-		// check if there are waves left in mission
+		shouldSpawnNextWave();
 
 	}
 
@@ -44,9 +46,12 @@ public class GameManager {
 		objectManager.getPlayerUnits().clear();
 		objectManager.getMap().clear();
 		objectManager.getMapUnits().clear();
+		objectManager.resetPlayer();
 
 		// add objects to object manager
 		objectManager.getMap().add(currentMission.getMap());
+		amountOfWaves = currentMission.getWaveList().size();
+		waveNumber = 1;
 		spawnWave(waveNumber);
 
 	}
@@ -75,6 +80,39 @@ public class GameManager {
 
 	private void spawnWave(String waveName) {
 
+	}
+
+	public void endBuildPhase() {
+		this.playerEndedBuildPhase = false;
+	}
+
+	public boolean isBuildPhase() {
+		return this.isBuildPhase;
+	}
+
+	/*
+	 * Checks if should spawn next wave and then spawns it
+	 */
+	private void shouldSpawnNextWave() {
+		if (objectManager.getEnemyUnits().isEmpty()) {
+			if (!isBuildPhase) {
+				waveNumber++;
+				if (waveNumber <= amountOfWaves) {
+					spawnWave(waveNumber);
+				}
+			}
+		}
+	}
+
+	private void checkIfBuildPhase() {
+		if (objectManager.getEnemyUnits().isEmpty()) {
+			if (!playerEndedBuildPhase) {
+				this.isBuildPhase = true;
+			} else {
+				this.isBuildPhase = false;
+				this.playerEndedBuildPhase = false;
+			}
+		}
 	}
 
 }

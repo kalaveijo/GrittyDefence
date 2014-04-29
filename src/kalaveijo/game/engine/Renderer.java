@@ -49,39 +49,31 @@ public class Renderer {
 
 	// for some reason this causes heavy load, need to debug later, use
 	// render(Canvas canvas) instead
-	public Bitmap render() {
-		Bitmap renderedImage = null;
-
-		// for each map, render everything
-		for (Map map : om.getMap()) {
-			renderedImage = Bitmap.createBitmap(map.getSizeX()
-					* Options.TILE_SIZE, map.getSizeY() * Options.TILE_SIZE,
-					Bitmap.Config.ARGB_8888);
-
-			Canvas temporaryCanvas = new Canvas(renderedImage);
-
-			// draw map
-			drawMap(temporaryCanvas);
-
-			// draw units
-			drawUnits(temporaryCanvas);
-
-			// draw effects
-
-			// draw GUI
-
-			if (Options.DEBUG) {
-				int fps = gThread.getFPS();
-				Paint mPaint = new Paint();
-				if (fps != 0)
-					temporaryCanvas.drawText(String.valueOf("FPS: " + fps), 20,
-							20, mPaint);
-			}// if
-
-		}
-
-		return renderedImage;
-	}
+	/*
+	 * public Bitmap render() { Bitmap renderedImage = null;
+	 * 
+	 * // for each map, render everything for (Map map : om.getMap()) {
+	 * renderedImage = Bitmap.createBitmap(map.getSizeX() Options.TILE_SIZE,
+	 * map.getSizeY() * Options.TILE_SIZE, Bitmap.Config.ARGB_8888);
+	 * 
+	 * Canvas temporaryCanvas = new Canvas(renderedImage);
+	 * 
+	 * // draw map drawMap(temporaryCanvas);
+	 * 
+	 * // draw units drawUnits(temporaryCanvas);
+	 * 
+	 * // draw effects
+	 * 
+	 * // draw GUI
+	 * 
+	 * if (Options.DEBUG) { int fps = gThread.getFPS(); Paint mPaint = new
+	 * Paint(); if (fps != 0) temporaryCanvas.drawText(String.valueOf("FPS: " +
+	 * fps), 20, 20, mPaint); }// if
+	 * 
+	 * }
+	 * 
+	 * return renderedImage; }
+	 */
 
 	//
 	public void render(Canvas canvas) {
@@ -98,6 +90,7 @@ public class Renderer {
 		// draw effects
 
 		// draw GUI
+		om.getPlayer().draw(canvas);
 
 		if (Options.DEBUG) {
 			int fps = gThread.getFPS();

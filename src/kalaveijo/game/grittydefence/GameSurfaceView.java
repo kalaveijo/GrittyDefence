@@ -7,6 +7,7 @@ import kalaveijo.game.engine.GameThread;
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.MapTile;
 import kalaveijo.game.gameobjects.MovementHelper;
+import kalaveijo.game.util.InputEvent;
 import kalaveijo.game.util.Options;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -18,7 +19,6 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
-import android.view.InputEvent;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -71,6 +71,12 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 						invalidate();
 						return true;
 					}// onFling
+
+					public boolean onSingleTapConfirmed(MotionEvent e) {
+						invalidate();
+						alIE.add(new InputEvent(e));
+						return true;
+					}
 
 				}); // gesture detector
 
@@ -191,6 +197,8 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 	}// onMeasure
 
 	public ArrayList<InputEvent> getInputEvents() {
-		return this.alIE;
+		ArrayList<InputEvent> ie = alIE;
+		alIE.clear();
+		return ie;
 	}
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import kalaveijo.game.engine.Entity;
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.Mission;
+import kalaveijo.game.gameobjects.Player;
 import kalaveijo.game.util.MapLocation;
 import kalaveijo.game.util.Options;
 import android.graphics.Point;
@@ -27,10 +28,12 @@ public class ObjectManager {
 	private ArrayList<Map> map = new ArrayList<Map>();
 	private ArrayList<Entity> removeList = new ArrayList<Entity>();
 	private ArrayList<Entity> deathlist = new ArrayList<Entity>();
+	private Player player;
 
 	public ObjectManager() {
 		// initialize map
 		// map.add(new Map(getNextFreeId(), this, 21, 11));
+		player = new Player(getNextFreeId(), this);
 	}// Constructor
 
 	public void addMap(Map map) {
@@ -207,4 +210,13 @@ public class ObjectManager {
 	public void emptyDeathList() {
 		this.deathlist.clear();
 	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
+	public void resetPlayer() {
+		this.player = new Player(getNextFreeId(), this);
+	}
+
 }// class

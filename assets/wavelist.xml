@@ -9,12 +9,10 @@
         <includedunits>
             <unit>rifleman</unit>
         </includedunits>
-        <includedunits>
-            <unit>rifleman</unit>
-        </includedunits>
-        <includedunits>
-            <unit>rifleman</unit>
-        </includedunits>
+    </wave>
+    <wave>
+        <name>riflemanWave2</name>
+        <number>2</number>
         <includedunits>
             <unit>rifleman</unit>
         </includedunits>

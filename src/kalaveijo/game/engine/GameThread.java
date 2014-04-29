@@ -1,6 +1,7 @@
 package kalaveijo.game.engine;
 
 import kalaveijo.game.engine.manager.GameManager;
+import kalaveijo.game.engine.manager.InputManager;
 import kalaveijo.game.engine.manager.ObjectManager;
 import kalaveijo.game.engine.manager.TemplateManager;
 import kalaveijo.game.engine.template.EntityTemplate;
@@ -25,6 +26,7 @@ public class GameThread extends Thread {
 	private TemplateManager templateManager;
 	private ObjectManager objectManager;
 	private GameManager gameManager;
+	private InputManager inputManager;
 	private XMLLoader xmlLoader;
 
 	public GameThread(SurfaceHolder sHolder, GameSurfaceView cv) {
@@ -43,6 +45,7 @@ public class GameThread extends Thread {
 		gameManager = new GameManager(objectManager, templateManager);
 		xmlLoader = new XMLLoader(objectManager, cv, templateManager);
 		renderer = new Renderer(objectManager, this, cv, templateManager);
+		inputManager = new InputManager(gameManager, objectManager, cv);
 
 	}// initializeGame
 
@@ -77,6 +80,9 @@ public class GameThread extends Thread {
 				framesSkipped = 0;
 
 				objectManager.tick();
+				inputManager.processInputs();
+				gameManager.assesGameSituation();
+
 				renderer.render(mCanvas);
 
 				lastTime = System.currentTimeMillis() - startTime;
@@ -94,6 +100,7 @@ public class GameThread extends Thread {
 						// we need to catch up
 						// update without rendering
 						objectManager.tick();
+						gameManager.assesGameSituation();
 						// add frame period to check if in next frame
 						sleepTime += Options.FRAME_PERIOD;
 						framesSkipped++;
