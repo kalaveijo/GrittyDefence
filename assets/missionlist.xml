@@ -10,6 +10,9 @@
             <wave>
                 <wavename>riflemanWave2</wavename>
             </wave>
+            <wave>
+                <wavename>riflemanWave3</wavename>
+            </wave>
         </waves>
     </mission>
     
