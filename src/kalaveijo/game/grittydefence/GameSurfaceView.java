@@ -197,7 +197,7 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 	}// onMeasure
 
 	public ArrayList<InputEvent> getInputEvents() {
-		ArrayList<InputEvent> ie = alIE;
+		ArrayList<InputEvent> ie = (ArrayList<InputEvent>) alIE.clone();
 		alIE.clear();
 		return ie;
 	}

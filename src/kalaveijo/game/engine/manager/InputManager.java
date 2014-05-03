@@ -25,8 +25,12 @@ public class InputManager {
 
 	public void processInputs() {
 		eventList = cv.getInputEvents();
-		for (InputEvent e : eventList) {
+		if (!eventList.isEmpty()) {
+			for (InputEvent e : eventList) {
+
+			}
 			gameManager.endBuildPhase();
 		}
+
 	}
 }

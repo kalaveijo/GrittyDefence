@@ -83,7 +83,7 @@ public class GameManager {
 	}
 
 	public void endBuildPhase() {
-		this.playerEndedBuildPhase = false;
+		this.playerEndedBuildPhase = true;
 	}
 
 	public boolean isBuildPhase() {

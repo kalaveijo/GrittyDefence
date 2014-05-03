@@ -190,7 +190,7 @@ public class XMLLoader {
 				waves = new String[e.getElementsByTagName("wave").getLength()];
 				for (int ii = 0; ii < e.getElementsByTagName("wave")
 						.getLength(); ii++) {
-					Element ee = (Element) nodeList.item(i);
+					Element ee = (Element) waveNodeList.item(ii);
 					waves[ii] = getValue(ee, "wavename");
 				}
 
@@ -230,7 +230,7 @@ public class XMLLoader {
 				NodeList unitList = wave.getElementsByTagName("includedunits");
 				units = new String[unitList.getLength()];
 				for (int e = 0; e < unitList.getLength(); e++) {
-					Element unit = (Element) unitList.item(i);
+					Element unit = (Element) unitList.item(e);
 					units[e] = getValue(unit, "unit");
 				}
 				waveArrayList.add(new MissionWaveTemplate(number, name, units,
