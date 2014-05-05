@@ -40,4 +40,8 @@ public class GUIElementGroup {
 		return null;
 	}
 
+	public String getName() {
+		return name;
+	}
+
 }
