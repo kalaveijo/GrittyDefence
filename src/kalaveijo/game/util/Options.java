@@ -16,5 +16,7 @@ public final class Options {
 	public final static int MAX_FRAME_SKIPS = 5;
 	// the frame period
 	public final static int FRAME_PERIOD = 1000 / MAX_FPS;
+	// Max number of gui layers
+	public final static int MAX_GUI_LAYERS = 5;
 
 }

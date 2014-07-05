@@ -2,6 +2,7 @@ package kalaveijo.game.engine;
 
 import java.util.ArrayList;
 
+import kalaveijo.game.engine.manager.GUIManager;
 import kalaveijo.game.engine.manager.ObjectManager;
 import kalaveijo.game.engine.manager.TemplateManager;
 import kalaveijo.game.engine.template.EntityTemplate;
@@ -29,22 +30,24 @@ import android.util.DisplayMetrics;
  */
 public class Renderer {
 
-	ObjectManager om;
-	GameThread gThread;
-	ArrayList<BitmapContainerGroup> bitmapContainers;
-	GameSurfaceView cv;
-	TemplateManager tm;
-	Canvas deathCollectorCanvas;
-	ArrayList<PositionedBitmapWrapper> deathCollectorList;
+	private ObjectManager om;
+	private GameThread gThread;
+	private ArrayList<BitmapContainerGroup> bitmapContainers;
+	private GameSurfaceView cv;
+	private TemplateManager tm;
+	private Canvas deathCollectorCanvas;
+	private ArrayList<PositionedBitmapWrapper> deathCollectorList;
+	private GUIManager gm;
 
 	public Renderer(ObjectManager om, GameThread gThread, GameSurfaceView cv,
-			TemplateManager tm) {
+			TemplateManager tm, GUIManager gm) {
 		this.om = om;
 		this.gThread = gThread;
 		this.cv = cv;
 		this.bitmapContainers = new ArrayList<BitmapContainerGroup>();
 		this.tm = tm;
 		deathCollectorList = new ArrayList<PositionedBitmapWrapper>();
+		this.gm = gm;
 	}
 
 	// for some reason this causes heavy load, need to debug later, use
@@ -90,7 +93,9 @@ public class Renderer {
 		// draw effects
 
 		// draw GUI
-		om.getPlayer().draw(canvas);
+		om.getPlayer().draw(canvas); // draws game things related to player like
+										// money etc
+		gm.draw(canvas);
 
 		if (Options.DEBUG) {
 			int fps = gThread.getFPS();

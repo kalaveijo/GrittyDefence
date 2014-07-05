@@ -4,22 +4,25 @@ import java.util.ArrayList;
 
 import kalaveijo.game.grittydefence.GameSurfaceView;
 import kalaveijo.game.util.InputEvent;
+import kalaveijo.game.util.MapLocation;
 
 /*
  * Handles input events
  */
 public class InputManager {
 
-	GameManager gameManager;
-	GameSurfaceView cv;
-	ObjectManager objectManager;
-	ArrayList<InputEvent> eventList;
+	private GameManager gameManager;
+	private GameSurfaceView cv;
+	private ObjectManager objectManager;
+	private ArrayList<InputEvent> eventList;
+	private GUIManager guiManager;
 
 	public InputManager(GameManager gameManager, ObjectManager objectManager,
-			GameSurfaceView cv) {
+			GameSurfaceView cv, GUIManager guiManager) {
 		this.gameManager = gameManager;
 		this.cv = cv;
 		this.objectManager = objectManager;
+		this.guiManager = guiManager;
 		eventList = new ArrayList<InputEvent>();
 	}
 
@@ -29,7 +32,8 @@ public class InputManager {
 			for (InputEvent e : eventList) {
 
 			}
-			gameManager.endBuildPhase();
+			// gameManager.endBuildPhase();
+			guiManager.createUnitRing(new MapLocation(5, 5));
 		}
 
 	}

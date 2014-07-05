@@ -1,7 +1,5 @@
 package kalaveijo.game.engine.manager;
 
-import java.util.ArrayList;
-
 import kalaveijo.game.engine.GUIElement;
 import kalaveijo.game.engine.GUIElementGroup;
 import kalaveijo.game.util.MapLocation;
@@ -14,15 +12,17 @@ import android.graphics.Point;
  */
 public class GUIManager {
 
-	ArrayList<GUIElementGroup> GUIElementList;
+	private GUIElementGroup[] GUIElementList;
 
 	public GUIManager() {
-		GUIElementList = new ArrayList<GUIElementGroup>();
+		GUIElementList = new GUIElementGroup[Options.MAX_GUI_LAYERS];
 	}
 
 	public void draw(Canvas c) {
-		for (GUIElementGroup e : GUIElementList) {
-			e.draw(c);
+		if (GUIElementList.length != 0) {
+			if (GUIElementList[GUIElementList.length - 1] != null) {
+				GUIElementList[GUIElementList.length - 1].draw(c);
+			}
 		}
 	}
 
@@ -41,18 +41,40 @@ public class GUIManager {
 		unitRing.addGUIElement(new GUIElement(null, "Machinegunner", new Point(
 				center.x + 40, center.y)));
 
+		addGUIGroup(unitRing);
+
 	}
 
-	// removes unitring
-	public void removeUnitRing() {
-		GUIElementGroup removeGroup = null;
-		for (GUIElementGroup e : GUIElementList) {
-			if (e.getName().equals("unitRing")) {
-				removeGroup = e;
-			}
+	// // removes unitring
+	// public void removeUnitRing() {
+	// GUIElementGroup removeGroup = null;
+	// for (GUIElementGroup e : GUIElementList) {
+	// if (e.getName().equals("unitRing")) {
+	// removeGroup = e;
+	// }
+	// }
+	// if (removeGroup != null)
+	// GUIElementList.remove(removeGroup);
+	// }
+
+	public void removeLastGUIGroup() {
+		if (GUIElementList.length != 0) {
+			GUIElementList[GUIElementList.length - 1] = null;
 		}
-		if (removeGroup != null)
-			GUIElementList.remove(removeGroup);
 	}
 
+	public void addGUIGroup(GUIElementGroup newGroup) {
+
+		if (GUIElementList.length < Options.MAX_GUI_LAYERS) {
+			GUIElementList[GUIElementList.length] = newGroup;
+		}
+		// fail silently, good coding ja?
+	}
+
+	public GUIElementGroup getActiveUIGroup() {
+		// if (GUIElementList.length != 0) {
+		return GUIElementList[GUIElementList.length - 1];
+		// }
+		// return null;
+	}
 }

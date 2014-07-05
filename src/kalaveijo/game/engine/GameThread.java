@@ -1,5 +1,6 @@
 package kalaveijo.game.engine;
 
+import kalaveijo.game.engine.manager.GUIManager;
 import kalaveijo.game.engine.manager.GameManager;
 import kalaveijo.game.engine.manager.InputManager;
 import kalaveijo.game.engine.manager.ObjectManager;
@@ -28,6 +29,7 @@ public class GameThread extends Thread {
 	private GameManager gameManager;
 	private InputManager inputManager;
 	private XMLLoader xmlLoader;
+	private GUIManager guiManager;
 
 	public GameThread(SurfaceHolder sHolder, GameSurfaceView cv) {
 		this.cv = cv;
@@ -41,11 +43,14 @@ public class GameThread extends Thread {
 	// Initializes engine
 	public void initializeGame(Canvas c) {
 		objectManager = new ObjectManager();
+		guiManager = new GUIManager();
 		templateManager = new TemplateManager(objectManager);
 		gameManager = new GameManager(objectManager, templateManager);
 		xmlLoader = new XMLLoader(objectManager, cv, templateManager);
-		renderer = new Renderer(objectManager, this, cv, templateManager);
-		inputManager = new InputManager(gameManager, objectManager, cv);
+		renderer = new Renderer(objectManager, this, cv, templateManager,
+				guiManager);
+		inputManager = new InputManager(gameManager, objectManager, cv,
+				guiManager);
 
 	}// initializeGame
 
