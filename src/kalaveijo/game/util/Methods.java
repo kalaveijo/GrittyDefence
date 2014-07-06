@@ -45,4 +45,5 @@ abstract public class Methods {
 		}
 		return BitmapContainer.die_left;
 	}
+
 }

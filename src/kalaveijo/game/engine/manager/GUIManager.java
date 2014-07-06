@@ -19,9 +19,9 @@ public class GUIManager {
 	}
 
 	public void draw(Canvas c) {
-		if (GUIElementList.length != 0) {
-			if (GUIElementList[GUIElementList.length - 1] != null) {
-				GUIElementList[GUIElementList.length - 1].draw(c);
+		if (findGUIItemAmount() != 0) {
+			if (GUIElementList[findGUIItemAmount() - 1] != null) {
+				GUIElementList[findGUIItemAmount() - 1].draw(c);
 			}
 		}
 	}
@@ -58,22 +58,30 @@ public class GUIManager {
 	// }
 
 	public void removeLastGUIGroup() {
-		if (GUIElementList.length != 0) {
-			GUIElementList[GUIElementList.length - 1] = null;
+		if (findGUIItemAmount() != 0) {
+			GUIElementList[findGUIItemAmount() - 1] = null;
 		}
 	}
 
 	public void addGUIGroup(GUIElementGroup newGroup) {
-
-		if (GUIElementList.length < Options.MAX_GUI_LAYERS) {
-			GUIElementList[GUIElementList.length] = newGroup;
+		if (findGUIItemAmount() < Options.MAX_GUI_LAYERS) {
+			GUIElementList[findGUIItemAmount()] = newGroup;
 		}
 		// fail silently, good coding ja?
 	}
 
+	private int findGUIItemAmount() {
+		for (int i = 0; i < Options.MAX_GUI_LAYERS; i++) {
+			if (GUIElementList[i] == null) {
+				return i;
+			}
+		}
+		return 0;
+	}
+
 	public GUIElementGroup getActiveUIGroup() {
 		// if (GUIElementList.length != 0) {
-		return GUIElementList[GUIElementList.length - 1];
+		return GUIElementList[findGUIItemAmount() - 1];
 		// }
 		// return null;
 	}

@@ -29,10 +29,12 @@ public class InputManager {
 	public void processInputs() {
 		eventList = cv.getInputEvents();
 		if (!eventList.isEmpty()) {
+			InputEvent lastEvent = null;
 			for (InputEvent e : eventList) {
-
+				lastEvent = e;
 			}
 			// gameManager.endBuildPhase();
+
 			guiManager.createUnitRing(new MapLocation(5, 5));
 		}
 
