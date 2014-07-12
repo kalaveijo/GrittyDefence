@@ -13,4 +13,8 @@ public class InputEvent {
 		this.event = event;
 	}
 
+	public MotionEvent getEvent() {
+		return event;
+	}
+
 }

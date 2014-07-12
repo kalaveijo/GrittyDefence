@@ -60,6 +60,12 @@ public class ObjectManager {
 		return this.map;
 	}// getMap()
 
+	public Map getNonArrayListMap() {
+		for (Map m : this.map)
+			return m;
+		return null;
+	}
+
 	public ArrayList<Entity> getPlayerUnits() {
 		return this.playerUnit;
 	}// getPlayerUnits()

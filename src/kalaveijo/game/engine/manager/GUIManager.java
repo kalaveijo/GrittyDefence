@@ -2,6 +2,7 @@ package kalaveijo.game.engine.manager;
 
 import kalaveijo.game.engine.GUIElement;
 import kalaveijo.game.engine.GUIElementGroup;
+import kalaveijo.game.util.InputEvent;
 import kalaveijo.game.util.MapLocation;
 import kalaveijo.game.util.Options;
 import android.graphics.Canvas;
@@ -80,9 +81,26 @@ public class GUIManager {
 	}
 
 	public GUIElementGroup getActiveUIGroup() {
-		// if (GUIElementList.length != 0) {
-		return GUIElementList[findGUIItemAmount() - 1];
-		// }
-		// return null;
+		if (findGUIItemAmount() != 0) {
+			return GUIElementList[findGUIItemAmount() - 1];
+		}
+		return null;
+	}
+
+	public boolean checkIfInputPointsAtGUI(InputEvent ie) {
+		GUIElementGroup group = getActiveUIGroup();
+
+		if (group != null) {
+
+			GUIElement gElement = null;
+			gElement = group.findElementByPosition(new Point((int) ie
+					.getEvent().getX(), (int) ie.getEvent().getY()));
+
+			if (gElement != null) {
+				return true;
+			}
+			return false;
+		}
+		return false;
 	}
 }

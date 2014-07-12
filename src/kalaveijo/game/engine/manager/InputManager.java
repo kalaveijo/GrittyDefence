@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import kalaveijo.game.grittydefence.GameSurfaceView;
 import kalaveijo.game.util.InputEvent;
 import kalaveijo.game.util.MapLocation;
+import kalaveijo.game.util.Options;
+import android.view.MotionEvent;
 
 /*
  * Handles input events
@@ -35,8 +37,59 @@ public class InputManager {
 			}
 			// gameManager.endBuildPhase();
 
-			guiManager.createUnitRing(new MapLocation(5, 5));
+			if (guiManager.checkIfInputPointsAtGUI(lastEvent)) {
+				// createUnitRingAtMotionEvent(lastEvent);
+
+				guiManager.removeLastGUIGroup();
+
+			} else {
+				guiManager.removeLastGUIGroup();
+				createUnitRingAtMotionEvent(lastEvent);
+			}
+
 		}
 
+	}
+
+	private void createUnitRingAtMotionEvent(InputEvent iEvent) {
+
+		MotionEvent mEvent = iEvent.getEvent();
+		int posX = 0;
+		int posY = 0;
+
+		boolean xSelected = true;
+		boolean ySelected = true;
+
+		for (int x = 0; x < objectManager.getNonArrayListMap().getSizeX(); x++) {
+			for (int y = 0; y < objectManager.getNonArrayListMap().getSizeY(); y++) {
+				if (x * Options.TILE_SIZE >= mEvent.getX()) {
+					if (xSelected) {
+
+						if (x - 1 > -1) {
+							posX = x - 1;
+							xSelected = false;
+						} else {
+							posX = x;
+							xSelected = false;
+						}
+
+					}
+				}
+				if (y * Options.TILE_SIZE >= mEvent.getY()) {
+					if (ySelected) {
+
+						if (y - 1 > -1) {
+							posY = y - 1;
+							ySelected = false;
+						} else {
+							posY = y;
+							ySelected = false;
+						}
+
+					}
+				}
+			}
+		}
+		guiManager.createUnitRing(new MapLocation(posX, posY));
 	}
 }

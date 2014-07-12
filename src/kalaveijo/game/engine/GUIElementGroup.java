@@ -32,7 +32,7 @@ public class GUIElementGroup {
 	/*
 	 * int tolerance is how much difference there can be between points
 	 */
-	public GUIElement findElementByPosition(Point position, int tolerance) {
+	public GUIElement findElementByPosition(Point position) {
 		for (GUIElement e : GUIElementList) {
 			// todo
 			return e;
