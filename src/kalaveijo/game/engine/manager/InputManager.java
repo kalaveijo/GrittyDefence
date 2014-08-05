@@ -52,6 +52,7 @@ public class InputManager {
 
 				// check if hits guiElement
 				if (getStaticGUIElement(lastEvent) == null) {
+
 					// check if buildphase
 					if (gameManager.isBuildPhase()) {
 						// if yes
@@ -61,7 +62,18 @@ public class InputManager {
 							// move unit
 						} else {
 							// create unitring
-							createUnitRingAtMotionEvent(lastEvent);
+
+							// check if unitring is already enabled
+							if (guiManager
+									.findIfLastGUIElementNameEquals("unitRing")) {
+								// if enabled, remove
+								guiManager.removeLastGUIGroup();
+							} else {
+								// if not enabled, add
+								guiManager.removeLastGUIGroup();
+								createUnitRingAtMotionEvent(lastEvent);
+							}
+
 						}
 
 					} else {

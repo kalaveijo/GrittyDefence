@@ -64,6 +64,12 @@ public class GUIManager {
 		}
 	}
 
+	public void removeAllGUIGroups() {
+		for (int i = 0; i < GUIElementList.length; i++) {
+			GUIElementList[i] = null;
+		}
+	}
+
 	public void addGUIGroup(GUIElementGroup newGroup) {
 		if (findGUIItemAmount() < Options.MAX_GUI_LAYERS) {
 			GUIElementList[findGUIItemAmount()] = newGroup;
@@ -100,6 +106,15 @@ public class GUIManager {
 				return true;
 			}
 			return false;
+		}
+		return false;
+	}
+
+	public boolean findIfLastGUIElementNameEquals(String name) {
+		if (getActiveUIGroup() != null) {
+			if (getActiveUIGroup().getName().equals(name)) {
+				return true;
+			}
 		}
 		return false;
 	}
