@@ -13,6 +13,7 @@ public class Player extends Entity {
 
 	private int money = 10;
 	private Paint paint;
+	private Entity selectedEntity;
 
 	public Player(long id, ObjectManager om) {
 		super(id, om);
@@ -21,6 +22,7 @@ public class Player extends Entity {
 		paint.setStyle(Paint.Style.STROKE);
 		paint.setStrokeWidth(3);
 		paint.setTextSize(22);
+		selectedEntity = null;
 	}
 
 	public void draw(Canvas c) {
@@ -46,5 +48,43 @@ public class Player extends Entity {
 	public void addMoney(int amount) {
 		int absoluteAmount = Math.abs(amount);
 		money = money + absoluteAmount;
+	}
+
+	public void selectEntity(Entity e) {
+		this.selectedEntity = null;
+		this.selectedEntity = e;
+	}
+
+	public Entity getSelectedEntity() {
+		return selectedEntity;
+	}
+
+	public void removeSelectedEntity() {
+		selectedEntity = null;
+	}
+
+	public boolean buyUnit(String unitName) {
+
+		if (unitName.equals("Machinegunner")) {
+
+		}
+
+		return false;
+	}
+
+	public Unit selectUnitFromTemplates(String name) {
+		// for (EntityTemplate et : templateManager.getEntityTemplates()) {
+		// if (et.getName().equals("machinegunner")) {
+		// Unit u = et.createUnit();
+		// objectManager.spawnPlayerUnit(u, 4, 4);
+		// u = et.createUnit();
+		// objectManager.spawnPlayerUnit(u, 7, 3);
+		// u = et.createUnit();
+		// objectManager.spawnPlayerUnit(u, 7, 7);
+		// u = et.createUnit();
+		// objectManager.spawnPlayerUnit(u, 4, 5);
+		// }
+		// }
+		return null;
 	}
 }

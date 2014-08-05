@@ -276,4 +276,15 @@ public class Unit extends Entity implements Tickable {
 		this.lastHitDirection = lastHitDirection;
 	}
 
+	public boolean moveUnitToMapLocation(MapLocation ml) {
+
+		if (om.getEntityByPosition(ml) == null) {
+			// if position is empty
+			this.posX = ml.x;
+			this.posY = ml.y;
+			return true;
+		}
+		return false;
+
+	}
 }

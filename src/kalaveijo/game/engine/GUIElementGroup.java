@@ -2,6 +2,7 @@ package kalaveijo.game.engine;
 
 import java.util.ArrayList;
 
+import kalaveijo.game.util.Options;
 import android.graphics.Canvas;
 import android.graphics.Point;
 
@@ -34,8 +35,15 @@ public class GUIElementGroup {
 	 */
 	public GUIElement findElementByPosition(Point position) {
 		for (GUIElement e : GUIElementList) {
-			// todo
-			return e;
+			if (position.x > e.getPoint().x
+					&& position.x < e.getPoint().x + Options.TOLERANCE) {
+				if (position.y > e.getPoint().y
+						&& position.y < e.getPoint().y + Options.TOLERANCE) {
+					return e;
+				}
+
+			}
+
 		}
 		return null;
 	}

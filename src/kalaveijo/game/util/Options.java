@@ -19,4 +19,6 @@ public final class Options {
 	// Max number of gui layers
 	public final static int MAX_GUI_LAYERS = 5;
 
+	public final static int TOLERANCE = 50;
+
 }

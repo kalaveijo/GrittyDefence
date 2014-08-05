@@ -3,10 +3,13 @@ package kalaveijo.game.engine.manager;
 import java.util.ArrayList;
 
 import kalaveijo.game.engine.GUIElement;
+import kalaveijo.game.engine.GUIElementGroup;
+import kalaveijo.game.gameobjects.Unit;
 import kalaveijo.game.grittydefence.GameSurfaceView;
 import kalaveijo.game.util.InputEvent;
 import kalaveijo.game.util.MapLocation;
 import kalaveijo.game.util.Options;
+import android.graphics.Point;
 import android.view.MotionEvent;
 
 /*
@@ -36,17 +39,6 @@ public class InputManager {
 			for (InputEvent e : eventList) {
 				lastEvent = e;
 			}
-			// gameManager.endBuildPhase();
-
-			// if (guiManager.checkIfInputPointsAtGUI(lastEvent)) {
-			// // createUnitRingAtMotionEvent(lastEvent);
-			//
-			// guiManager.removeLastGUIGroup();
-			//
-			// } else {
-			// guiManager.removeLastGUIGroup();
-			// createUnitRingAtMotionEvent(lastEvent);
-			// }
 
 			if (lastEvent != null) {
 
@@ -60,18 +52,43 @@ public class InputManager {
 						if (objectManager
 								.getEntityByPosition(convertInputToMapLocation(lastEvent)) != null) {
 							// move unit
-						} else {
-							// create unitring
 
-							// check if unitring is already enabled
-							if (guiManager
-									.findIfLastGUIElementNameEquals("unitRing")) {
-								// if enabled, remove
+							if (objectManager.getPlayer().getSelectedEntity() == null) {
+								// unitring might be open, closi closi
 								guiManager.removeLastGUIGroup();
+								// if no unit is selected
+								objectManager
+										.getPlayer()
+										.selectEntity(
+												objectManager
+														.getEntityByPosition(convertInputToMapLocation(lastEvent)));
+							}
+
+						} else {
+							// create unitring or move selected unit
+
+							if (objectManager.getPlayer().getSelectedEntity() == null) {
+
+								// check if unitring is already enabled
+								if (guiManager
+										.findIfLastGUIElementNameEquals("unitRing")) {
+									// if enabled, remove
+									guiManager.removeLastGUIGroup();
+								} else {
+									// if not enabled, add
+									guiManager.removeLastGUIGroup();
+									createUnitRingAtMotionEvent(lastEvent);
+								}
+
 							} else {
-								// if not enabled, add
-								guiManager.removeLastGUIGroup();
-								createUnitRingAtMotionEvent(lastEvent);
+								// if unit is selected, move unit
+
+								Unit u = (Unit) objectManager.getPlayer()
+										.getSelectedEntity();
+
+								u.moveUnitToMapLocation(convertInputToMapLocation(lastEvent));
+								objectManager.getPlayer()
+										.removeSelectedEntity();
 							}
 
 						}
@@ -88,6 +105,19 @@ public class InputManager {
 
 				} else {
 					// process which GUI element was hit
+					// here be haxors and undynamiccode
+					GUIElementGroup group = guiManager.getActiveUIGroup();
+					if (group != null) {
+						if (group.getName().equals("unitRing")) {
+							GUIElement element = group
+									.findElementByPosition(new Point(
+											(int) lastEvent.getEvent().getX(),
+											(int) lastEvent.getEvent().getY()));
+							if (element.getName().equals("Machinegunner")) {
+								// buy machinegunner
+							}
+						}
+					}
 				}
 
 			}
@@ -139,6 +169,16 @@ public class InputManager {
 	}
 
 	private GUIElement getStaticGUIElement(InputEvent iEvent) {
+
+		GUIElementGroup group = guiManager.getActiveUIGroup();
+		if (group != null) {
+			GUIElement element = group.findElementByPosition(new Point(
+					(int) iEvent.getEvent().getX(), (int) iEvent.getEvent()
+							.getY()));
+
+			return element;
+		}
+
 		return null;
 	}
 
