@@ -3,6 +3,7 @@ package kalaveijo.game.engine;
 import kalaveijo.game.engine.manager.GUIManager;
 import kalaveijo.game.engine.manager.GameManager;
 import kalaveijo.game.engine.manager.InputManager;
+import kalaveijo.game.engine.manager.ManagerWrapper;
 import kalaveijo.game.engine.manager.ObjectManager;
 import kalaveijo.game.engine.manager.TemplateManager;
 import kalaveijo.game.engine.template.EntityTemplate;
@@ -30,6 +31,7 @@ public class GameThread extends Thread {
 	private InputManager inputManager;
 	private XMLLoader xmlLoader;
 	private GUIManager guiManager;
+	private ManagerWrapper managerWrapper;
 
 	public GameThread(SurfaceHolder sHolder, GameSurfaceView cv) {
 		this.cv = cv;
@@ -51,7 +53,9 @@ public class GameThread extends Thread {
 				guiManager);
 		inputManager = new InputManager(gameManager, objectManager, cv,
 				guiManager);
-
+		objectManager.setTemplateManager(templateManager);
+		managerWrapper = new ManagerWrapper(gameManager, guiManager,
+				inputManager, objectManager, templateManager);
 	}// initializeGame
 
 	/*

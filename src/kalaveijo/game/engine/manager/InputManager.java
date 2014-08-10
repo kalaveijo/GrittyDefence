@@ -114,7 +114,10 @@ public class InputManager {
 											(int) lastEvent.getEvent().getX(),
 											(int) lastEvent.getEvent().getY()));
 							if (element.getName().equals("Machinegunner")) {
+								MapLocation ml = convertInputToMapLocation(lastEvent);
 								// buy machinegunner
+								objectManager.getPlayer().buyUnit(
+										"machinegunner", ml);
 							}
 						}
 					}

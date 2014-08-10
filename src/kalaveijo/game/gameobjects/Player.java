@@ -2,6 +2,8 @@ package kalaveijo.game.gameobjects;
 
 import kalaveijo.game.engine.Entity;
 import kalaveijo.game.engine.manager.ObjectManager;
+import kalaveijo.game.engine.template.EntityTemplate;
+import kalaveijo.game.util.MapLocation;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -14,6 +16,7 @@ public class Player extends Entity {
 	private int money = 10;
 	private Paint paint;
 	private Entity selectedEntity;
+	private int machinegunnerPrice = 3;
 
 	public Player(long id, ObjectManager om) {
 		super(id, om);
@@ -38,7 +41,8 @@ public class Player extends Entity {
 	 */
 	public boolean subtractMoney(int amount) {
 		amount = Math.abs(amount);
-		if (amount - money > -1) {
+		int difference = money - amount;
+		if (difference > -1) {
 			money = money - amount;
 			return true;
 		}
@@ -63,28 +67,31 @@ public class Player extends Entity {
 		selectedEntity = null;
 	}
 
-	public boolean buyUnit(String unitName) {
+	public boolean buyUnit(String unitName, MapLocation ml) {
 
-		if (unitName.equals("Machinegunner")) {
-
+		if (unitName.equals("machinegunner")) {
+			if (subtractMoney(machinegunnerPrice)) {
+				Unit u = selectUnitFromTemplates(unitName);
+				if (u != null) {
+					om.spawnPlayerUnit(u, ml.x, ml.y);
+				}
+			}
 		}
 
 		return false;
 	}
 
+	/*
+	 * unit ring spawns are here, need to be added manually
+	 */
 	public Unit selectUnitFromTemplates(String name) {
-		// for (EntityTemplate et : templateManager.getEntityTemplates()) {
-		// if (et.getName().equals("machinegunner")) {
-		// Unit u = et.createUnit();
-		// objectManager.spawnPlayerUnit(u, 4, 4);
-		// u = et.createUnit();
-		// objectManager.spawnPlayerUnit(u, 7, 3);
-		// u = et.createUnit();
-		// objectManager.spawnPlayerUnit(u, 7, 7);
-		// u = et.createUnit();
-		// objectManager.spawnPlayerUnit(u, 4, 5);
-		// }
-		// }
+		for (EntityTemplate et : om.getTemplateManager().getEntityTemplates()) {
+			if (et.getName().equals("machinegunner")) {
+				Unit u = et.createUnit();
+				return u;
+				// om.spawnPlayerUnit(u, 4, 4);
+			}
+		}
 		return null;
 	}
 }
