@@ -2,6 +2,7 @@ package kalaveijo.game.engine.manager;
 
 import java.util.ArrayList;
 
+import kalaveijo.game.engine.Entity;
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.Mission;
 import kalaveijo.game.gameobjects.MissionWave;
@@ -18,6 +19,7 @@ public class GameManager {
 	private Mission currentMission;
 	private boolean isBuildPhase = true;
 	private boolean playerEndedBuildPhase = false;
+	private boolean playerHasBeenRewarded = true;
 	private int waveNumber = 1;
 	private int amountOfWaves = 1;
 
@@ -98,6 +100,7 @@ public class GameManager {
 			if (!isBuildPhase) {
 				waveNumber++;
 				if (waveNumber <= amountOfWaves) {
+					playerHasBeenRewarded = false;
 					spawnWave(waveNumber);
 				}
 			}
@@ -108,9 +111,20 @@ public class GameManager {
 		if (objectManager.getEnemyUnits().isEmpty()) {
 			if (!playerEndedBuildPhase) {
 				this.isBuildPhase = true;
+				rewardPlayerForAliveUnits();
 			} else {
 				this.isBuildPhase = false;
 				this.playerEndedBuildPhase = false;
+			}
+		}
+	}
+
+	private void rewardPlayerForAliveUnits() {
+		if (!playerHasBeenRewarded) {
+			for (Entity e : objectManager.getPlayerUnits()) {
+				objectManager.getPlayer().addMoney(2);
+				// should spawn gfx effect to sign why units are given money
+				playerHasBeenRewarded = true;
 			}
 		}
 	}
