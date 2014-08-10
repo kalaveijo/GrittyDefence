@@ -17,6 +17,22 @@
     </mission>
     
     <mission>
+        <map>demo</map>
+        <name>demoMission</name>
+        <waves>
+            <wave>
+                <wavename>riflemanWave</wavename>
+            </wave>
+            <wave>
+                <wavename>riflemanWave2</wavename>
+            </wave>
+            <wave>
+                <wavename>riflemanWave3</wavename>
+            </wave>
+        </waves>
+    </mission>
+    
+    <mission>
         <map>tutorial</map>
         <name>randomMission</name>
     </mission>

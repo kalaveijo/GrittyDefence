@@ -2,11 +2,17 @@
 <maplist>
     <map>
         <name>tutorial</name>
-        <x>21</x>
+        <x>23</x>
         <y>11</y>
         
         <maptiles>
             <row i="0">
+                <tile>
+                <type>0</type>
+            </tile>
+             <tile>
+                <type>0</type>
+            </tile>
             <tile>
                 <type>0</type>
             </tile>
@@ -72,6 +78,12 @@
             </tile>
             </row>
             <row i="1">
+                <tile>
+                <type>0</type>
+            </tile>
+             <tile>
+                <type>0</type>
+            </tile>
             <tile>
                 <type>0</type>
             </tile>
@@ -137,6 +149,12 @@
             </tile>
             </row>
             <row i="2">
+                <tile>
+                <type>0</type>
+            </tile>
+             <tile>
+                <type>0</type>
+            </tile>
             <tile>
                 <type>0</type>
             </tile>
@@ -202,6 +220,12 @@
             </tile>
             </row>
             <row i="3">
+                <tile>
+                <type>0</type>
+            </tile>
+             <tile>
+                <type>0</type>
+            </tile>
             <tile>
                 <type>0</type>
             </tile>
@@ -267,6 +291,12 @@
             </tile>
             </row>
             <row i="4">
+                <tile>
+                <type>0</type>
+            </tile>
+             <tile>
+                <type>0</type>
+            </tile>
             <tile>
                 <type>0</type>
             </tile>
@@ -332,6 +362,12 @@
             </tile>
             </row>
             <row i="5">
+                <tile>
+                <type>0</type>
+            </tile>
+             <tile>
+                <type>0</type>
+            </tile>
             <tile>
                 <type>0</type>
             </tile>
@@ -397,6 +433,12 @@
             </tile>
             </row>
             <row i="6">
+                <tile>
+                <type>0</type>
+            </tile>
+             <tile>
+                <type>0</type>
+            </tile>
             <tile>
                 <type>0</type>
             </tile>
@@ -462,6 +504,12 @@
             </tile>
             </row>
             <row i="7">
+                <tile>
+                <type>0</type>
+            </tile>
+             <tile>
+                <type>0</type>
+            </tile>
             <tile>
                 <type>0</type>
             </tile>
@@ -527,6 +575,12 @@
             </tile>
             </row>
             <row i="8">
+                <tile>
+                <type>0</type>
+            </tile>
+             <tile>
+                <type>0</type>
+            </tile>
             <tile>
                 <type>0</type>
             </tile>
@@ -592,6 +646,12 @@
             </tile>
             </row>
             <row i="9">
+                <tile>
+                <type>0</type>
+            </tile>
+             <tile>
+                <type>0</type>
+            </tile>
             <tile>
                 <type>0</type>
             </tile>
@@ -657,6 +717,12 @@
             </tile>
             </row>
             <row i="10">
+                <tile>
+                <type>0</type>
+            </tile>
+             <tile>
+                <type>0</type>
+            </tile>
             <tile>
                 <type>0</type>
             </tile>
@@ -788,6 +854,12 @@
                 <helper>
                 	<direction>down</direction>
                 </helper>
+                <helper>
+                	<direction>down</direction>
+                </helper>
+                <helper>
+                	<direction>down</direction>
+                </helper>
             </row>
             <row i="1">
                 <helper>
@@ -918,10 +990,22 @@
                 <helper>
                 	<direction>left</direction>
                 </helper>
+                <helper>
+                	<direction>left</direction>
+                </helper>
+                <helper>
+                	<direction>left</direction>
+                </helper>
             </row>
             <row i="3">
                 <helper>
                 	<direction>right</direction>
+                </helper>
+                <helper>
+                	<direction>left</direction>
+                </helper>
+                <helper>
+                	<direction>left</direction>
                 </helper>
                 <helper>
                 	<direction>left</direction>
@@ -1048,6 +1132,12 @@
                 <helper>
                 	<direction>left</direction>
                 </helper>
+                <helper>
+                	<direction>left</direction>
+                </helper>
+                <helper>
+                	<direction>left</direction>
+                </helper>
             </row>
             <row i="5">
                 <helper>
@@ -1061,6 +1151,12 @@
                 </helper>
                 <helper>
                 	<direction>down</direction>
+                </helper>
+                <helper>
+                	<direction>left</direction>
+                </helper>
+                <helper>
+                	<direction>left</direction>
                 </helper>
                 <helper>
                 	<direction>left</direction>
@@ -1178,10 +1274,22 @@
                 <helper>
                 	<direction>left</direction>
                 </helper>
+                <helper>
+                	<direction>left</direction>
+                </helper>
+                <helper>
+                	<direction>left</direction>
+                </helper>
             </row>
             <row i="7">
                 <helper>
                 	<direction>right</direction>
+                </helper>
+                <helper>
+                	<direction>left</direction>
+                </helper>
+                <helper>
+                	<direction>left</direction>
                 </helper>
                 <helper>
                 	<direction>left</direction>
@@ -1308,10 +1416,22 @@
                 <helper>
                 	<direction>left</direction>
                 </helper>
+                <helper>
+                	<direction>left</direction>
+                </helper>
+                <helper>
+                	<direction>left</direction>
+                </helper>
             </row>
             <row i="9">
                 <helper>
                 	<direction>right</direction>
+                </helper>
+                <helper>
+                	<direction>left</direction>
+                </helper>
+                <helper>
+                	<direction>left</direction>
                 </helper>
                 <helper>
                 	<direction>left</direction>
@@ -1438,6 +1558,18 @@
                 <helper>
                 	<direction>up</direction>
                 </helper>
+                <helper>
+                	<direction>up</direction>
+                </helper>
+                <helper>
+                	<direction>up</direction>
+                </helper>
+                <helper>
+                	<direction>up</direction>
+                </helper>
+                <helper>
+                	<direction>up</direction>
+                </helper>
             </row>
         </movementhelpers>
         
@@ -1445,25 +1577,32 @@
             <spawn>
                 <x>19</x>
                 <y>5</y>
-            </spawn>
-            
+            </spawn>          
             <spawn>
                 <x>19</x>
                 <y>6</y>
-            </spawn>
-            
-            <spawn>
-                <x>18</x>
-                <y>5</y>
-            </spawn>
+            </spawn>            
             <spawn>
                 <x>19</x>
                 <y>4</y>
             </spawn>
             <spawn>
-                <x>18</x>
-                <y>4</y>
+                <x>19</x>
+                <y>7</y>
             </spawn>
+            <spawn>
+                <x>19</x>
+                <y>3</y>
+            </spawn>
+            <spawn>
+                <x>19</x>
+                <y>8</y>
+            </spawn>
+            <spawn>
+                <x>19</x>
+                <y>2</y>
+            </spawn>
+            
         </spawntiles>
         
     </map>
