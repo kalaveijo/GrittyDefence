@@ -79,7 +79,7 @@ public class GameThread extends Thread {
 					templateManager.setWaveTemplates(xmlLoader.loadWaves());
 					renderer.load();
 					gameManager.changeMission("tutorialMission");
-					debugCreatePlayerUnit(); // just debug, comment out
+					// debugCreatePlayerUnit(); // just debug, comment out
 					firstRun = false;
 				}// if
 

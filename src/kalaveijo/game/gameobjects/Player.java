@@ -70,10 +70,12 @@ public class Player extends Entity {
 	public boolean buyUnit(String unitName, MapLocation ml) {
 
 		if (unitName.equals("machinegunner")) {
-			if (subtractMoney(machinegunnerPrice)) {
-				Unit u = selectUnitFromTemplates(unitName);
-				if (u != null) {
-					om.spawnPlayerUnit(u, ml.x, ml.y);
+			if (om.mapLocationIsFree(ml.x, ml.y)) {
+				if (subtractMoney(machinegunnerPrice)) {
+					Unit u = selectUnitFromTemplates(unitName);
+					if (u != null) {
+						om.spawnPlayerUnit(u, ml.x, ml.y);
+					}
 				}
 			}
 		}

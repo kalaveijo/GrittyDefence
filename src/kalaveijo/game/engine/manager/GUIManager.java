@@ -20,6 +20,10 @@ public class GUIManager {
 	}
 
 	public void draw(Canvas c) {
+
+		// haxors check
+		if (checkIfListIsEmpty())
+			createStaticGUI();
 		if (findGUIItemAmount() != 0) {
 			if (GUIElementList[findGUIItemAmount() - 1] != null) {
 				GUIElementList[findGUIItemAmount() - 1].draw(c);
@@ -117,5 +121,25 @@ public class GUIManager {
 			}
 		}
 		return false;
+	}
+
+	private boolean checkIfListIsEmpty() {
+
+		if (findGUIItemAmount() == 0) {
+			return true;
+		}
+		return false;
+
+	}
+
+	private void createStaticGUI() {
+		// create staticGUI group
+		GUIElementGroup unitRing = new GUIElementGroup("staticGui");
+
+		// add elements
+		unitRing.addGUIElement(new GUIElement(null, "newwavebutton", new Point(
+				1220, 20)));
+
+		addGUIGroup(unitRing);
 	}
 }

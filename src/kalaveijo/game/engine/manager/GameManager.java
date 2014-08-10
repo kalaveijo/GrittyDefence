@@ -51,8 +51,8 @@ public class GameManager {
 		// add objects to object manager
 		objectManager.getMap().add(currentMission.getMap());
 		amountOfWaves = currentMission.getWaveList().size();
-		waveNumber = 1;
-		spawnWave(waveNumber);
+		waveNumber = 0;
+		// spawnWave(waveNumber); //debugspawn, can be removed
 
 	}
 

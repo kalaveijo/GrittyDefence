@@ -22,6 +22,7 @@ public class InputManager {
 	private ObjectManager objectManager;
 	private ArrayList<InputEvent> eventList;
 	private GUIManager guiManager;
+	private MapLocation lastClickedLocation;
 
 	public InputManager(GameManager gameManager, ObjectManager objectManager,
 			GameSurfaceView cv, GUIManager guiManager) {
@@ -30,6 +31,7 @@ public class InputManager {
 		this.objectManager = objectManager;
 		this.guiManager = guiManager;
 		eventList = new ArrayList<InputEvent>();
+		lastClickedLocation = new MapLocation(1, 1);
 	}
 
 	public void processInputs() {
@@ -78,6 +80,7 @@ public class InputManager {
 									// if not enabled, add
 									guiManager.removeLastGUIGroup();
 									createUnitRingAtMotionEvent(lastEvent);
+									lastClickedLocation = convertInputToMapLocation(lastEvent);
 								}
 
 							} else {
@@ -114,11 +117,15 @@ public class InputManager {
 											(int) lastEvent.getEvent().getX(),
 											(int) lastEvent.getEvent().getY()));
 							if (element.getName().equals("Machinegunner")) {
-								MapLocation ml = convertInputToMapLocation(lastEvent);
+
 								// buy machinegunner
 								objectManager.getPlayer().buyUnit(
-										"machinegunner", ml);
+										"machinegunner", lastClickedLocation);
+								guiManager.removeLastGUIGroup();
 							}
+						}
+						if (group.getName().equals("staticGui")) {
+							gameManager.endBuildPhase();
 						}
 					}
 				}
