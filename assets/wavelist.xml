@@ -9,6 +9,12 @@
         <includedunits>
             <unit>rifleman</unit>
         </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
     </wave>
     <wave>
         <name>riflemanWave2</name>
@@ -16,10 +22,46 @@
         <includedunits>
             <unit>rifleman</unit>
         </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
     </wave>
      <wave>
         <name>riflemanWave3</name>
         <number>3</number>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
         <includedunits>
             <unit>rifleman</unit>
         </includedunits>

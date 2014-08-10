@@ -13,7 +13,7 @@ import android.graphics.Paint;
  */
 public class Player extends Entity {
 
-	private int money = 10;
+	private int money = 5;
 	private Paint paint;
 	private Entity selectedEntity;
 	private int machinegunnerPrice = 3;

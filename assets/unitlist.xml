@@ -2,9 +2,9 @@
 <unitlist>
 	<unit>
 		<name>rifleman</name>
-		<health>10</health>
+		<health>3</health>
 		<speed>1</speed>
-		<range>2</range>
+		<range>1</range>
 		<atkspeed>1</atkspeed>
 		<player>enemy</player>
 		<projectile>bullet</projectile>
@@ -14,7 +14,7 @@
 		<name>machinegunner</name>
 		<health>10</health>
 		<speed>1</speed>
-		<range>2</range>
+		<range>3</range>
 		<atkspeed>1</atkspeed>
 		<player>player</player>
 		<projectile>machinefire</projectile>
