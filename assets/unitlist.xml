@@ -20,4 +20,14 @@
 		<projectile>machinefire</projectile>
 		<bitmapcontainergroup>machinegunner</bitmapcontainergroup>
 	</unit>
+	<unit>
+		<name>wall</name>
+		<health>10</health>
+		<speed>1</speed>
+		<range>0</range>
+		<atkspeed>0</atkspeed>
+		<player>player</player>
+		<projectile>machinefire</projectile>
+		<bitmapcontainergroup>wall</bitmapcontainergroup>
+	</unit>
 </unitlist>

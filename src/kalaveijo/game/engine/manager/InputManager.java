@@ -123,6 +123,14 @@ public class InputManager {
 										"machinegunner", lastClickedLocation);
 								guiManager.removeLastGUIGroup();
 							}
+
+							if (element.getName().equals("Wall")) {
+
+								// buy machinegunner
+								objectManager.getPlayer().buyUnit("wall",
+										lastClickedLocation);
+								guiManager.removeLastGUIGroup();
+							}
 						}
 						if (group.getName().equals("staticGui")) {
 							gameManager.endBuildPhase();

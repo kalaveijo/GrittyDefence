@@ -46,6 +46,9 @@ public class GUIManager {
 		unitRing.addGUIElement(new GUIElement(null, "Machinegunner", new Point(
 				center.x + 40, center.y)));
 
+		unitRing.addGUIElement(new GUIElement(null, "Wall", new Point(
+				center.x - 80, center.y)));
+
 		addGUIGroup(unitRing);
 
 	}

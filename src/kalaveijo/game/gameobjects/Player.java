@@ -17,6 +17,7 @@ public class Player extends Entity {
 	private Paint paint;
 	private Entity selectedEntity;
 	private int machinegunnerPrice = 3;
+	private int wallPrice = 1;
 
 	public Player(long id, ObjectManager om) {
 		super(id, om);
@@ -79,6 +80,16 @@ public class Player extends Entity {
 				}
 			}
 		}
+		if (unitName.equals("wall")) {
+			if (om.mapLocationIsFree(ml.x, ml.y)) {
+				if (subtractMoney(wallPrice)) {
+					Unit u = selectUnitFromTemplates(unitName);
+					if (u != null) {
+						om.spawnPlayerUnit(u, ml.x, ml.y);
+					}
+				}
+			}
+		}
 
 		return false;
 	}
@@ -88,11 +99,16 @@ public class Player extends Entity {
 	 */
 	public Unit selectUnitFromTemplates(String name) {
 		for (EntityTemplate et : om.getTemplateManager().getEntityTemplates()) {
-			if (et.getName().equals("machinegunner")) {
+			if (et.getName().equals(name)) {
 				Unit u = et.createUnit();
 				return u;
 				// om.spawnPlayerUnit(u, 4, 4);
 			}
+			// if (et.getName().equals("wall")) {
+			// Unit u = et.createUnit();
+			// return u;
+			// // om.spawnPlayerUnit(u, 4, 4);
+			// }
 		}
 		return null;
 	}
