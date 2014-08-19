@@ -1,5 +1,7 @@
 package kalaveijo.game.gameobjects;
 
+import java.util.ArrayList;
+
 import kalaveijo.game.engine.BitmapContainerGroup;
 import kalaveijo.game.engine.Entity;
 import kalaveijo.game.engine.Tickable;
@@ -66,6 +68,7 @@ public class Unit extends Entity implements Tickable {
 			}
 		} else {
 			c.drawBitmap(picture, location.x, location.y, new Paint());
+			visualizeTargetedTiles(c);
 		}
 	}
 
@@ -285,6 +288,23 @@ public class Unit extends Entity implements Tickable {
 			return true;
 		}
 		return false;
+
+	}
+
+	private void visualizeTargetedTiles(Canvas c) {
+
+		Unit u = (Unit) om.getPlayer().getSelectedEntity();
+		// if this unit is selected
+		if (u == this) {
+			ArrayList<MapLocation> tiles = this.ai.getTilesOnRange(posX, posY,
+					range, om);
+			for (MapLocation ml : tiles) {
+				c.drawRect(ml.x * Options.TILE_SIZE, ml.y * Options.TILE_SIZE,
+						ml.x * Options.TILE_SIZE + Options.TILE_SIZE, ml.y
+								* Options.TILE_SIZE + Options.TILE_SIZE,
+						new Paint());
+			}
+		}
 
 	}
 }
