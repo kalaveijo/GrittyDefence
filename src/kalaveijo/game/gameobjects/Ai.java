@@ -135,13 +135,16 @@ public class Ai {
 		}
 		int currentX = startX;
 		int currentY = startY;
-
 		ArrayList<MapLocation> selectedTiles = new ArrayList<MapLocation>();
 
 		// miten monta kierrosta halutaan
 		for (int i = 1; i < range + 1; i++) {
 
-			currentX = currentX - i;
+			if (i < 3) {
+				currentX = currentX - i;
+			} else {
+				currentX = currentX - (i - 1);
+			}
 			selectedTiles.add(new MapLocation(currentX, currentY));
 			for (int e = 0; e < i; e++) {
 				currentX = currentX + 1;
@@ -177,6 +180,7 @@ public class Ai {
 			}
 
 			currentY = currentY - 1;
+
 		}
 		return selectedTiles;
 	}
