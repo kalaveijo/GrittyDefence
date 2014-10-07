@@ -87,10 +87,14 @@ public class Renderer {
 		// draw bodies
 		drawBodies(canvas);
 
+		// draw under effects
+		drawUnderEffects(canvas);
+		
 		// draw units
 		drawUnits(canvas);
 
-		// draw effects
+		// draw above effects
+		drawAboveEffects(canvas);
 
 		// draw GUI
 		om.getPlayer().draw(canvas); // draws game things related to player like
@@ -139,6 +143,18 @@ public class Renderer {
 		deathCollectorList.clear();
 	}
 
+	protected void drawAboveEffects(Canvas c){
+		for (Entity e : om.getAboveEffectList()) {
+			e.draw(c);
+		}// for
+	}
+	
+	protected void drawUnderEffects(Canvas c){
+		for (Entity e : om.getUnderEffectList()) {
+			e.draw(c);
+		}// for
+	}
+	
 	protected void drawUnits(Canvas c) {
 
 		for (Entity u : om.getPlayerUnits()) {
@@ -631,4 +647,5 @@ public class Renderer {
 		dst.setDensity(DisplayMetrics.DENSITY_DEFAULT);
 		return dst;
 	}
+	
 }

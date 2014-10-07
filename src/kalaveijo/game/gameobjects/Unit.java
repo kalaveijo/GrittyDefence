@@ -2,6 +2,7 @@ package kalaveijo.game.gameobjects;
 
 import java.util.ArrayList;
 
+import kalaveijo.game.effect.RangeVisualizationEffect;
 import kalaveijo.game.engine.BitmapContainerGroup;
 import kalaveijo.game.engine.Entity;
 import kalaveijo.game.engine.Tickable;
@@ -298,12 +299,8 @@ public class Unit extends Entity implements Tickable {
 		if (u == this) {
 			ArrayList<MapLocation> tiles = this.ai.getTilesOnRange(posX, posY,
 					range, om);
-			for (MapLocation ml : tiles) {
-				c.drawRect(ml.x * Options.TILE_SIZE, ml.y * Options.TILE_SIZE,
-						ml.x * Options.TILE_SIZE + Options.TILE_SIZE, ml.y
-								* Options.TILE_SIZE + Options.TILE_SIZE,
-						new Paint());
-			}
+			// create effect that shows visualization
+			om.addToUnderEffectList(new RangeVisualizationEffect(new MapLocation(posX,posY), om,tiles));
 		}
 
 	}

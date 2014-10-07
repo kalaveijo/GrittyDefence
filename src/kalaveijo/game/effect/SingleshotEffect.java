@@ -26,7 +26,7 @@ public class SingleshotEffect extends Effect {
 
 	public SingleshotEffect(MapLocation startLocation, MapLocation endLocation,
 			int health, ObjectManager om, int damage) {
-		super(startLocation);
+		super(startLocation, om);
 		this.om = om;
 		this.health = health;
 		this.endLocation = endLocation;

@@ -28,6 +28,9 @@ public class ObjectManager {
 	private ArrayList<Map> map = new ArrayList<Map>();
 	private ArrayList<Entity> removeList = new ArrayList<Entity>();
 	private ArrayList<Entity> deathlist = new ArrayList<Entity>();
+	//above and under are for graphical effects, not gameplay related
+	private ArrayList<Entity> underEffectList = new ArrayList<Entity>();
+	private ArrayList<Entity> aboveEffectList = new ArrayList<Entity>();
 	private Player player;
 
 	public ObjectManager() {
@@ -156,11 +159,19 @@ public class ObjectManager {
 		for (Entity p : getLiveProjectiles()) {
 			p.move();
 		}
+		for (Entity e : getUnderEffectList()) {
+			e.move();
+		}
+		for (Entity e : getAboveEffectList()) {
+			e.move();
+		}
 		// remove objects
 		for (Entity e : getRemoveList()) {
 			getPlayerUnits().remove(e);
 			getEnemyUnits().remove(e);
 			getLiveProjectiles().remove(e);
+			getUnderEffectList().remove(e);
+			getAboveEffectList().remove(e);
 		}
 		getRemoveList().clear();
 	}
@@ -224,5 +235,27 @@ public class ObjectManager {
 	public void resetPlayer() {
 		this.player = new Player(getNextFreeId(), this);
 	}
+
+	public ArrayList<Entity> getUnderEffectList() {
+		return underEffectList;
+	}
+
+	public ArrayList<Entity> getAboveEffectList() {
+		return aboveEffectList;
+	}
+	
+	public void addToUnderEffectList(Entity e){
+		this.underEffectList.add(e);
+	}
+	
+	public void addToAboveEffectList(Entity e){
+		this.aboveEffectList.add(e);
+	}
+	
+	public void addToRemoveList(Entity e){
+		this.removeList.add(e);
+	}
+	
+	
 
 }// class
