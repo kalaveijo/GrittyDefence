@@ -69,6 +69,7 @@ public class GameSurfaceView extends SurfaceView implements OnTouchListener,
 					public boolean onFling(MotionEvent e1, MotionEvent e2,
 							float velocityX, float velocityY) {
 						invalidate();
+						alIE.add(new InputEvent(e1));
 						return true;
 					}// onFling
 
