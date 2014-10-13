@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import kalaveijo.game.engine.GUIElement;
 import kalaveijo.game.engine.GUIElementGroup;
+import kalaveijo.game.gameobjects.DefenceAi;
 import kalaveijo.game.gameobjects.Unit;
 import kalaveijo.game.grittydefence.GameSurfaceView;
 import kalaveijo.game.util.InputEvent;
@@ -103,7 +104,32 @@ public class InputManager {
 								.getEntityByPosition(convertInputToMapLocation(lastEvent)) != null) {
 							// do unit ability if has one.
 
+							// ELSE select unit
+							if (objectManager.getPlayer().getSelectedEntity() == null) {
+								objectManager
+										.getPlayer()
+										.selectEntity(
+												objectManager
+														.getEntityByPosition(convertInputToMapLocation(lastEvent)));
+								// if unit is selected, order move for AI
+							}
+
+						} else {
+							if (objectManager
+									.getEntityByPosition(convertInputToMapLocation(lastEvent)) == null) {
+								Unit u = (Unit) objectManager.getPlayer()
+										.getSelectedEntity();
+								if (u != null) {
+									if (u.getAi() instanceof DefenceAi) {
+										DefenceAi ai = (DefenceAi) u.getAi();
+										ai.setTargetLocation(convertInputToMapLocation(lastEvent));
+										objectManager.getPlayer()
+										.removeSelectedEntity();
+									}
+								}
+							}
 						}
+
 					}
 
 				} else {
@@ -139,7 +165,6 @@ public class InputManager {
 				}
 
 			}
-
 		}
 
 	}

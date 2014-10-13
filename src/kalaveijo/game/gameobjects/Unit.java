@@ -94,6 +94,11 @@ public class Unit extends Entity implements Tickable {
 		this.location = location;
 		this.posX = x;
 		this.posY = y;
+		
+		// ugly hack for defenceAi param distribution
+		if (ai instanceof DefenceAi) { 
+			((DefenceAi) ai).setTargetLocation(new MapLocation(this.getPosX(), this.getPosY()));
+		}	
 	}
 
 	/*
@@ -286,6 +291,11 @@ public class Unit extends Entity implements Tickable {
 			// if position is empty
 			this.posX = ml.x;
 			this.posY = ml.y;
+			
+			if (ai instanceof DefenceAi) { 
+				((DefenceAi) ai).setTargetLocation(new MapLocation(ml.x, ml.y));
+			}
+			
 			return true;
 		}
 		return false;

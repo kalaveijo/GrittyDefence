@@ -7,17 +7,78 @@ import kalaveijo.game.util.MapLocation;
 
 public class DefenceAi extends Ai {
 
+	MapLocation targetLocation;
+
 	public DefenceAi(int currentPosX, int currentPosY, int range, Unit u) {
 		super(currentPosX, currentPosY, range, u);
-		// TODO Auto-generated constructor stub
 	}
 
 	public DefenceAi(Unit u) {
-		super(u);
+		super(u);		
+	}
+
+	public void assesAction() {
+
+		// if not attacking
+		if (u.getStatus() == Entity.IDLE) {
+			u.resetSpritePosition();
+			this.currentPosX = u.getPosX();
+			this.currentPosY = u.getPosY();
+
+			// Check where to move
+			checkMovement();
+		}
+
+		// no point checking anything if unit is doing something already
+		if (u.getStatus() == Entity.IDLE) {
+			u.resetSpritePosition();
+			this.currentPosX = u.getPosX();
+			this.currentPosY = u.getPosY();
+			// Check if enemies are nearby
+			checkAttack();
+		}
 	}
 
 	protected void checkMovement() {
-		// leave empty, this motherfucker aint moving see?
+		if(targetLocation != null){
+		int possibleTargetX = currentPosX;
+		int possibleTargetY = currentPosY;
+		boolean hasChanged = false;
+
+		// check if should move up
+		if (u.getPosY() > targetLocation.y) {
+			possibleTargetY = possibleTargetY - 1;
+			hasChanged = true;
+		}
+
+		// check if should move down
+		if (u.getPosY() < targetLocation.y) {
+			possibleTargetY = possibleTargetY + 1;
+			hasChanged = true;
+		}
+
+		// check if should move right
+		if (u.getPosX() < targetLocation.x) {
+			possibleTargetX = possibleTargetX + 1;
+			hasChanged = true;
+		}
+
+		// check if should move left
+		if (u.getPosX() > targetLocation.x) {
+			possibleTargetX = possibleTargetX - 1;
+			hasChanged = true;
+		}
+
+		// Check if next tile is free
+		if(hasChanged){
+		if (u.getObjectManager().mapLocationIsFree(possibleTargetX, possibleTargetY)) {
+			if (u.getObjectManager().noneIsMovingToMapLocation(possibleTargetX, possibleTargetY)) {
+				u.orderMove(possibleTargetX, possibleTargetY);
+			}
+		}
+		}
+		}
+
 	}
 
 	protected void checkAttack() {
@@ -47,5 +108,9 @@ public class DefenceAi extends Ai {
 			}
 
 		}
+	}
+
+	public void setTargetLocation(MapLocation newTargetLocation) {
+		this.targetLocation = newTargetLocation;
 	}
 }

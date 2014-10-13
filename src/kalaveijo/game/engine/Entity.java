@@ -284,4 +284,10 @@ public class Entity implements Tickable {
 
 		}
 	}
+
+	public Ai getAi() {
+		return ai;
+	}
+	
+	
 }
