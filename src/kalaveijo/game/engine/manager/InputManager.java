@@ -2,6 +2,7 @@ package kalaveijo.game.engine.manager;
 
 import java.util.ArrayList;
 
+import kalaveijo.game.engine.Entity;
 import kalaveijo.game.engine.GUIElement;
 import kalaveijo.game.engine.GUIElementGroup;
 import kalaveijo.game.gameobjects.DefenceAi;
@@ -91,6 +92,11 @@ public class InputManager {
 										.getSelectedEntity();
 
 								u.moveUnitToMapLocation(convertInputToMapLocation(lastEvent));
+								// must set next tiles to current location or AI
+								// will get stuck
+								Entity e = (Entity) u;
+								e.setNextTileX(convertInputToMapLocation(lastEvent).x);
+								e.setNextTileY(convertInputToMapLocation(lastEvent).y);
 								objectManager.getPlayer()
 										.removeSelectedEntity();
 							}
@@ -124,7 +130,7 @@ public class InputManager {
 										DefenceAi ai = (DefenceAi) u.getAi();
 										ai.setTargetLocation(convertInputToMapLocation(lastEvent));
 										objectManager.getPlayer()
-										.removeSelectedEntity();
+												.removeSelectedEntity();
 									}
 								}
 							}
