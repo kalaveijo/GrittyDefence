@@ -116,7 +116,7 @@ public class InputManager {
 										.getPlayer()
 										.selectEntity(
 												objectManager
-														.getEntityByPosition(convertInputToMapLocation(lastEvent)));
+														.getPlayerEntityByPosition(convertInputToMapLocation(lastEvent)));
 								// if unit is selected, order move for AI
 							}
 

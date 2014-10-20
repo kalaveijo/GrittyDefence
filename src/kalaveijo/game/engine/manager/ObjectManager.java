@@ -28,7 +28,7 @@ public class ObjectManager {
 	private ArrayList<Map> map = new ArrayList<Map>();
 	private ArrayList<Entity> removeList = new ArrayList<Entity>();
 	private ArrayList<Entity> deathlist = new ArrayList<Entity>();
-	//above and under are for graphical effects, not gameplay related
+	// above and under are for graphical effects, not gameplay related
 	private ArrayList<Entity> underEffectList = new ArrayList<Entity>();
 	private ArrayList<Entity> aboveEffectList = new ArrayList<Entity>();
 	private Player player;
@@ -215,6 +215,14 @@ public class ObjectManager {
 		return null;
 	}
 
+	public Entity getPlayerEntityByPosition(MapLocation ml) {
+		for (Entity e : playerUnit) {
+			if (e.getPosX() == ml.x && e.getPosY() == ml.y)
+				return e;
+		}
+		return null;
+	}
+
 	public void addToDeathList(Entity e) {
 		deathlist.add(e);
 		removeList.add(e);
@@ -243,19 +251,17 @@ public class ObjectManager {
 	public ArrayList<Entity> getAboveEffectList() {
 		return aboveEffectList;
 	}
-	
-	public void addToUnderEffectList(Entity e){
+
+	public void addToUnderEffectList(Entity e) {
 		this.underEffectList.add(e);
 	}
-	
-	public void addToAboveEffectList(Entity e){
+
+	public void addToAboveEffectList(Entity e) {
 		this.aboveEffectList.add(e);
 	}
-	
-	public void addToRemoveList(Entity e){
+
+	public void addToRemoveList(Entity e) {
 		this.removeList.add(e);
 	}
-	
-	
 
 }// class
