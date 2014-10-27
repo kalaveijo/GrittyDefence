@@ -12,10 +12,6 @@ public class Stopwatch {
 		this.milliSecondsToCount = milliSecondsToCount;
 	}
 
-	public Stopwatch() {
-
-	}
-
 	public void setHowManyMillisecondsToCount(int milliSecondsToCount) {
 		this.milliSecondsToCount = milliSecondsToCount;
 	}
