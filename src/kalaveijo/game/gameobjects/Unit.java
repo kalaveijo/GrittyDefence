@@ -72,6 +72,7 @@ public class Unit extends Entity implements Tickable {
 		} else {
 			c.drawBitmap(picture, location.x, location.y, new Paint());
 			drawHealth(c); //h4x
+			drawDebugName(c);
 			visualizeTargetedTiles(c);
 		}
 	}
@@ -351,6 +352,13 @@ public class Unit extends Entity implements Tickable {
 				c.drawRect(x, y, x+healthBarLength, y+sizeY, new Paint());				
 			}
 			
+		}
+	}
+	
+	// draws debugname
+	private void drawDebugName(Canvas c){
+		if(Options.DEBUG){
+			c.drawText(this.name, location.x, location.y + 10, new Paint());
 		}
 	}
 }
