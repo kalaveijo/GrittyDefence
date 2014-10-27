@@ -21,5 +21,7 @@ public final class Options {
 	public final static int MAX_GUI_LAYERS = 5;
 
 	public final static int TOLERANCE = 50;
+	
+	public static final boolean DRAW_HEALTH = true;
 
 }

@@ -21,7 +21,8 @@ public class Unit extends Entity implements Tickable {
 	protected ProjectileTemplate projectile;
 	// used in cool death
 	protected int lastHitDirection = Entity.UP;
-
+	protected int totalHealth = 0;
+	
 	public Unit(long id, ObjectManager om) {
 		super(id, om);
 		super.health = 10;
@@ -37,6 +38,7 @@ public class Unit extends Entity implements Tickable {
 		super(id, om);
 		super.name = name;
 		super.health = health;
+		totalHealth = health;
 		super.speed = speed;
 		super.range = range;
 		super.atkSpeed = atkSpeed;
@@ -69,6 +71,7 @@ public class Unit extends Entity implements Tickable {
 			}
 		} else {
 			c.drawBitmap(picture, location.x, location.y, new Paint());
+			drawHealth(c); //h4x
 			visualizeTargetedTiles(c);
 		}
 	}
@@ -313,5 +316,41 @@ public class Unit extends Entity implements Tickable {
 			om.addToUnderEffectList(new RangeVisualizationEffect(new MapLocation(posX,posY), om,tiles));
 		}
 
+	}
+	
+	
+	//draws healthbar
+	private void drawHealth(Canvas c){
+		if(Options.DRAW_HEALTH){
+			int healthBarLength = Options.TILE_SIZE;
+			int lengthOfHealthSegments;
+			int offSetX = 0;
+			int offSetY = 8;
+			int sizeY = 8;
+			
+			// check if we have more health than space on single tile
+			// so that health bars dont get too long
+			if(totalHealth < Options.TILE_SIZE){
+				lengthOfHealthSegments = (int) Math.ceil((float) Options.TILE_SIZE / (float) totalHealth); //-1 reserved to pause between segments
+				int x = this.location.x - offSetX;
+				int y = this.location.y + Options.TILE_SIZE - offSetY;
+				
+				c.drawRect(x, y, x+healthBarLength+2, y+sizeY, new Paint());
+				
+				for(int i = 0; i < super.health; i++){
+					Paint paint = new Paint();
+					paint.setColor(Color.GREEN);
+					c.drawRect(x + 1 +(i* lengthOfHealthSegments) , y + 1, x + lengthOfHealthSegments+(i* lengthOfHealthSegments), y + sizeY - 1, paint);
+				}
+				
+			}else{
+				lengthOfHealthSegments = 1;
+				int x = this.location.x + Options.TILE_SIZE - offSetX;
+				int y = this.location.y + Options.TILE_SIZE - offSetY;
+				
+				c.drawRect(x, y, x+healthBarLength, y+sizeY, new Paint());				
+			}
+			
+		}
 	}
 }
