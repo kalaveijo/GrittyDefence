@@ -30,4 +30,14 @@
 		<projectile>machinefire</projectile>
 		<bitmapcontainergroup>wall</bitmapcontainergroup>
 	</unit>
+	<unit>
+		<name>hq</name>
+		<health>30</health>
+		<speed>4</speed>
+		<range>0</range>
+		<atkspeed>0</atkspeed>
+		<player>player</player>
+		<projectile>machinefire</projectile>
+		<bitmapcontainergroup>wall</bitmapcontainergroup>
+	</unit>
 </unitlist>
