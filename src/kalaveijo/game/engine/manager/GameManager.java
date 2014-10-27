@@ -112,7 +112,8 @@ public class GameManager {
 		if (objectManager.getEnemyUnits().isEmpty()) {
 			if (!playerEndedBuildPhase) {
 				this.isBuildPhase = true;
-				rewardPlayerForAliveUnits();
+				//rewardPlayerForAliveUnits();
+				rewardPlayerAfterWaves();
 			} else {
 				this.isBuildPhase = false;
 				this.playerEndedBuildPhase = false;
@@ -130,6 +131,14 @@ public class GameManager {
 		}
 	}
 
+	private void rewardPlayerAfterWaves(){
+		if (!playerHasBeenRewarded) {
+				objectManager.getPlayer().addMoney(9);
+				// should spawn gfx effect to sign why units are given money
+				playerHasBeenRewarded = true;
+		}
+	}
+	
 	private void spawnHQ(int posX, int posY){
 		Unit u = templateManager.selectUnitFromTemplates("hq");
 		if (u != null) {
