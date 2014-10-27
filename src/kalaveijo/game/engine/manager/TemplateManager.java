@@ -8,6 +8,7 @@ import kalaveijo.game.engine.template.MissionTemplate;
 import kalaveijo.game.engine.template.MissionWaveTemplate;
 import kalaveijo.game.engine.template.ProjectileTemplate;
 import kalaveijo.game.gameobjects.Mission;
+import kalaveijo.game.gameobjects.Unit;
 import android.util.Log;
 
 /*
@@ -83,4 +84,23 @@ public class TemplateManager {
 		this.projTemplates = projTemplates;
 	}
 
+	/*
+	 * unit ring spawns are here, need to be added manually
+	 */
+	public Unit selectUnitFromTemplates(String name) {
+		for (EntityTemplate et : om.getTemplateManager().getEntityTemplates()) {
+			if (et.getName().equals(name)) {
+				Unit u = et.createUnit();
+				return u;
+				// om.spawnPlayerUnit(u, 4, 4);
+			}
+			// if (et.getName().equals("wall")) {
+			// Unit u = et.createUnit();
+			// return u;
+			// // om.spawnPlayerUnit(u, 4, 4);
+			// }
+		}
+		return null;
+	}
+	
 }

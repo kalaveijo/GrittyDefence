@@ -54,7 +54,8 @@ public class GameManager {
 		objectManager.getMap().add(currentMission.getMap());
 		amountOfWaves = currentMission.getWaveList().size();
 		waveNumber = 0;
-		// spawnWave(waveNumber); //debugspawn, can be removed
+		
+		spawnHQ(2,5);
 
 	}
 
@@ -129,4 +130,11 @@ public class GameManager {
 		}
 	}
 
+	private void spawnHQ(int posX, int posY){
+		Unit u = templateManager.selectUnitFromTemplates("hq");
+		if (u != null) {
+			objectManager.spawnPlayerUnit(u, posX, posY);
+		}
+	}
+	
 }
