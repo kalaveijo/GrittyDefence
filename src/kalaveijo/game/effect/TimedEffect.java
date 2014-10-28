@@ -5,6 +5,10 @@ import kalaveijo.game.engine.manager.ObjectManager;
 import kalaveijo.game.util.MapLocation;
 import kalaveijo.game.util.Stopwatch;
 
+/*
+ * Base for effects that are tied to time
+ */
+
 abstract class TimedEffect extends Effect {
 
 	protected Stopwatch stopWatch;

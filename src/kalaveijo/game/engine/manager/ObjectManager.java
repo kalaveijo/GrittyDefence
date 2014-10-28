@@ -2,6 +2,7 @@ package kalaveijo.game.engine.manager;
 
 import java.util.ArrayList;
 
+import kalaveijo.game.effect.TimedSpawnWaveEffect;
 import kalaveijo.game.engine.Entity;
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.Mission;
@@ -264,4 +265,15 @@ public class ObjectManager {
 		this.removeList.add(e);
 	}
 
+	public boolean areTimedSpawnWaveEffectsRunning(){
+		
+		for(Entity e : underEffectList){
+			if(e instanceof TimedSpawnWaveEffect){
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 }// class

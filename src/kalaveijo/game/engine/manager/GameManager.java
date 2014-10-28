@@ -3,6 +3,7 @@ package kalaveijo.game.engine.manager;
 import java.util.ArrayList;
 
 import kalaveijo.game.effect.TimedShowTextEffect;
+import kalaveijo.game.effect.TimedSpawnWaveEffect;
 import kalaveijo.game.engine.Entity;
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.Mission;
@@ -24,6 +25,8 @@ public class GameManager {
 	private boolean playerHasBeenRewarded = true;
 	private int waveNumber = 1;
 	private int amountOfWaves = 1;
+	private MissionWave waveToBeRemoved;
+	private int timeInBetweenWavesMilli = 10000;
 
 	public GameManager(ObjectManager om, TemplateManager tm) {
 		this.templateManager = tm;
@@ -55,14 +58,15 @@ public class GameManager {
 		// add objects to object manager
 		objectManager.getMap().add(currentMission.getMap());
 		amountOfWaves = currentMission.getWaveList().size();
-		waveNumber = 0;
 		
 		// Gameplay Haxors
 		spawnHQ(2,5);
 		objectManager.addToAboveEffectList(new TimedShowTextEffect(new MapLocation(2,5), objectManager, 5000, "DEFEND!"));
 	}
 
-	private void spawnWave(int waveNumber) {
+	public boolean spawnWave(int waveNumber) {
+		// spawn timer effect for wave spawning if no such timer effect exist
+		if(!objectManager.areTimedSpawnWaveEffectsRunning())objectManager.addToUnderEffectList(new TimedSpawnWaveEffect(new MapLocation(1,1), objectManager, 10000 ,this));
 		Map map = currentMission.getMap();
 		ArrayList<SpawnTile> spawns = map.getSpawners();
 		int i = 0;
@@ -79,8 +83,11 @@ public class GameManager {
 						i++;
 					}
 				}
+				waveToBeRemoved = wave;
+				return true;
 			}
 		}
+		return false;
 
 	}
 
@@ -102,21 +109,24 @@ public class GameManager {
 	private void shouldSpawnNextWave() {
 		if (objectManager.getEnemyUnits().isEmpty()) {
 			if (!isBuildPhase) {
-				waveNumber++;
-				if (waveNumber <= amountOfWaves) {
+					if(!objectManager.areTimedSpawnWaveEffectsRunning()){
 					playerHasBeenRewarded = false;
 					spawnWave(waveNumber);
-				}
+					}			
 			}
 		}
 	}
 
 	private void checkIfBuildPhase() {
-		if (objectManager.getEnemyUnits().isEmpty()) {
+		// remove last spawned wave from list
+		if(waveToBeRemoved != null) currentMission.getWaveList().remove(waveToBeRemoved);
+		//check if all enemies are dead TODO ADD CHECK FOR EMPTY TimedSpawnWaveEffects
+		if (objectManager.getEnemyUnits().isEmpty() && !objectManager.areTimedSpawnWaveEffectsRunning()) {
 			if (!playerEndedBuildPhase) {
 				this.isBuildPhase = true;
 				//rewardPlayerForAliveUnits();
 				rewardPlayerAfterWaves();
+				
 			} else {
 				this.isBuildPhase = false;
 				this.playerEndedBuildPhase = false;
@@ -148,5 +158,15 @@ public class GameManager {
 			objectManager.spawnPlayerUnit(u, posX, posY);
 		}
 	}
+
+	public Mission getCurrentMission() {
+		return currentMission;
+	}
+
+	public int getWaveNumber() {
+		return waveNumber;
+	}
+	
+	
 	
 }

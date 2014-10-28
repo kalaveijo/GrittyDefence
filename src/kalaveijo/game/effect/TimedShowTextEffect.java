@@ -7,6 +7,9 @@ import kalaveijo.game.engine.manager.ObjectManager;
 import kalaveijo.game.util.MapLocation;
 import kalaveijo.game.util.Options;
 
+/*
+ * Shows text next to Maplocation for X milliseconds
+ */
 public class TimedShowTextEffect extends TimedEffect {
 
 	private String text;

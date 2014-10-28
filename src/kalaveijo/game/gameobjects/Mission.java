@@ -29,4 +29,11 @@ public class Mission {
 	public ArrayList<MissionWave> getWaveList() {
 		return waveList;
 	}
+	
+	public boolean wavesStillExist(int waveNumber){
+		for(MissionWave wave : waveList){
+			if(wave.getWaveNumber() == waveNumber) return true;
+		}
+		return false;
+	}
 }
