@@ -2,12 +2,14 @@ package kalaveijo.game.engine.manager;
 
 import java.util.ArrayList;
 
+import kalaveijo.game.effect.TimedShowTextEffect;
 import kalaveijo.game.engine.Entity;
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.Mission;
 import kalaveijo.game.gameobjects.MissionWave;
 import kalaveijo.game.gameobjects.SpawnTile;
 import kalaveijo.game.gameobjects.Unit;
+import kalaveijo.game.util.MapLocation;
 
 /*
  * Handles game progression, kinda works like dungeon master
@@ -55,8 +57,9 @@ public class GameManager {
 		amountOfWaves = currentMission.getWaveList().size();
 		waveNumber = 0;
 		
+		// Gameplay Haxors
 		spawnHQ(2,5);
-
+		objectManager.addToAboveEffectList(new TimedShowTextEffect(new MapLocation(2,5), objectManager, 5000, "DEFEND!"));
 	}
 
 	private void spawnWave(int waveNumber) {
