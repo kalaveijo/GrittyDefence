@@ -38,9 +38,9 @@ public class GameManager {
 	// called in GameThread.tick();
 	public void assesGameSituation() {
 
+		
 		checkIfBuildPhase();
-
-		shouldSpawnNextWave();
+//		shouldSpawnNextWave();
 
 	}
 
@@ -97,6 +97,7 @@ public class GameManager {
 
 	public void endBuildPhase() {
 		this.playerEndedBuildPhase = true;
+		this.isBuildPhase = false;
 	}
 
 	public boolean isBuildPhase() {
@@ -106,31 +107,27 @@ public class GameManager {
 	/*
 	 * Checks if should spawn next wave and then spawns it
 	 */
-	private void shouldSpawnNextWave() {
-		if (objectManager.getEnemyUnits().isEmpty()) {
-			if (!isBuildPhase) {
-					if(!objectManager.areTimedSpawnWaveEffectsRunning()){
-					playerHasBeenRewarded = false;
-					spawnWave(waveNumber);
-					}			
-			}
-		}
-	}
+//	private void shouldSpawnNextWave() {
+//		if (objectManager.getEnemyUnits().isEmpty()) {
+//			if (!isBuildPhase) {
+//					if(!objectManager.areTimedSpawnWaveEffectsRunning()){
+//					playerHasBeenRewarded = false;
+//					spawnWave(waveNumber);
+//					}			
+//			}
+//		}
+//	}
 
 	private void checkIfBuildPhase() {
 		// remove last spawned wave from list
 		if(waveToBeRemoved != null) currentMission.getWaveList().remove(waveToBeRemoved);
 		//check if all enemies are dead TODO ADD CHECK FOR EMPTY TimedSpawnWaveEffects
-		if (objectManager.getEnemyUnits().isEmpty() && !objectManager.areTimedSpawnWaveEffectsRunning()) {
-			if (!playerEndedBuildPhase) {
+		if (objectManager.getEnemyUnits().isEmpty() && !objectManager.areTimedSpawnWaveEffectsRunning() && playerEndedBuildPhase) {
 				this.isBuildPhase = true;
+				this.playerEndedBuildPhase = false;
 				//rewardPlayerForAliveUnits();
 				rewardPlayerAfterWaves();
-				
-			} else {
-				this.isBuildPhase = false;
-				this.playerEndedBuildPhase = false;
-			}
+				waveNumber++;
 		}
 	}
 
@@ -167,6 +164,11 @@ public class GameManager {
 		return waveNumber;
 	}
 	
+	public void startWaves(){
+		playerHasBeenRewarded = false;
+		endBuildPhase();
+		spawnWave(waveNumber);
+	}
 	
 	
 }

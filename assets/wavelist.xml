@@ -51,13 +51,10 @@
         <includedunits>
             <unit>rifleman</unit>
         </includedunits>
-        <includedunits>
-            <unit>rifleman</unit>
-        </includedunits>
     </wave>
     <wave>
         <name>riflemanWave5</name>
-        <number>2</number>
+        <number>3</number>
         <includedunits>
             <unit>rifleman</unit>
         </includedunits>
@@ -82,7 +79,7 @@
     </wave>
     <wave>
         <name>riflemanWave6</name>
-        <number>6</number>
+        <number>3</number>
         <includedunits>
             <unit>rifleman</unit>
         </includedunits>

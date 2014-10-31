@@ -19,6 +19,12 @@
             <wave>
                 <wavename>riflemanWave4</wavename>
             </wave>
+            <wave>
+                <wavename>riflemanWave5</wavename>
+            </wave>
+            <wave>
+                <wavename>riflemanWave5</wavename>
+            </wave>
         </waves>
     </mission>
     

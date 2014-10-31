@@ -26,7 +26,7 @@ public class TimedSpawnWaveEffect extends TimedEffect {
 					stopWatch.start();
 				}else{
 					//if no waves are left, kill this
-					om.addToRemoveList(this);
+					//om.addToRemoveList(this);
 				}
 			}
 		}else if(!gameManager.getCurrentMission().wavesStillExist(gameManager.getWaveNumber())){
