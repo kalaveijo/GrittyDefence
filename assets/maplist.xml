@@ -8,93 +8,93 @@
         <maptiles>
             <row i="0">
                 <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             </row>
             <row i="1">
                 <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
                 <type>0</type>
@@ -1106,7 +1106,7 @@
                 	<direction>left</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>down</direction>
                 </helper>
                 <helper>
                 	<direction>left</direction>
@@ -1174,19 +1174,19 @@
                 	<direction>left</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>down</direction>
                 </helper>
                 <helper>
                 	<direction>left</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
                 	<direction>left</direction>
@@ -1248,19 +1248,19 @@
                 	<direction>left</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
                 	<direction>left</direction>
@@ -1301,40 +1301,40 @@
                 	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
                 	<direction>left</direction>
@@ -1375,43 +1375,43 @@
                 	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
                 	<direction>left</direction>
@@ -1452,46 +1452,46 @@
                 	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>up</direction>
                 </helper>
             </row>
             <row i="10">

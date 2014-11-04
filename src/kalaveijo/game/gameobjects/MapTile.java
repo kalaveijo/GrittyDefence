@@ -28,6 +28,7 @@ public class MapTile extends Entity implements Tickable {
 
 		switch(tileType){
 		
+		// draw to 0 class tiles
 		case 0:
 			if (picture != null) {
 				c.drawBitmap(picture, location.x, location.y, new Paint());
@@ -45,9 +46,15 @@ public class MapTile extends Entity implements Tickable {
 			}
 			break;
 			
+			//unpassable rock
 		case 1:
+			Paint paint = new Paint();
+			paint.setColor(Color.GRAY);
+			c.drawRect(location.x, location.y, location.x + Options.TILE_SIZE, location.y + Options.TILE_SIZE, paint);
 			
 			break;
+			
+			//if no tileType does not match anything, leave empty
 		default:
 			if (picture != null) {
 				c.drawBitmap(picture, location.x, location.y, new Paint());
