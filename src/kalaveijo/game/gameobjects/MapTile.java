@@ -26,19 +26,49 @@ public class MapTile extends Entity implements Tickable {
 	@Override
 	public void draw(Canvas c) {
 
-		if (picture != null) {
-			c.drawBitmap(picture, location.x, location.y, new Paint());
-		} else {
+		switch(tileType){
+		
+		case 0:
+			if (picture != null) {
+				c.drawBitmap(picture, location.x, location.y, new Paint());
+			} else {
+				if(Options.DEBUG || Options.DRAW_TILE_BORDERS){
+				Rect r = new Rect(location.x, location.y, location.x
+						+ Options.TILE_SIZE, location.y + Options.TILE_SIZE);
+				Paint p = new Paint();
+				p.setColor(Color.GRAY);
+				p.setStyle(Paint.Style.STROKE);
+				p.setStrokeWidth(3);
+				c.drawRect(r, p);
+				}
 
-			Rect r = new Rect(location.x, location.y, location.x
-					+ Options.TILE_SIZE, location.y + Options.TILE_SIZE);
-			Paint p = new Paint();
-			p.setColor(Color.GRAY);
-			p.setStyle(Paint.Style.STROKE);
-			p.setStrokeWidth(3);
-			c.drawRect(r, p);
+			}
+			break;
+			
+		case 1:
+			
+			break;
+		default:
+			if (picture != null) {
+				c.drawBitmap(picture, location.x, location.y, new Paint());
+			} else {
 
+				if(Options.DEBUG || Options.DRAW_TILE_BORDERS){
+					Rect r = new Rect(location.x, location.y, location.x
+							+ Options.TILE_SIZE, location.y + Options.TILE_SIZE);
+					Paint p = new Paint();
+					p.setColor(Color.GRAY);
+					p.setStyle(Paint.Style.STROKE);
+					p.setStrokeWidth(3);
+					c.drawRect(r, p);
+					}
+
+			}
+			break;
+		
+		
 		}
+	
 	}
 
 	@Override

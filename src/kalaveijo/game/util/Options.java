@@ -23,5 +23,7 @@ public final class Options {
 	public final static int TOLERANCE = 50;
 	
 	public static final boolean DRAW_HEALTH = true;
+	
+	public static final boolean DRAW_TILE_BORDERS = true;
 
 }
