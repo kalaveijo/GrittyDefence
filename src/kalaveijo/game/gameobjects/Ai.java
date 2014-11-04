@@ -87,6 +87,39 @@ public class Ai {
 		if (direction == MovementHelper.RIGHT) {
 			possibleTargetX = possibleTargetX + 1;
 		}
+		if (direction == MovementHelper.UPLEFT) {
+			
+			if(Math.random() < 0.5){
+			//go up
+				possibleTargetY = possibleTargetY - 1;
+			}else{
+				// go left
+				possibleTargetX = possibleTargetX - 1;
+			}
+			
+		}
+		if (direction == MovementHelper.DOWNLEFT) {
+			if(Math.random() < 0.5){
+				//go down
+				possibleTargetY = possibleTargetY + 1;
+				}else{
+					// go left
+					possibleTargetX = possibleTargetX - 1;
+				}
+		}
+		if (direction == MovementHelper.UPDOWNLEFT) {
+			Double d = Math.random();
+			if(d < 0.3){
+				//go up
+				possibleTargetY = possibleTargetY - 1;
+			}else if(d < 0.6){
+				//go left
+				possibleTargetX = possibleTargetX - 1;
+			}else{
+				//go down
+				possibleTargetY = possibleTargetY + 1;
+			}
+		}
 
 		// Check if next tile is free
 		if (om.mapLocationIsFree(possibleTargetX, possibleTargetY)) {

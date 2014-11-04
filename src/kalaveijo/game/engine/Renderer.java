@@ -579,6 +579,27 @@ public class Renderer {
 				Options.TILE_SIZE, true);
 		bmg.addBitmapContainer(new BitmapContainer(picture, "Right_arrow",
 				BitmapContainer.RIGHT, 0, false, bmg));
+		
+		picture = BitmapFactory.decodeResource(cv.getResources(),
+				R.drawable.arrow_down_left);
+		picture = Bitmap.createScaledBitmap(picture, Options.TILE_SIZE,
+				Options.TILE_SIZE, true);
+		bmg.addBitmapContainer(new BitmapContainer(picture, "Down_left_arrow",
+				BitmapContainer.DOWNLEFT, 0, false, bmg));
+		
+		picture = BitmapFactory.decodeResource(cv.getResources(),
+				R.drawable.arrow_up_left);
+		picture = Bitmap.createScaledBitmap(picture, Options.TILE_SIZE,
+				Options.TILE_SIZE, true);
+		bmg.addBitmapContainer(new BitmapContainer(picture, "up_left_arrow",
+				BitmapContainer.UPLEFT, 0, false, bmg));
+		
+		picture = BitmapFactory.decodeResource(cv.getResources(),
+				R.drawable.arrow_up_down_left);
+		picture = Bitmap.createScaledBitmap(picture, Options.TILE_SIZE,
+				Options.TILE_SIZE, true);
+		bmg.addBitmapContainer(new BitmapContainer(picture, "up_down_left_arrow",
+				BitmapContainer.UPDOWNLEFT, 0, false, bmg));
 
 		bitmapContainers.add(bmg);
 		//

@@ -23,6 +23,7 @@ public class BitmapContainer {
 	public static final int LEFT = 2;
 	public static final int RIGHT = 3;
 	public static final int SPAWN = 4;
+	
 
 	public static final int move_left = 5;
 	public static final int move_right = 6;
@@ -63,6 +64,10 @@ public class BitmapContainer {
 	public static final int idle_left_down = 34;
 	public static final int idle_right_up = 35;
 	public static final int idle_right_down = 36;
+	
+	public static final int UPLEFT = 37;
+	public static final int DOWNLEFT = 38;
+	public static final int UPDOWNLEFT = 39;
 
 	public BitmapContainer(Bitmap pic, String name, int type, int frame,
 			boolean alwaysRender, BitmapContainerGroup group) {

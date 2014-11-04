@@ -973,7 +973,7 @@
                 	<direction>left</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>updownleft</direction>
                 </helper>
                 <helper>
                 	<direction>left</direction>
@@ -1106,7 +1106,7 @@
                 	<direction>left</direction>
                 </helper>
                 <helper>
-                	<direction>down</direction>
+                	<direction>downleft</direction>
                 </helper>
                 <helper>
                 	<direction>left</direction>
@@ -1124,7 +1124,7 @@
                 	<direction>left</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
                 	<direction>left</direction>
@@ -1174,7 +1174,7 @@
                 	<direction>left</direction>
                 </helper>
                 <helper>
-                	<direction>down</direction>
+                	<direction>downleft</direction>
                 </helper>
                 <helper>
                 	<direction>left</direction>
@@ -1198,7 +1198,7 @@
                 	<direction>left</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
                 	<direction>left</direction>

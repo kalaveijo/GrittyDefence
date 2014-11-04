@@ -21,6 +21,9 @@ public class MovementHelper extends Entity implements Tickable {
 	public static final int DOWN = 1;
 	public static final int LEFT = 2;
 	public static final int RIGHT = 3;
+	public static final int UPLEFT = 4;
+	public static final int DOWNLEFT = 5;
+	public static final int UPDOWNLEFT = 6;
 
 	private int direction;
 
@@ -89,6 +92,25 @@ public class MovementHelper extends Entity implements Tickable {
 										BitmapContainer.RIGHT).getPicture(),
 								location.x, location.y, paint);
 					}
+					
+					if (direction == UPLEFT) {
+						canvas.drawBitmap(
+								bmContainerGroup.findBitmapContainerByType(
+										BitmapContainer.UPLEFT).getPicture(),
+								location.x, location.y, paint);
+					}
+					if (direction == DOWNLEFT) {
+						canvas.drawBitmap(
+								bmContainerGroup.findBitmapContainerByType(
+										BitmapContainer.DOWNLEFT).getPicture(),
+								location.x, location.y, paint);
+					}
+					if (direction == UPDOWNLEFT) {
+						canvas.drawBitmap(
+								bmContainerGroup.findBitmapContainerByType(
+										BitmapContainer.UPDOWNLEFT).getPicture(),
+								location.x, location.y, paint);
+					}
 				}
 			}
 		} catch (Exception e) {
@@ -121,6 +143,15 @@ public class MovementHelper extends Entity implements Tickable {
 
 		if (direction.equals("right")) {
 			convertedDirection = RIGHT;
+		}
+		if (direction.equals("upleft")) {
+			convertedDirection = UPLEFT;
+		}
+		if (direction.equals("downleft")) {
+			convertedDirection = DOWNLEFT;
+		}
+		if (direction.equals("updownleft")) {
+			convertedDirection = UPDOWNLEFT;
 		}
 
 		return convertedDirection;
