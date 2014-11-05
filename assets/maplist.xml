@@ -150,19 +150,19 @@
             </row>
             <row i="2">
                 <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
                 <type>0</type>
@@ -221,16 +221,16 @@
             </row>
             <row i="3">
                 <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
                 <type>0</type>
@@ -292,7 +292,7 @@
             </row>
             <row i="4">
                 <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
                 <type>0</type>
@@ -363,7 +363,7 @@
             </row>
             <row i="5">
                 <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
                 <type>0</type>
@@ -396,10 +396,10 @@
                 <type>0</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
                 <type>0</type>
@@ -434,7 +434,7 @@
             </row>
             <row i="6">
                 <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
                 <type>0</type>
@@ -464,16 +464,16 @@
                 <type>0</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
                 <type>0</type>
@@ -505,49 +505,49 @@
             </row>
             <row i="7">
                 <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
                 <type>0</type>
@@ -576,55 +576,55 @@
             </row>
             <row i="8">
                 <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
                 <type>0</type>
@@ -647,144 +647,144 @@
             </row>
             <row i="9">
                 <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             </row>
             <row i="10">
                 <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
              <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             <tile>
-                <type>0</type>
+                <type>1</type>
             </tile>
             </row>
         </maptiles>
