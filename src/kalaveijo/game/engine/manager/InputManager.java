@@ -166,7 +166,7 @@ public class InputManager {
 						}
 						if (group.getName().equals("staticGui")) {
 //							gameManager.endBuildPhase();
-							gameManager.startWaves();
+							if(gameManager.isBuildPhase())gameManager.startWaves();
 						}
 					}
 				}
