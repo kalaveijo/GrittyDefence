@@ -84,6 +84,11 @@ public class Unit extends Entity implements Tickable {
 			if (ai != null && health > 0)
 				ai.assesAction();
 			moveStatus();
+			
+			//second check is to h4x useless idles from between
+			// AI does decision making here
+						if (ai != null && health > 0)
+							ai.assesAction();
 		}
 	}
 
