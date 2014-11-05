@@ -884,10 +884,10 @@
                 	<direction>down</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>downleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>downleft</direction>
                 </helper>
                 <helper>
                 	<direction>left</direction>
@@ -952,10 +952,10 @@
                 	<direction>down</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>downleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>downleft</direction>
                 </helper>
                 <helper>
                 	<direction>left</direction>
@@ -1020,7 +1020,10 @@
                 	<direction>down</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>downleft</direction>
+                </helper>
+                <helper>
+                	<direction>downleft</direction>
                 </helper>
                 <helper>
                 	<direction>left</direction>
@@ -1047,25 +1050,22 @@
                 	<direction>left</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
-                </helper>
-                <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
             </row>
             <row i="4">
@@ -1118,25 +1118,25 @@
                 	<direction>left</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
-                </helper>
-                <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
                 	<direction>upleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
+                </helper>
+                <helper>
+                	<direction>upleft</direction>
                 </helper>
             </row>
             <row i="5">
@@ -1165,7 +1165,7 @@
                 	<direction>left</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>updownleft</direction>
                 </helper>
                 <helper>
                 	<direction>left</direction>
@@ -1189,25 +1189,25 @@
                 	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
-                </helper>
-                <helper>
-                	<direction>left</direction>
-                </helper>
-                <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
                 	<direction>upleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
+                </helper>
+                <helper>
+                	<direction>upleft</direction>
+                </helper>
+                <helper>
+                	<direction>upleft</direction>
                 </helper>
             </row>
             <row i="6">
@@ -1263,22 +1263,22 @@
                 	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
             </row>
             <row i="7">
@@ -1337,19 +1337,19 @@
                 	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
             </row>
             <row i="8">
@@ -1414,13 +1414,13 @@
                 	<direction>up</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
                 <helper>
-                	<direction>left</direction>
+                	<direction>upleft</direction>
                 </helper>
             </row>
             <row i="9">
@@ -1576,12 +1576,16 @@
         <spawntiles>
             <spawn>
                 <x>19</x>
-                <y>5</y>
-            </spawn>          
+                <y>1</y>
+            </spawn>
             <spawn>
                 <x>19</x>
-                <y>6</y>
-            </spawn>            
+                <y>5</y>
+            </spawn>
+             <spawn>
+                <x>19</x>
+                <y>8</y>
+            </spawn>                             
             <spawn>
                 <x>19</x>
                 <y>4</y>
@@ -1593,10 +1597,10 @@
             <spawn>
                 <x>19</x>
                 <y>3</y>
-            </spawn>
+            </spawn>         
             <spawn>
                 <x>19</x>
-                <y>8</y>
+                <y>6</y>
             </spawn>
             <spawn>
                 <x>19</x>
