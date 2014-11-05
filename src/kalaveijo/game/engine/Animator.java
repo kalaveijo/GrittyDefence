@@ -13,6 +13,9 @@ public class Animator {
 	private int lastStatus = 0; // 0 is IDLE
 	private boolean skipFrame = false;
 	private int modifier = -1;
+	private int howManyFramesToSkip = 2;
+	private int framesSkipped = 0;
+	private boolean allowFrameChange = true;
 
 	public Animator(Entity e) {
 		this.e = e;
@@ -22,30 +25,29 @@ public class Animator {
 	public Bitmap animate() {
 		// find unit state
 		checkIfStatusChanged();
-		if (e.getBmContainerGroup() != null) {
-			Bitmap b = findCorrectBitmap();
-			// every other frame is skipped, less frantic
-			if (!skipFrame) {
-				
-				
+		
+		// move frame if should
+		if(framesSkipped >= howManyFramesToSkip){							
 				if (frame == 3 || frame == 0) {
 					
 					modifier = modifier * -1;
 					frame = frame + modifier;
-					skipFrame = true;
 				} else {
 					frame = frame + modifier;
-					skipFrame = true;
 				}
-				
-				
-			} else {
-				skipFrame = false;
-			}
+				allowFrameChange = false;
+				framesSkipped = 0;		
+		}else{
+			framesSkipped++;
+		}
+		
+		// fetch correct bitmap
+		if (e.getBmContainerGroup() != null) {
+			Bitmap b = findCorrectBitmap();
 			return b;
 		} else {
 			return null;
-		}
+		}		
 	}
 
 	// checks if status has changed
