@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wavelist>
     <wave>
-        <name>riflemanWave</name>
-        <number>1</number>
-        <includedunits>
-            <unit>rifleman</unit>
-        </includedunits>
-    </wave>
-    <wave>
-        <name>riflemanWave2</name>
+        <name>riflemanWaveSmall1</name>
         <number>1</number>
         <includedunits>
             <unit>rifleman</unit>
@@ -18,20 +11,7 @@
         </includedunits>
     </wave>
      <wave>
-        <name>riflemanWave3</name>
-        <number>1</number>
-        <includedunits>
-            <unit>rifleman</unit>
-        </includedunits>
-        <includedunits>
-            <unit>rifleman</unit>
-        </includedunits>
-        <includedunits>
-            <unit>rifleman</unit>
-        </includedunits>
-    </wave>
-    <wave>
-        <name>riflemanWave4</name>
+        <name>riflemanWaveSmall2</name>
         <number>2</number>
         <includedunits>
             <unit>rifleman</unit>
@@ -42,6 +22,10 @@
         <includedunits>
             <unit>rifleman</unit>
         </includedunits>
+    </wave>
+    <wave>
+        <name>riflemanWaveSmall3</name>
+        <number>3</number>
         <includedunits>
             <unit>rifleman</unit>
         </includedunits>
@@ -53,7 +37,26 @@
         </includedunits>
     </wave>
     <wave>
-        <name>riflemanWave5</name>
+        <name>riflemanWaveMed3</name>
+        <number>3</number>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+    </wave>
+    <wave>
+        <name>riflemanWaveHuge3</name>
         <number>3</number>
         <includedunits>
             <unit>rifleman</unit>
@@ -77,9 +80,42 @@
             <unit>rifleman</unit>
         </includedunits>
     </wave>
+    
     <wave>
-        <name>riflemanWave6</name>
-        <number>3</number>
+        <name>riflemanWaveSmall4</name>
+        <number>4</number>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+    </wave>
+    <wave>
+        <name>riflemanWaveMed4</name>
+        <number>4</number>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+        <includedunits>
+            <unit>rifleman</unit>
+        </includedunits>
+    </wave>
+    <wave>
+        <name>riflemanWaveHuge4</name>
+        <number>4</number>
         <includedunits>
             <unit>rifleman</unit>
         </includedunits>
@@ -102,4 +138,6 @@
             <unit>rifleman</unit>
         </includedunits>
     </wave>
+    
+    
 </wavelist>

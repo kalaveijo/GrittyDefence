@@ -143,7 +143,7 @@ public class GameManager {
 
 	private void rewardPlayerAfterWaves(){
 		if (!playerHasBeenRewarded) {
-				objectManager.getPlayer().addMoney(9);
+				objectManager.getPlayer().addMoney(8);
 				// should spawn gfx effect to sign why units are given money
 				playerHasBeenRewarded = true;
 		}
