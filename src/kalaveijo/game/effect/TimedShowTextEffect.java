@@ -2,6 +2,7 @@ package kalaveijo.game.effect;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Paint.Style;
 import android.graphics.Point;
 import kalaveijo.game.engine.manager.ObjectManager;
 import kalaveijo.game.util.MapLocation;
@@ -13,11 +14,13 @@ import kalaveijo.game.util.Options;
 public class TimedShowTextEffect extends TimedEffect {
 
 	private String text;
+	private int size = 12;
 	
 	public TimedShowTextEffect(MapLocation startLocation, ObjectManager om,
-			int howLong, String textToShow) {
+			int howLong, String textToShow, int size) {
 		super(startLocation, om, howLong);
 		this.text = textToShow;
+		this.size = size;
 	}
 	
 	public void move(){
@@ -28,7 +31,9 @@ public class TimedShowTextEffect extends TimedEffect {
 	
 	public void draw(Canvas c){
 		Point point = new Point(startLocation.x*Options.TILE_SIZE, startLocation.y*Options.TILE_SIZE);
-		c.drawText(text, point.x, point.y, new Paint());
+		Paint paint = new Paint();
+		paint.setTextSize(size);
+		c.drawText(text, point.x, point.y, paint);
 	}
 
 }

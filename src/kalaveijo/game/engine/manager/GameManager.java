@@ -61,7 +61,7 @@ public class GameManager {
 		
 		// Gameplay Haxors
 		spawnHQ(2,5);
-		objectManager.addToAboveEffectList(new TimedShowTextEffect(new MapLocation(2,5), objectManager, 5000, "DEFEND!"));
+		objectManager.addToAboveEffectList(new TimedShowTextEffect(new MapLocation(2,5), objectManager, 5000, "DEFEND!", 20));
 	}
 
 	public boolean spawnWave(int waveNumber) {
@@ -165,6 +165,9 @@ public class GameManager {
 	}
 	
 	public void startWaves(){
+		
+		objectManager.addToAboveEffectList(new TimedShowTextEffect(new MapLocation(10,5), objectManager, 5000, "WAVE: " + waveNumber, 40));
+		
 		playerHasBeenRewarded = false;
 		endBuildPhase();
 		spawnWave(waveNumber);
