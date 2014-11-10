@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <unitlist>
 	<unit>
-		<name>rifleman</name>
+		<name>cow</name>
 		<health>3</health>
 		<speed>4</speed>
 		<range>1</range>
 		<atkspeed>4</atkspeed>
 		<player>enemy</player>
 		<projectile>bullet</projectile>
-		<bitmapcontainergroup>rifleman</bitmapcontainergroup>
+		<bitmapcontainergroup>fistmecha</bitmapcontainergroup>
 	</unit>
 	<unit>
 		<name>machinegunner</name>
-		<health>13</health>
+		<health>7</health>
 		<speed>4</speed>
 		<range>3</range>
 		<atkspeed>4</atkspeed>
@@ -38,6 +38,66 @@
 		<atkspeed>0</atkspeed>
 		<player>player</player>
 		<projectile>machinefire</projectile>
+		<bitmapcontainergroup>wall</bitmapcontainergroup>
+	</unit>
+	<unit>
+		<name>rifleman</name>
+		<health>6</health>
+		<speed>4</speed>
+		<range>2</range>
+		<atkspeed>3</atkspeed>
+		<player>enemy</player>
+		<projectile>bullet</projectile>
+		<bitmapcontainergroup>rifleman</bitmapcontainergroup>
+	</unit>
+	<unit>
+		<name>fistmecha</name>
+		<health>14</health>
+		<speed>4</speed>
+		<range>1</range>
+		<atkspeed>3</atkspeed>
+		<player>player</player>
+		<projectile>bullet</projectile>
+		<bitmapcontainergroup>fistmecha</bitmapcontainergroup>
+	</unit>
+	<unit>
+		<name>mine</name>
+		<health>3</health>
+		<speed>4</speed>
+		<range>0</range>
+		<atkspeed>0</atkspeed>
+		<player>player</player>
+		<projectile>bullet</projectile>
+		<bitmapcontainergroup>mine</bitmapcontainergroup>
+	</unit>
+	<unit>
+		<name>mortar</name>
+		<health>5</health>
+		<speed>4</speed>
+		<range>3</range>
+		<atkspeed>3</atkspeed>
+		<player>player</player>
+		<projectile>bullet</projectile>
+		<bitmapcontainergroup>mortar</bitmapcontainergroup>
+	</unit>
+	<unit>
+		<name>artillerybeacon</name>
+		<health>5</health>
+		<speed>4</speed>
+		<range>0</range>
+		<atkspeed>0</atkspeed>
+		<player>player</player>
+		<projectile>bullet</projectile>
+		<bitmapcontainergroup>artillerybeacon</bitmapcontainergroup>
+	</unit>
+	<unit>
+		<name>tank</name>
+		<health>13</health>
+		<speed>4</speed>
+		<range>2</range>
+		<atkspeed>3</atkspeed>
+		<player>enemy</player>
+		<projectile>bullet</projectile>
 		<bitmapcontainergroup>wall</bitmapcontainergroup>
 	</unit>
 </unitlist>

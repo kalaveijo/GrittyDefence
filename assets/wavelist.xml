@@ -4,10 +4,10 @@
         <name>riflemanWaveSmall1</name>
         <number>1</number>
         <includedunits>
-            <unit>rifleman</unit>
+            <unit>cow</unit>
         </includedunits>
         <includedunits>
-            <unit>rifleman</unit>
+            <unit>cow</unit>
         </includedunits>
     </wave>
      <wave>
@@ -17,10 +17,10 @@
             <unit>rifleman</unit>
         </includedunits>
         <includedunits>
-            <unit>rifleman</unit>
+            <unit>cow</unit>
         </includedunits>
         <includedunits>
-            <unit>rifleman</unit>
+            <unit>cow</unit>
         </includedunits>
     </wave>
     <wave>
@@ -33,7 +33,7 @@
             <unit>rifleman</unit>
         </includedunits>
         <includedunits>
-            <unit>rifleman</unit>
+            <unit>cow</unit>
         </includedunits>
     </wave>
     <wave>
@@ -43,13 +43,13 @@
             <unit>rifleman</unit>
         </includedunits>
         <includedunits>
-            <unit>rifleman</unit>
+            <unit>cow</unit>
         </includedunits>
         <includedunits>
             <unit>rifleman</unit>
         </includedunits>
         <includedunits>
-            <unit>rifleman</unit>
+            <unit>cow</unit>
         </includedunits>
         <includedunits>
             <unit>rifleman</unit>
@@ -62,13 +62,13 @@
             <unit>rifleman</unit>
         </includedunits>
         <includedunits>
-            <unit>rifleman</unit>
+            <unit>cow</unit>
         </includedunits>
         <includedunits>
             <unit>rifleman</unit>
         </includedunits>
         <includedunits>
-            <unit>rifleman</unit>
+            <unit>cow</unit>
         </includedunits>
         <includedunits>
             <unit>rifleman</unit>
@@ -88,7 +88,7 @@
             <unit>rifleman</unit>
         </includedunits>
         <includedunits>
-            <unit>rifleman</unit>
+            <unit>cow</unit>
         </includedunits>
         <includedunits>
             <unit>rifleman</unit>
@@ -104,20 +104,20 @@
             <unit>rifleman</unit>
         </includedunits>
         <includedunits>
-            <unit>rifleman</unit>
+            <unit>cow</unit>
         </includedunits>
         <includedunits>
-            <unit>rifleman</unit>
+            <unit>cow</unit>
         </includedunits>
         <includedunits>
-            <unit>rifleman</unit>
+            <unit>cow</unit>
         </includedunits>
     </wave>
     <wave>
         <name>riflemanWaveHuge4</name>
         <number>4</number>
         <includedunits>
-            <unit>rifleman</unit>
+            <unit>cow</unit>
         </includedunits>
         <includedunits>
             <unit>rifleman</unit>
@@ -126,7 +126,7 @@
             <unit>rifleman</unit>
         </includedunits>
         <includedunits>
-            <unit>rifleman</unit>
+            <unit>cow</unit>
         </includedunits>
         <includedunits>
             <unit>rifleman</unit>
@@ -135,7 +135,7 @@
             <unit>rifleman</unit>
         </includedunits>
         <includedunits>
-            <unit>rifleman</unit>
+            <unit>cow</unit>
         </includedunits>
     </wave>
     
