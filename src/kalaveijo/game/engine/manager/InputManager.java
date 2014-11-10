@@ -72,7 +72,8 @@ public class InputManager {
 							// create unitring or move selected unit
 
 							if (objectManager.getPlayer().getSelectedEntity() == null) {
-
+								// check if tile is not impassable
+								if(objectManager.getMap().get(0).getTile(convertInputToMapLocation(lastEvent)).getTileType() != 1){
 								// check if unitring is already enabled
 								if (guiManager
 										.findIfLastGUIElementNameEquals("unitRing")) {
@@ -84,10 +85,12 @@ public class InputManager {
 									createUnitRingAtMotionEvent(lastEvent);
 									lastClickedLocation = convertInputToMapLocation(lastEvent);
 								}
+								}
 
 							} else {
 								// if unit is selected, move unit
 
+								if(objectManager.getMap().get(0).getTile(convertInputToMapLocation(lastEvent)).getTileType() != 1){
 								Unit u = (Unit) objectManager.getPlayer()
 										.getSelectedEntity();
 
@@ -99,6 +102,7 @@ public class InputManager {
 								e.setNextTileY(convertInputToMapLocation(lastEvent).y);
 								objectManager.getPlayer()
 										.removeSelectedEntity();
+								}
 							}
 
 						}
@@ -123,6 +127,7 @@ public class InputManager {
 						} else {
 							if (objectManager
 									.getEntityByPosition(convertInputToMapLocation(lastEvent)) == null) {
+								if(objectManager.getMap().get(0).getTile(convertInputToMapLocation(lastEvent)).getTileType() != 1){
 								Unit u = (Unit) objectManager.getPlayer()
 										.getSelectedEntity();
 								if (u != null) {
@@ -132,6 +137,7 @@ public class InputManager {
 										objectManager.getPlayer()
 												.removeSelectedEntity();
 									}
+								}
 								}
 							}
 						}

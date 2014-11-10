@@ -73,7 +73,10 @@ public class DefenceAi extends Ai {
 		if(hasChanged){
 		if (u.getObjectManager().mapLocationIsFree(possibleTargetX, possibleTargetY)) {
 			if (u.getObjectManager().noneIsMovingToMapLocation(possibleTargetX, possibleTargetY)) {
+				// also check if map location is passable
+				if(u.getObjectManager().getMap().get(0).getTile(new MapLocation(possibleTargetX,possibleTargetY)).getTileType() != 1){
 				u.orderMove(possibleTargetX, possibleTargetY);
+				}
 			}
 		}
 		}
