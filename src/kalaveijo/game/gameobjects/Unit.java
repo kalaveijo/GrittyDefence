@@ -22,7 +22,7 @@ public class Unit extends Entity implements Tickable {
 	// used in cool death
 	protected int lastHitDirection = Entity.UP;
 	protected int totalHealth = 0;
-	
+
 	public Unit(long id, ObjectManager om) {
 		super(id, om);
 		super.health = 10;
@@ -71,7 +71,7 @@ public class Unit extends Entity implements Tickable {
 			}
 		} else {
 			c.drawBitmap(picture, location.x, location.y, new Paint());
-			drawHealth(c); //h4x
+			drawHealth(c); // h4x
 			drawDebugName(c);
 			visualizeTargetedTiles(c);
 		}
@@ -84,11 +84,11 @@ public class Unit extends Entity implements Tickable {
 			if (ai != null && health > 0)
 				ai.assesAction();
 			moveStatus();
-			
-			//second check is to h4x useless idles from between
+
+			// second check is to h4x useless idles from between
 			// AI does decision making here
-						if (ai != null && health > 0)
-							ai.assesAction();
+			if (ai != null && health > 0)
+				ai.assesAction();
 		}
 	}
 
@@ -103,11 +103,12 @@ public class Unit extends Entity implements Tickable {
 		this.location = location;
 		this.posX = x;
 		this.posY = y;
-		
+
 		// ugly hack for defenceAi param distribution
-		if (ai instanceof DefenceAi) { 
-			((DefenceAi) ai).setTargetLocation(new MapLocation(this.getPosX(), this.getPosY()));
-		}	
+		if (ai instanceof DefenceAi) {
+			((DefenceAi) ai).setTargetLocation(new MapLocation(this.getPosX(),
+					this.getPosY()));
+		}
 	}
 
 	/*
@@ -175,58 +176,33 @@ public class Unit extends Entity implements Tickable {
 					om.addToDeathList(this);
 				} else {
 					actionLeft = actionLeft - speed;
-					int rand;
+					int rand = (int) Math.ceil(Math.random() * 10) - 4;
 					switch (lastHitDirection) {
 					case Entity.UP:
-						rand = (int) Math.random() * 10;
-						if (rand == 0 || rand >= 3)
-							rand = 1;
 						location.y = location.y - rand;
 						break;
 					case Entity.UP_LEFT:
-						rand = (int) Math.random() * 10;
-						if (rand == 0 || rand >= 3)
-							rand = 1;
 						location.y = location.y - rand;
 						location.x = location.x - rand;
 						break;
 					case Entity.LEFT:
-						rand = (int) Math.random() * 10;
-						if (rand == 0 || rand >= 3)
-							rand = 1;
 						location.x = location.x - rand;
 						break;
 					case Entity.DOWN_LEFT:
-						rand = (int) Math.random() * 10;
-						if (rand == 0 || rand >= 3)
-							rand = 1;
 						location.y = location.y + rand;
 						location.x = location.x - rand;
-
 						break;
 					case Entity.DOWN:
-						rand = (int) Math.random() * 10;
-						if (rand == 0 || rand >= 3)
-							rand = 1;
 						location.y = location.y + rand;
 						break;
 					case Entity.DOWN_RIGHT:
-						rand = (int) Math.random() * 10;
-						if (rand == 0 || rand >= 3)
-							rand = 1;
 						location.y = location.y + rand;
 						location.x = location.x + rand;
 						break;
 					case Entity.RIGHT:
-						rand = (int) Math.random() * 10;
-						if (rand == 0 || rand >= 3)
-							rand = 1;
 						location.x = location.x + rand;
 						break;
 					case Entity.UP_RIGHT:
-						rand = (int) Math.random() * 10;
-						if (rand == 0 || rand >= 3)
-							rand = 1;
 						location.y = location.y - rand;
 						location.x = location.x + rand;
 						break;
@@ -300,11 +276,11 @@ public class Unit extends Entity implements Tickable {
 			// if position is empty
 			this.posX = ml.x;
 			this.posY = ml.y;
-			
-			if (ai instanceof DefenceAi) { 
+
+			if (ai instanceof DefenceAi) {
 				((DefenceAi) ai).setTargetLocation(new MapLocation(ml.x, ml.y));
 			}
-			
+
 			return true;
 		}
 		return false;
@@ -319,50 +295,60 @@ public class Unit extends Entity implements Tickable {
 			ArrayList<MapLocation> tiles = this.ai.getTilesOnRange(posX, posY,
 					range, om);
 			// create effect that shows visualization
-			om.addToUnderEffectList(new RangeVisualizationEffect(new MapLocation(posX,posY), om,tiles));
+			om.addToUnderEffectList(new RangeVisualizationEffect(
+					new MapLocation(posX, posY), om, tiles));
 		}
 
 	}
-	
-	
-	//draws healthbar
-	private void drawHealth(Canvas c){
-		if(Options.DRAW_HEALTH){
+
+	// draws healthbar
+	private void drawHealth(Canvas c) {
+		if (Options.DRAW_HEALTH) {
 			int healthBarLength = Options.TILE_SIZE;
 			int lengthOfHealthSegments;
 			int offSetX = 0;
 			int offSetY = 8;
 			int sizeY = 8;
-			
+
 			// check if we have more health than space on single tile
 			// so that health bars dont get too long
-			if(totalHealth < Options.TILE_SIZE){
-				lengthOfHealthSegments = (int) Math.ceil((float) Options.TILE_SIZE / (float) totalHealth); //-1 reserved to pause between segments
+			if (totalHealth < Options.TILE_SIZE) {
+				lengthOfHealthSegments = (int) Math
+						.ceil((float) Options.TILE_SIZE / (float) totalHealth); // -1
+																				// reserved
+																				// to
+																				// pause
+																				// between
+																				// segments
 				int x = this.location.x - offSetX;
 				int y = this.location.y + Options.TILE_SIZE - offSetY;
-				
-				c.drawRect(x, y, x+healthBarLength+2, y+sizeY, new Paint());
-				
-				for(int i = 0; i < super.health; i++){
+
+				c.drawRect(x, y, x + healthBarLength + 2, y + sizeY,
+						new Paint());
+
+				for (int i = 0; i < super.health; i++) {
 					Paint paint = new Paint();
 					paint.setColor(Color.GREEN);
-					c.drawRect(x + 1 +(i* lengthOfHealthSegments) , y + 1, x + lengthOfHealthSegments+(i* lengthOfHealthSegments), y + sizeY - 1, paint);
+					c.drawRect(x + 1 + (i * lengthOfHealthSegments), y + 1, x
+							+ lengthOfHealthSegments
+							+ (i * lengthOfHealthSegments), y + sizeY - 1,
+							paint);
 				}
-				
-			}else{
+
+			} else {
 				lengthOfHealthSegments = 1;
 				int x = this.location.x + Options.TILE_SIZE - offSetX;
 				int y = this.location.y + Options.TILE_SIZE - offSetY;
-				
-				c.drawRect(x, y, x+healthBarLength, y+sizeY, new Paint());				
+
+				c.drawRect(x, y, x + healthBarLength, y + sizeY, new Paint());
 			}
-			
+
 		}
 	}
-	
+
 	// draws debugname
-	private void drawDebugName(Canvas c){
-		if(Options.DEBUG){
+	private void drawDebugName(Canvas c) {
+		if (Options.DEBUG) {
 			c.drawText(this.name, location.x, location.y + 10, new Paint());
 		}
 	}
