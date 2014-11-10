@@ -25,5 +25,7 @@ public final class Options {
 	public static final boolean DRAW_HEALTH = true;
 	
 	public static final boolean DRAW_TILE_BORDERS = true;
+	
+	public static final boolean DRAW_HELPERS = false;
 
 }

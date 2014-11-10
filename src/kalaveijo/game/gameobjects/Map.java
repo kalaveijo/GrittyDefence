@@ -91,14 +91,14 @@ public class Map extends Entity {
 			for (int i = 0; i < tiles.length; i++) {
 				for (int e = 0; e < tiles[i].length; e++) {
 					tiles[i][e].draw(temporaryCanvas);
-					if (Options.DEBUG) {
+					if (Options.DEBUG && Options.DRAW_HELPERS) {
 						helpers[i][e].draw(temporaryCanvas);
 					}
 				}// for
 			}// for
 
 			// draw spawners
-			if (Options.DEBUG) {
+			if (Options.DEBUG && Options.DRAW_HELPERS) {
 				for (SpawnTile st : spawners) {
 					st.draw(temporaryCanvas);
 				}
