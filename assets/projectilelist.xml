@@ -7,4 +7,11 @@
         <damage>1</damage>
         <bitmapcontainergroup>bullet</bitmapcontainergroup>
     </projectile>
+    <projectile>
+        <name>machinefire</name>
+        <effect>singleshotnomiss</effect>
+        <health>10</health>
+        <damage>1</damage>
+        <bitmapcontainergroup>bullet</bitmapcontainergroup>
+    </projectile>
 </projectilelist>
