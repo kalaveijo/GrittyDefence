@@ -9,7 +9,7 @@ public final class Options {
 	// works also with px size 62
 	public static final int TILE_SIZE = 64; // even numbers only, odds cause
 											// crash :)
-	public static final int GAME_SPEED = 80; //12
+	public static final int GAME_SPEED = 120; //12
 	// bigger speed == slower gamespeed, LOGIC BITCHES
 	// desired fps
 	public final static int MAX_FPS = 35;
