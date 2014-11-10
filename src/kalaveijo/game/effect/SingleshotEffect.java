@@ -58,7 +58,8 @@ public class SingleshotEffect extends Effect {
 	}
 
 	private Point convertToPoint(MapLocation ml) {
-		return new Point(ml.x * Options.TILE_SIZE, ml.y * Options.TILE_SIZE);
+		return new Point(ml.x * Options.TILE_SIZE + (Options.TILE_SIZE / 2),
+				ml.y * Options.TILE_SIZE + (Options.TILE_SIZE / 2));
 	}
 
 	// calculate how many steps can be taken
