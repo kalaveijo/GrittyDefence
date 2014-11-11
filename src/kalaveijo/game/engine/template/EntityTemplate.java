@@ -7,6 +7,7 @@ import kalaveijo.game.engine.manager.ObjectManager;
 import kalaveijo.game.engine.manager.TemplateManager;
 import kalaveijo.game.gameobjects.Ai;
 import kalaveijo.game.gameobjects.DefenceAi;
+import kalaveijo.game.gameobjects.Mine;
 import kalaveijo.game.gameobjects.Unit;
 
 //template object that is used to create Units
@@ -35,10 +36,23 @@ public class EntityTemplate extends Entity {
 	public Unit createUnit() {
 		Unit u = null;
 		if (tm.getProjTemplates() != null) {
-			u = new Unit(super.om.getNextFreeId(), super.om, super.name,
-					super.health, super.speed, super.range, super.atkSpeed,
-					super.bitmapContainerGroup, super.getBmContainerGroup(),
-					pairProjectileTemplate());
+
+			// h4x new mine
+			if (name.equals("mine")) {
+
+				u = new Mine(super.om.getNextFreeId(), super.om, super.name,
+						super.health, super.speed, super.range, super.atkSpeed,
+						super.bitmapContainerGroup,
+						super.getBmContainerGroup(), pairProjectileTemplate());
+
+			} else {
+
+				u = new Unit(super.om.getNextFreeId(), super.om, super.name,
+						super.health, super.speed, super.range, super.atkSpeed,
+						super.bitmapContainerGroup,
+						super.getBmContainerGroup(), pairProjectileTemplate());
+			}
+
 		} else {
 			u = new Unit(super.om.getNextFreeId(), super.om, super.name,
 					super.health, super.speed, super.range, super.atkSpeed,

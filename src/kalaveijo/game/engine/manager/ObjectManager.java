@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import kalaveijo.game.effect.TimedSpawnWaveEffect;
 import kalaveijo.game.engine.Entity;
 import kalaveijo.game.gameobjects.Map;
+import kalaveijo.game.gameobjects.Mine;
 import kalaveijo.game.gameobjects.Mission;
 import kalaveijo.game.gameobjects.Player;
 import kalaveijo.game.util.MapLocation;
@@ -114,7 +115,10 @@ public class ObjectManager {
 
 		for (Entity u : playerUnit) {
 			if (u.getPosX() == x && u.getPosY() == y) {
-				return false;
+				// dirty hack for mine
+				if (u instanceof Mine == false) {
+					return false;
+				}
 			}// if
 		}// for
 
@@ -265,15 +269,25 @@ public class ObjectManager {
 		this.removeList.add(e);
 	}
 
-	public boolean areTimedSpawnWaveEffectsRunning(){
-		
-		for(Entity e : underEffectList){
-			if(e instanceof TimedSpawnWaveEffect){
+	public boolean areTimedSpawnWaveEffectsRunning() {
+
+		for (Entity e : underEffectList) {
+			if (e instanceof TimedSpawnWaveEffect) {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
-	
+
+	public boolean mapLocationIsFreeOfMines(MapLocation ml) {
+
+		for (Entity e : playerUnit) {
+			if (e.getPosX() == ml.x && e.getPosY() == ml.y) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 }// class

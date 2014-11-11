@@ -88,35 +88,35 @@ public class Ai {
 			possibleTargetX = possibleTargetX + 1;
 		}
 		if (direction == MovementHelper.UPLEFT) {
-			
-			if(Math.random() < 0.5){
-			//go up
+
+			if (Math.random() < 0.5) {
+				// go up
 				possibleTargetY = possibleTargetY - 1;
-			}else{
+			} else {
 				// go left
 				possibleTargetX = possibleTargetX - 1;
 			}
-			
+
 		}
 		if (direction == MovementHelper.DOWNLEFT) {
-			if(Math.random() < 0.5){
-				//go down
+			if (Math.random() < 0.5) {
+				// go down
 				possibleTargetY = possibleTargetY + 1;
-				}else{
-					// go left
-					possibleTargetX = possibleTargetX - 1;
-				}
+			} else {
+				// go left
+				possibleTargetX = possibleTargetX - 1;
+			}
 		}
 		if (direction == MovementHelper.UPDOWNLEFT) {
 			Double d = Math.random();
-			if(d < 0.3){
-				//go up
+			if (d < 0.3) {
+				// go up
 				possibleTargetY = possibleTargetY - 1;
-			}else if(d < 0.6){
-				//go left
+			} else if (d < 0.6) {
+				// go left
 				possibleTargetX = possibleTargetX - 1;
-			}else{
-				//go down
+			} else {
+				// go down
 				possibleTargetY = possibleTargetY + 1;
 			}
 		}
@@ -142,15 +142,17 @@ public class Ai {
 			for (Entity e : u.getObjectManager().getPlayerUnits()) {
 				if (e.getPosX() == ml.x && e.getPosY() == ml.y) {
 					if (!hasAttacked) {
-						// fire projectile at target
-						u.attack(new MapLocation(e.getPosX(), e.getPosY()));
+						if (e instanceof Mine == false) {
+							// fire projectile at target
+							u.attack(new MapLocation(e.getPosX(), e.getPosY()));
 
-						/*
-						 * Range needs to be changed to come from the unit
-						 * (prolly not stored atm)
-						 */
-						u.setStatus(Entity.ATTACKING);
-						hasAttacked = true;
+							/*
+							 * Range needs to be changed to come from the unit
+							 * (prolly not stored atm)
+							 */
+							u.setStatus(Entity.ATTACKING);
+							hasAttacked = true;
+						}
 					}
 				}
 			}
@@ -169,6 +171,11 @@ public class Ai {
 		int currentX = startX;
 		int currentY = startY;
 		ArrayList<MapLocation> selectedTiles = new ArrayList<MapLocation>();
+
+		if (range == 0) {
+			selectedTiles.add(new MapLocation(startX, startY));
+			return selectedTiles;
+		}
 
 		// miten monta kierrosta halutaan
 		for (int i = 1; i < range + 1; i++) {

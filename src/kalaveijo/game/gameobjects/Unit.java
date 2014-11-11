@@ -250,7 +250,7 @@ public class Unit extends Entity implements Tickable {
 		// shoot projectile
 		om.getLiveProjectiles().add(
 				projectile.createProjectile(ml, new MapLocation(this.getPosX(),
-						this.getPosY()), 1));
+						this.getPosY()), projectile.getDamage()));
 	}
 
 	// point target for unit and change status to moving

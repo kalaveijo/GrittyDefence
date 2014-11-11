@@ -73,35 +73,46 @@ public class InputManager {
 
 							if (objectManager.getPlayer().getSelectedEntity() == null) {
 								// check if tile is not impassable
-								if(objectManager.getMap().get(0).getTile(convertInputToMapLocation(lastEvent)).getTileType() != 1){
-								// check if unitring is already enabled
-								if (guiManager
-										.findIfLastGUIElementNameEquals("unitRing")) {
-									// if enabled, remove
-									guiManager.removeLastGUIGroup();
-								} else {
-									// if not enabled, add
-									guiManager.removeLastGUIGroup();
-									createUnitRingAtMotionEvent(lastEvent);
-									lastClickedLocation = convertInputToMapLocation(lastEvent);
-								}
+								if (objectManager
+										.getMap()
+										.get(0)
+										.getTile(
+												convertInputToMapLocation(lastEvent))
+										.getTileType() != 1) {
+									// check if unitring is already enabled
+									if (guiManager
+											.findIfLastGUIElementNameEquals("unitRing")) {
+										// if enabled, remove
+										guiManager.removeLastGUIGroup();
+									} else {
+										// if not enabled, add
+										guiManager.removeLastGUIGroup();
+										createUnitRingAtMotionEvent(lastEvent);
+										lastClickedLocation = convertInputToMapLocation(lastEvent);
+									}
 								}
 
 							} else {
 								// if unit is selected, move unit
 
-								if(objectManager.getMap().get(0).getTile(convertInputToMapLocation(lastEvent)).getTileType() != 1){
-								Unit u = (Unit) objectManager.getPlayer()
-										.getSelectedEntity();
+								if (objectManager
+										.getMap()
+										.get(0)
+										.getTile(
+												convertInputToMapLocation(lastEvent))
+										.getTileType() != 1) {
+									Unit u = (Unit) objectManager.getPlayer()
+											.getSelectedEntity();
 
-								u.moveUnitToMapLocation(convertInputToMapLocation(lastEvent));
-								// must set next tiles to current location or AI
-								// will get stuck
-								Entity e = (Entity) u;
-								e.setNextTileX(convertInputToMapLocation(lastEvent).x);
-								e.setNextTileY(convertInputToMapLocation(lastEvent).y);
-								objectManager.getPlayer()
-										.removeSelectedEntity();
+									u.moveUnitToMapLocation(convertInputToMapLocation(lastEvent));
+									// must set next tiles to current location
+									// or AI
+									// will get stuck
+									Entity e = (Entity) u;
+									e.setNextTileX(convertInputToMapLocation(lastEvent).x);
+									e.setNextTileY(convertInputToMapLocation(lastEvent).y);
+									objectManager.getPlayer()
+											.removeSelectedEntity();
 								}
 							}
 
@@ -127,17 +138,23 @@ public class InputManager {
 						} else {
 							if (objectManager
 									.getEntityByPosition(convertInputToMapLocation(lastEvent)) == null) {
-								if(objectManager.getMap().get(0).getTile(convertInputToMapLocation(lastEvent)).getTileType() != 1){
-								Unit u = (Unit) objectManager.getPlayer()
-										.getSelectedEntity();
-								if (u != null) {
-									if (u.getAi() instanceof DefenceAi) {
-										DefenceAi ai = (DefenceAi) u.getAi();
-										ai.setTargetLocation(convertInputToMapLocation(lastEvent));
-										objectManager.getPlayer()
-												.removeSelectedEntity();
+								if (objectManager
+										.getMap()
+										.get(0)
+										.getTile(
+												convertInputToMapLocation(lastEvent))
+										.getTileType() != 1) {
+									Unit u = (Unit) objectManager.getPlayer()
+											.getSelectedEntity();
+									if (u != null) {
+										if (u.getAi() instanceof DefenceAi) {
+											DefenceAi ai = (DefenceAi) u
+													.getAi();
+											ai.setTargetLocation(convertInputToMapLocation(lastEvent));
+											objectManager.getPlayer()
+													.removeSelectedEntity();
+										}
 									}
-								}
 								}
 							}
 						}
@@ -169,10 +186,19 @@ public class InputManager {
 										lastClickedLocation);
 								guiManager.removeLastGUIGroup();
 							}
+
+							if (element.getName().equals("Mine")) {
+
+								// buy machinegunner
+								objectManager.getPlayer().buyUnit("mine",
+										lastClickedLocation);
+								guiManager.removeLastGUIGroup();
+							}
 						}
 						if (group.getName().equals("staticGui")) {
-//							gameManager.endBuildPhase();
-							if(gameManager.isBuildPhase())gameManager.startWaves();
+							// gameManager.endBuildPhase();
+							if (gameManager.isBuildPhase())
+								gameManager.startWaves();
 						}
 					}
 				}

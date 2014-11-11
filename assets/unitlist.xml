@@ -65,9 +65,9 @@
 		<health>3</health>
 		<speed>4</speed>
 		<range>0</range>
-		<atkspeed>0</atkspeed>
+		<atkspeed>3</atkspeed>
 		<player>player</player>
-		<projectile>bullet</projectile>
+		<projectile>mine</projectile>
 		<bitmapcontainergroup>mine</bitmapcontainergroup>
 	</unit>
 	<unit>

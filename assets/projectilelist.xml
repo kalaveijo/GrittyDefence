@@ -14,4 +14,11 @@
         <damage>1</damage>
         <bitmapcontainergroup>bullet</bitmapcontainergroup>
     </projectile>
+    <projectile>
+        <name>mine</name>
+        <effect>singleshotnomissexplosion</effect>
+        <health>10</health>
+        <damage>3</damage>
+        <bitmapcontainergroup>bullet</bitmapcontainergroup>
+    </projectile>
 </projectilelist>
