@@ -135,7 +135,8 @@ public class ObjectManager {
 		}// for
 
 		for (Entity u : playerUnit) {
-			if (u.getNextTileX() == x && u.getNextTileY() == y) {
+			if (u.getNextTileX() == x && u.getNextTileY() == y
+					&& u instanceof Mine == false) {
 				return false;
 			}// if
 		}// for
