@@ -11,6 +11,8 @@ public class Mission {
 	protected Map map;
 	protected ArrayList<MissionWave> waveList;
 
+	
+	
 	public Mission(String name, Map map, ArrayList<MissionWave> waveList) {
 		this.name = name;
 		this.map = map;
@@ -36,4 +38,5 @@ public class Mission {
 		}
 		return false;
 	}
+	
 }

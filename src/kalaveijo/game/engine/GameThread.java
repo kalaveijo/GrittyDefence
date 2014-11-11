@@ -78,7 +78,7 @@ public class GameThread extends Thread {
 							.loadMissions());
 					templateManager.setWaveTemplates(xmlLoader.loadWaves());
 					renderer.load();
-					gameManager.changeMission("tutorialMission");
+					gameManager.changeMission("randomMission");
 					// debugCreatePlayerUnit(); // just debug, comment out
 					firstRun = false;
 				}// if

@@ -30,7 +30,19 @@ public class TemplateManager {
 	// creates a mission
 	public Mission createMission(String missionName) {
 
-		for (MissionTemplate template : missionTemplates) {
+		
+		
+		for (MissionTemplate template : missionTemplates) {	
+			
+			if(missionName.equals("randomMission")){
+				try {
+					return template.createRandomInstance();
+				} catch (Exception e) {
+					Log.d("template", e.getMessage());
+					return null;
+				}
+			}
+			
 			if (template.getName().equals(missionName)) {
 				try {
 					return template.createInstance();
