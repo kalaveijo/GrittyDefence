@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import kalaveijo.game.effect.TimedShowTextEffect;
 import kalaveijo.game.effect.TimedSpawnWaveEffect;
 import kalaveijo.game.engine.Entity;
+import kalaveijo.game.engine.template.EntityTemplate;
 import kalaveijo.game.gameobjects.Map;
 import kalaveijo.game.gameobjects.Mission;
 import kalaveijo.game.gameobjects.MissionWave;
@@ -27,6 +28,7 @@ public class GameManager {
 	private int amountOfWaves = 1;
 	private MissionWave waveToBeRemoved;
 	private int timeInBetweenWavesMilli = 10000;
+	private double healthRestorationModifier = 0.3;
 
 	public GameManager(ObjectManager om, TemplateManager tm) {
 		this.templateManager = tm;
@@ -38,9 +40,8 @@ public class GameManager {
 	// called in GameThread.tick();
 	public void assesGameSituation() {
 
-		
 		checkIfBuildPhase();
-//		shouldSpawnNextWave();
+		// shouldSpawnNextWave();
 
 	}
 
@@ -58,15 +59,18 @@ public class GameManager {
 		// add objects to object manager
 		objectManager.getMap().add(currentMission.getMap());
 		amountOfWaves = currentMission.getWaveList().size();
-		
+
 		// Gameplay Haxors
-		spawnHQ(2,5);
-		objectManager.addToAboveEffectList(new TimedShowTextEffect(new MapLocation(2,5), objectManager, 5000, "DEFEND!", 20));
+		spawnHQ(2, 5);
+		objectManager.addToAboveEffectList(new TimedShowTextEffect(
+				new MapLocation(2, 5), objectManager, 5000, "DEFEND!", 20));
 	}
 
 	public boolean spawnWave(int waveNumber) {
 		// spawn timer effect for wave spawning if no such timer effect exist
-		if(!objectManager.areTimedSpawnWaveEffectsRunning())objectManager.addToUnderEffectList(new TimedSpawnWaveEffect(new MapLocation(1,1), objectManager, 10000 ,this));
+		if (!objectManager.areTimedSpawnWaveEffectsRunning())
+			objectManager.addToUnderEffectList(new TimedSpawnWaveEffect(
+					new MapLocation(1, 1), objectManager, 10000, this));
 		Map map = currentMission.getMap();
 		ArrayList<SpawnTile> spawns = map.getSpawners();
 		int i = 0;
@@ -107,27 +111,32 @@ public class GameManager {
 	/*
 	 * Checks if should spawn next wave and then spawns it
 	 */
-//	private void shouldSpawnNextWave() {
-//		if (objectManager.getEnemyUnits().isEmpty()) {
-//			if (!isBuildPhase) {
-//					if(!objectManager.areTimedSpawnWaveEffectsRunning()){
-//					playerHasBeenRewarded = false;
-//					spawnWave(waveNumber);
-//					}			
-//			}
-//		}
-//	}
+	// private void shouldSpawnNextWave() {
+	// if (objectManager.getEnemyUnits().isEmpty()) {
+	// if (!isBuildPhase) {
+	// if(!objectManager.areTimedSpawnWaveEffectsRunning()){
+	// playerHasBeenRewarded = false;
+	// spawnWave(waveNumber);
+	// }
+	// }
+	// }
+	// }
 
 	private void checkIfBuildPhase() {
 		// remove last spawned wave from list
-		if(waveToBeRemoved != null) currentMission.getWaveList().remove(waveToBeRemoved);
-		//check if all enemies are dead TODO ADD CHECK FOR EMPTY TimedSpawnWaveEffects
-		if (objectManager.getEnemyUnits().isEmpty() && !objectManager.areTimedSpawnWaveEffectsRunning() && playerEndedBuildPhase) {
-				this.isBuildPhase = true;
-				this.playerEndedBuildPhase = false;
-				//rewardPlayerForAliveUnits();
-				rewardPlayerAfterWaves();
-				waveNumber++;
+		if (waveToBeRemoved != null)
+			currentMission.getWaveList().remove(waveToBeRemoved);
+		// check if all enemies are dead TODO ADD CHECK FOR EMPTY
+		// TimedSpawnWaveEffects
+		if (objectManager.getEnemyUnits().isEmpty()
+				&& !objectManager.areTimedSpawnWaveEffectsRunning()
+				&& playerEndedBuildPhase) {
+			this.isBuildPhase = true;
+			this.playerEndedBuildPhase = false;
+			// rewardPlayerForAliveUnits();
+			rewardPlayerAfterWaves();
+			recoverUnitHealth();
+			waveNumber++;
 		}
 	}
 
@@ -141,15 +150,15 @@ public class GameManager {
 		}
 	}
 
-	private void rewardPlayerAfterWaves(){
+	private void rewardPlayerAfterWaves() {
 		if (!playerHasBeenRewarded) {
-				objectManager.getPlayer().addMoney(8);
-				// should spawn gfx effect to sign why units are given money
-				playerHasBeenRewarded = true;
+			objectManager.getPlayer().addMoney(8);
+			// should spawn gfx effect to sign why units are given money
+			playerHasBeenRewarded = true;
 		}
 	}
-	
-	private void spawnHQ(int posX, int posY){
+
+	private void spawnHQ(int posX, int posY) {
 		Unit u = templateManager.selectUnitFromTemplates("hq");
 		if (u != null) {
 			objectManager.spawnPlayerUnit(u, posX, posY);
@@ -163,15 +172,50 @@ public class GameManager {
 	public int getWaveNumber() {
 		return waveNumber;
 	}
-	
-	public void startWaves(){
-		
-		objectManager.addToAboveEffectList(new TimedShowTextEffect(new MapLocation(10,5), objectManager, 5000, "WAVE: " + waveNumber, 40));
-		
+
+	public void startWaves() {
+
+		objectManager.addToAboveEffectList(new TimedShowTextEffect(
+				new MapLocation(10, 5), objectManager, 5000, "WAVE: "
+						+ waveNumber, 40));
+
 		playerHasBeenRewarded = false;
 		endBuildPhase();
 		spawnWave(waveNumber);
 	}
-	
-	
+
+	/*
+	 * Called at the end of wave to restore player unit health
+	 */
+	private void recoverUnitHealth() {
+
+		/*
+		 * for each entity, check corresponding template for max health give 30%
+		 * to each unit
+		 */
+
+		int restoreAmount = 0;
+
+		for (Entity e : objectManager.getPlayerUnits()) {
+			for (EntityTemplate t : templateManager.getEntityTemplates()) {
+				if (e.getName().equals(t.getName())) {
+					double per = t.getHealth() * healthRestorationModifier;
+					restoreAmount = (int) per;
+					// we always want to restore something for small maxhealths
+					if (restoreAmount == 0)
+						restoreAmount = 1;
+					restoreAmount = restoreAmount + e.getHealth();
+					// if health would go over boundaries, set it to max
+					if (restoreAmount + e.getHealth() > t.getHealth())
+						restoreAmount = t.getHealth();
+					// restore health
+					e.setHealth(restoreAmount);
+					// play effect
+					// EFFECT MISSING TODO
+				}
+			}
+
+		}
+
+	}
 }

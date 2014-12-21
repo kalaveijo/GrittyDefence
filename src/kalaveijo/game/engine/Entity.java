@@ -288,6 +288,13 @@ public class Entity implements Tickable {
 	public Ai getAi() {
 		return ai;
 	}
-	
-	
+
+	public int getHealth() {
+		return health;
+	}
+
+	public void setHealth(int health) {
+		this.health = health;
+	}
+
 }
