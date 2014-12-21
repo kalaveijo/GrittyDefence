@@ -142,16 +142,19 @@ public class Ai {
 			for (Entity e : u.getObjectManager().getPlayerUnits()) {
 				if (e.getPosX() == ml.x && e.getPosY() == ml.y) {
 					if (!hasAttacked) {
-						if (e instanceof Mine == false) {
-							// fire projectile at target
-							u.attack(new MapLocation(e.getPosX(), e.getPosY()));
+						if (e.getStatus() != e.DYING) {
+							if (e instanceof Mine == false) {
+								// fire projectile at target
+								u.attack(new MapLocation(e.getPosX(), e
+										.getPosY()));
 
-							/*
-							 * Range needs to be changed to come from the unit
-							 * (prolly not stored atm)
-							 */
-							u.setStatus(Entity.ATTACKING);
-							hasAttacked = true;
+								/*
+								 * Range needs to be changed to come from the
+								 * unit (prolly not stored atm)
+								 */
+								u.setStatus(Entity.ATTACKING);
+								hasAttacked = true;
+							}
 						}
 					}
 				}

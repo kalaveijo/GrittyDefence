@@ -14,7 +14,7 @@ public class DefenceAi extends Ai {
 	}
 
 	public DefenceAi(Unit u) {
-		super(u);		
+		super(u);
 	}
 
 	public void assesAction() {
@@ -40,46 +40,53 @@ public class DefenceAi extends Ai {
 	}
 
 	protected void checkMovement() {
-		if(targetLocation != null){
-		int possibleTargetX = currentPosX;
-		int possibleTargetY = currentPosY;
-		boolean hasChanged = false;
+		if (targetLocation != null) {
+			int possibleTargetX = currentPosX;
+			int possibleTargetY = currentPosY;
+			boolean hasChanged = false;
 
-		// check if should move up
-		if (u.getPosY() > targetLocation.y) {
-			possibleTargetY = possibleTargetY - 1;
-			hasChanged = true;
-		}
+			// check if should move up
+			if (u.getPosY() > targetLocation.y) {
+				possibleTargetY = possibleTargetY - 1;
+				hasChanged = true;
+			}
 
-		// check if should move down
-		if (u.getPosY() < targetLocation.y) {
-			possibleTargetY = possibleTargetY + 1;
-			hasChanged = true;
-		}
+			// check if should move down
+			if (u.getPosY() < targetLocation.y) {
+				possibleTargetY = possibleTargetY + 1;
+				hasChanged = true;
+			}
 
-		// check if should move right
-		if (u.getPosX() < targetLocation.x) {
-			possibleTargetX = possibleTargetX + 1;
-			hasChanged = true;
-		}
+			// check if should move right
+			if (u.getPosX() < targetLocation.x) {
+				possibleTargetX = possibleTargetX + 1;
+				hasChanged = true;
+			}
 
-		// check if should move left
-		if (u.getPosX() > targetLocation.x) {
-			possibleTargetX = possibleTargetX - 1;
-			hasChanged = true;
-		}
+			// check if should move left
+			if (u.getPosX() > targetLocation.x) {
+				possibleTargetX = possibleTargetX - 1;
+				hasChanged = true;
+			}
 
-		// Check if next tile is free
-		if(hasChanged){
-		if (u.getObjectManager().mapLocationIsFree(possibleTargetX, possibleTargetY)) {
-			if (u.getObjectManager().noneIsMovingToMapLocation(possibleTargetX, possibleTargetY)) {
-				// also check if map location is passable
-				if(u.getObjectManager().getMap().get(0).getTile(new MapLocation(possibleTargetX,possibleTargetY)).getTileType() != 1){
-				u.orderMove(possibleTargetX, possibleTargetY);
+			// Check if next tile is free
+			if (hasChanged) {
+				if (u.getObjectManager().mapLocationIsFree(possibleTargetX,
+						possibleTargetY)) {
+					if (u.getObjectManager().noneIsMovingToMapLocation(
+							possibleTargetX, possibleTargetY)) {
+						// also check if map location is passable
+						if (u.getObjectManager()
+								.getMap()
+								.get(0)
+								.getTile(
+										new MapLocation(possibleTargetX,
+												possibleTargetY)).getTileType() != 1) {
+							u.orderMove(possibleTargetX, possibleTargetY);
+						}
+					}
 				}
 			}
-		}
-		}
 		}
 
 	}
@@ -96,16 +103,18 @@ public class DefenceAi extends Ai {
 		for (MapLocation ml : targetList) {
 			for (Entity e : u.getObjectManager().getEnemyUnits()) {
 				if (e.getPosX() == ml.x && e.getPosY() == ml.y) {
-					if (!hasAttacked) {
-						// fire projectile at target
-						u.attack(new MapLocation(e.getPosX(), e.getPosY()));
+					if (e.getStatus() != e.DYING) {
+						if (!hasAttacked) {
+							// fire projectile at target
+							u.attack(new MapLocation(e.getPosX(), e.getPosY()));
 
-						/*
-						 * Range needs to be changed to come from the unit
-						 * (prolly not stored atm)
-						 */
-						u.setStatus(Entity.ATTACKING);
-						hasAttacked = true;
+							/*
+							 * Range needs to be changed to come from the unit
+							 * (prolly not stored atm)
+							 */
+							u.setStatus(Entity.ATTACKING);
+							hasAttacked = true;
+						}
 					}
 				}
 			}
