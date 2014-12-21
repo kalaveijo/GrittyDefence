@@ -2,6 +2,7 @@ package kalaveijo.game.engine.manager;
 
 import java.util.ArrayList;
 
+import kalaveijo.game.effect.TimedShowFloatingTextEffect;
 import kalaveijo.game.effect.TimedShowTextEffect;
 import kalaveijo.game.effect.TimedSpawnWaveEffect;
 import kalaveijo.game.engine.Entity;
@@ -211,6 +212,12 @@ public class GameManager {
 					// restore health
 					e.setHealth(restoreAmount);
 					// play effect
+					objectManager
+							.addToAboveEffectList(new TimedShowFloatingTextEffect(
+									new MapLocation(e.getLocation().x, e
+											.getLocation().y), objectManager,
+									2000, "Gained: " + restoreAmount, 12,
+									Entity.UP));
 					// EFFECT MISSING TODO
 				}
 			}
