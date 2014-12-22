@@ -205,20 +205,23 @@ public class GameManager {
 					// we always want to restore something for small maxhealths
 					if (restoreAmount == 0)
 						restoreAmount = 1;
+					int restoreTextInt = restoreAmount;
 					restoreAmount = restoreAmount + e.getHealth();
 					// if health would go over boundaries, set it to max
-					if (restoreAmount + e.getHealth() > t.getHealth())
+					if (restoreAmount + e.getHealth() > t.getHealth()){
+						restoreTextInt = t.getHealth() - e.getHealth();
 						restoreAmount = t.getHealth();
+					}
 					// restore health
 					e.setHealth(restoreAmount);
 					// play effect
+					if(restoreTextInt != 0)
 					objectManager
 							.addToAboveEffectList(new TimedShowFloatingTextEffect(
-									new MapLocation(e.getLocation().x, e
-											.getLocation().y), objectManager,
-									2000, "Gained: " + restoreAmount, 12,
+									new MapLocation(e.getPosX(), e
+											.getPosY()), objectManager,
+									1500, "+" + restoreTextInt, 20,
 									Entity.UP));
-					// EFFECT MISSING TODO
 				}
 			}
 

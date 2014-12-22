@@ -21,6 +21,7 @@ public class TimedShowTextEffect extends TimedEffect {
 		super(startLocation, om, howLong);
 		this.text = textToShow;
 		this.size = size;
+		this.location = new Point(startLocation.x*Options.TILE_SIZE, startLocation.y*Options.TILE_SIZE);
 	}
 	
 	public void move(){
@@ -30,10 +31,10 @@ public class TimedShowTextEffect extends TimedEffect {
 	}
 	
 	public void draw(Canvas c){
-		Point point = new Point(startLocation.x*Options.TILE_SIZE, startLocation.y*Options.TILE_SIZE);
+
 		Paint paint = new Paint();
 		paint.setTextSize(size);
-		c.drawText(text, point.x, point.y, paint);
+		c.drawText(text, location.x, location.y, paint);
 	}
 
 }

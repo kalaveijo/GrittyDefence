@@ -29,32 +29,32 @@ public class TimedShowFloatingTextEffect extends TimedShowTextEffect {
 		switch (direction) {
 
 		case Entity.UP:
-			this.posY = this.posY - 1;
+			this.location.y = this.location.y - 1;
 			break;
 		case Entity.UP_LEFT:
-			this.posY = this.posY - 1;
-			this.posX = this.posX - 1;
+			this.location.y = this.location.y - 1;
+			this.location.x = this.location.x - 1;
 			break;
 		case Entity.UP_RIGHT:
-			this.posY = this.posY - 1;
-			this.posX = this.posX + 1;
+			this.location.y = this.location.y - 1;
+			this.location.x = this.location.x + 1;
 			break;
 		case Entity.DOWN:
-			this.posY = this.posY + 1;
+			this.location.y = this.location.y + 1;
 			break;
 		case Entity.DOWN_LEFT:
-			this.posY = this.posY + 1;
-			this.posX = this.posX - 1;
+			this.location.y = this.location.y + 1;
+			this.location.x = this.location.x - 1;
 			break;
 		case Entity.DOWN_RIGHT:
-			this.posY = this.posY + 1;
-			this.posX = this.posX + 1;
+			this.location.y = this.location.y + 1;
+			this.location.x = this.location.x + 1;
 			break;
 		case Entity.LEFT:
-			this.posX = this.posX - 1;
+			this.location.x = this.location.x - 1;
 			break;
 		case Entity.RIGHT:
-			this.posX = this.posX + 1;
+			this.location.x = this.location.x + 1;
 			break;
 
 		}
