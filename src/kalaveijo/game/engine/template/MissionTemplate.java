@@ -79,9 +79,9 @@ public class MissionTemplate extends Mission {
 		for (int i = 1; i < 11; i++) {
 
 			// create random amount of sub waves
-			for (int e = 0; e < randInt(1, i + 1); e++) {
+			for (int e = 0; e < randInt(1, i + 2); e++) {
 				// create random amount of units in subwave
-				for (int u = 0; u < randInt(1 + e, 6); u++) {
+				for (int u = 0; u < randInt(4,6); u++) {
 
 					String randomName = allowedUnits.get(randInt(0,
 							allowedUnits.size() - 1));
