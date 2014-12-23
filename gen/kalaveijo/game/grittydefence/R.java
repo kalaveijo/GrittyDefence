@@ -36,8 +36,9 @@ public final class R {
         public static final int machinegunner=0x7f02000c;
         public static final int mine=0x7f02000d;
         public static final int mortar=0x7f02000e;
-        public static final int spawn=0x7f02000f;
-        public static final int wall=0x7f020010;
+        public static final int rifleman=0x7f02000f;
+        public static final int spawn=0x7f020010;
+        public static final int wall=0x7f020011;
     }
     public static final class id {
         public static final int action_settings=0x7f080001;
