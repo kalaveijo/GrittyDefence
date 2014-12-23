@@ -1,5 +1,7 @@
 package kalaveijo.game.util;
 
+import java.util.ArrayList;
+
 import kalaveijo.game.engine.BitmapContainer;
 import kalaveijo.game.engine.Entity;
 
@@ -46,4 +48,27 @@ abstract public class Methods {
 		return BitmapContainer.die_left;
 	}
 
+	static public boolean ifStringExistInList(String key, ArrayList<String> list){
+		
+		for(String string : list){
+			if(key.equals(string)){
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	static public boolean ifListsHaveCommonString(ArrayList<String> list, ArrayList<String> list2){
+		
+		for(String s : list){
+			for(String s2 : list2){
+				if(s.equals(s2)){
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
 }

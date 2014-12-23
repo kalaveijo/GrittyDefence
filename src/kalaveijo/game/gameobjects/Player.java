@@ -1,9 +1,12 @@
 package kalaveijo.game.gameobjects;
 
+import java.util.ArrayList;
+
 import kalaveijo.game.engine.Entity;
 import kalaveijo.game.engine.manager.ObjectManager;
 import kalaveijo.game.engine.template.EntityTemplate;
 import kalaveijo.game.util.MapLocation;
+import kalaveijo.game.util.Methods;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -19,6 +22,8 @@ public class Player extends Entity {
 	private int machinegunnerPrice = 3;
 	private int wallPrice = 1;
 	private int minePrice = 1;
+	private ArrayList<String> selectExcludeList;
+	private ArrayList<String> selectExcludeListDuringWave;
 
 	public Player(long id, ObjectManager om) {
 		super(id, om);
@@ -28,6 +33,14 @@ public class Player extends Entity {
 		paint.setStrokeWidth(3);
 		paint.setTextSize(22);
 		selectedEntity = null;
+		//selectExcludeList is a hack, in reality objects should have property where selection is ignored
+		//will be corrected in KiloVictor v2
+		selectExcludeList = new ArrayList<String>();
+		selectExcludeListDuringWave = new ArrayList<String>();
+		selectExcludeList.add("hq");
+		selectExcludeListDuringWave.add("hq");
+		selectExcludeListDuringWave.add("mine");
+		selectExcludeListDuringWave.add("wall");
 	}
 
 	public void draw(Canvas c) {
@@ -58,7 +71,22 @@ public class Player extends Entity {
 
 	public void selectEntity(Entity e) {
 		this.selectedEntity = null;
-		this.selectedEntity = e;
+		if(!Methods.ifStringExistInList(e.getName(), selectExcludeList)){
+			this.selectedEntity = e;
+		}	
+	}
+	
+	public void selectEntity(Entity e, boolean isBuildPhase) {
+		this.selectedEntity = null;
+		if(isBuildPhase){
+			if(!Methods.ifStringExistInList(e.getName(), selectExcludeList)){
+				this.selectedEntity = e;
+			}	
+		}else{
+			if(!Methods.ifStringExistInList(e.getName(), selectExcludeListDuringWave)){
+				this.selectedEntity = e;
+			}
+		}
 	}
 
 	public Entity getSelectedEntity() {

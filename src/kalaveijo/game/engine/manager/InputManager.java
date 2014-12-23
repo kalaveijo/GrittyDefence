@@ -25,6 +25,7 @@ public class InputManager {
 	private ArrayList<InputEvent> eventList;
 	private GUIManager guiManager;
 	private MapLocation lastClickedLocation;
+	
 
 	public InputManager(GameManager gameManager, ObjectManager objectManager,
 			GameSurfaceView cv, GUIManager guiManager) {
@@ -34,6 +35,9 @@ public class InputManager {
 		this.guiManager = guiManager;
 		eventList = new ArrayList<InputEvent>();
 		lastClickedLocation = new MapLocation(1, 1);
+		
+		
+		
 	}
 
 	public void processInputs() {
@@ -131,7 +135,7 @@ public class InputManager {
 										.getPlayer()
 										.selectEntity(
 												objectManager
-														.getPlayerEntityByPosition(convertInputToMapLocation(lastEvent)));
+														.getPlayerEntityByPosition(convertInputToMapLocation(lastEvent)), false);
 								// if unit is selected, order move for AI
 							}
 
