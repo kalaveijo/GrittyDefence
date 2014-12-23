@@ -2,6 +2,7 @@ package kalaveijo.game.gameobjects;
 
 import java.util.ArrayList;
 
+import kalaveijo.game.effect.SelectionVisualizationEffect;
 import kalaveijo.game.engine.Entity;
 import kalaveijo.game.engine.manager.ObjectManager;
 import kalaveijo.game.engine.template.EntityTemplate;
@@ -73,6 +74,7 @@ public class Player extends Entity {
 		this.selectedEntity = null;
 		if(!Methods.ifStringExistInList(e.getName(), selectExcludeList)){
 			this.selectedEntity = e;
+			om.addToAboveEffectList(new SelectionVisualizationEffect(new MapLocation(e.getPosX(),e.getPosY()), om));
 		}	
 	}
 	
