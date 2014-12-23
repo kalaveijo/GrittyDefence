@@ -102,6 +102,8 @@ public class MissionTemplate extends Mission {
 
 			// add and remove units as game progresses
 			if (i == 1)
+				allowedUnits.add("farmer");
+			if (i == 2)
 				allowedUnits.add("rifleman");
 			if (i == 4)
 				allowedUnits.remove("cow");

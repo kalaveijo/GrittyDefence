@@ -100,4 +100,14 @@
 		<projectile>bullet</projectile>
 		<bitmapcontainergroup>wall</bitmapcontainergroup>
 	</unit>
+	<unit>
+		<name>farmer</name>
+		<health>4</health>
+		<speed>4</speed>
+		<range>1</range>
+		<atkspeed>3</atkspeed>
+		<player>enemy</player>
+		<projectile>bullet</projectile>
+		<bitmapcontainergroup>fistmecha</bitmapcontainergroup>
+	</unit>
 </unitlist>
