@@ -74,8 +74,8 @@
 		<name>mortar</name>
 		<health>5</health>
 		<speed>4</speed>
-		<range>3</range>
-		<atkspeed>3</atkspeed>
+		<range>6</range>
+		<atkspeed>1</atkspeed>
 		<player>player</player>
 		<projectile>mortar</projectile>
 		<bitmapcontainergroup>mortar</bitmapcontainergroup>

@@ -51,6 +51,9 @@ public class GUIManager {
 
 		unitRing.addGUIElement(new GUIElement(null, "Mine", new Point(center.x,
 				center.y - 80)));
+		
+		unitRing.addGUIElement(new GUIElement(null, "Mortar", new Point(center.x,
+				center.y + 80)));
 
 		addGUIGroup(unitRing);
 

@@ -198,6 +198,14 @@ public class InputManager {
 										lastClickedLocation);
 								guiManager.removeLastGUIGroup();
 							}
+							
+							if (element.getName().equals("Mortar")) {
+
+								// buy machinegunner
+								objectManager.getPlayer().buyUnit("mortar",
+										lastClickedLocation);
+								guiManager.removeLastGUIGroup();
+							}
 						}
 						if (group.getName().equals("staticGui")) {
 							// gameManager.endBuildPhase();

@@ -23,6 +23,7 @@ public class Player extends Entity {
 	private int machinegunnerPrice = 3;
 	private int wallPrice = 1;
 	private int minePrice = 2;
+	private int mortarPrice = 6;
 	private ArrayList<String> selectExcludeList;
 	private ArrayList<String> selectExcludeListDuringWave;
 
@@ -30,9 +31,7 @@ public class Player extends Entity {
 		super(id, om);
 		paint = new Paint();
 		paint.setColor(Color.WHITE);
-		paint.setStyle(Paint.Style.STROKE);
-		paint.setStrokeWidth(3);
-		paint.setTextSize(22);
+		paint.setTextSize(30);
 		selectedEntity = null;
 		//selectExcludeList is a hack, in reality objects should have property where selection is ignored
 		//will be corrected in KiloVictor v2
@@ -45,7 +44,13 @@ public class Player extends Entity {
 	}
 
 	public void draw(Canvas c) {
+		Paint border = new Paint();
+		border.setColor(Color.BLACK);
+		border.setStyle(Paint.Style.STROKE);
+		border.setStrokeWidth(1);
+		border.setTextSize(30);
 		c.drawText("Money: " + money, 500, 35, paint);
+		c.drawText("Money: " + money, 500, 35, border);
 	}
 
 	public int getMoney() {
@@ -126,6 +131,19 @@ public class Player extends Entity {
 			if (om.mapLocationIsFreeOfMines(ml)) {
 				if (om.mapLocationIsFree(ml.x, ml.y)) {
 					if (subtractMoney(minePrice)) {
+						Unit u = selectUnitFromTemplates(unitName);
+						if (u != null) {
+							om.spawnPlayerUnit(u, ml.x, ml.y);
+						}
+					}
+				}
+			}
+		}
+		
+		if (unitName.equals("mortar")) {
+			if (om.mapLocationIsFreeOfMines(ml)) {
+				if (om.mapLocationIsFree(ml.x, ml.y)) {
+					if (subtractMoney(mortarPrice)) {
 						Unit u = selectUnitFromTemplates(unitName);
 						if (u != null) {
 							om.spawnPlayerUnit(u, ml.x, ml.y);
