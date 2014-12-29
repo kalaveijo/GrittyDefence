@@ -2,6 +2,7 @@ package kalaveijo.game.engine.manager;
 
 import java.util.ArrayList;
 
+import kalaveijo.game.effect.EnemyPreviewEffect;
 import kalaveijo.game.effect.TimedShowFloatingTextEffect;
 import kalaveijo.game.effect.TimedShowTextEffect;
 import kalaveijo.game.effect.TimedSpawnWaveEffect;
@@ -65,6 +66,7 @@ public class GameManager {
 		spawnHQ(2, 5);
 		objectManager.addToAboveEffectList(new TimedShowTextEffect(
 				new MapLocation(2, 5), objectManager, 5000, "DEFEND!", 20));
+		createEnemyPreviewEffects();
 	}
 
 	public boolean spawnWave(int waveNumber) {
@@ -138,6 +140,7 @@ public class GameManager {
 			rewardPlayerAfterWaves();
 			recoverUnitHealth();
 			waveNumber++;
+			createEnemyPreviewEffects();
 		}
 	}
 
@@ -227,5 +230,50 @@ public class GameManager {
 
 		}
 
+	}
+	
+	/*
+	 * Creates small pictures where it shows enemy types and amounts
+	 */
+	private void createEnemyPreviewEffects(){
+		
+		ArrayList<MissionWave> nextWave = new ArrayList<MissionWave>();
+		ArrayList<Unit> collectedUnits = new ArrayList<Unit>();
+		ArrayList<String> collectedUnitNames = new ArrayList<String>();
+		int i = 0;
+		int y = 0;
+		// get all subwaves
+		for(MissionWave wave : currentMission.getWaveList()){
+			if(wave.getWaveNumber() == waveNumber){
+				nextWave.add(wave);
+			}
+		}
+		
+		// get all unittypes
+		for(MissionWave w : nextWave){
+			for(Unit u : w.getEnemyUnitList()){		
+					if(!collectedUnitNames.contains(u.getName())){
+						collectedUnitNames.add(u.getName());
+						collectedUnits.add(u);
+					}
+			}			
+		}
+		
+		//count all unittypes and create effects
+		for(Unit u : collectedUnits){
+			for(MissionWave mw : nextWave){
+				for(Unit e : mw.getEnemyUnitList()){
+					if(u.getName().equals(e.getName())){
+						i++;
+					}
+				}
+			}
+			
+			//create effect
+		objectManager.getAboveEffectList().add(new EnemyPreviewEffect(new MapLocation(18, 2 + y), objectManager, this, u, i));
+			i=0;
+			y = y + 2;
+		}
+		
 	}
 }
