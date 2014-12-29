@@ -180,13 +180,15 @@ public class Ai {
 			return selectedTiles;
 		}
 
+		int m = 1;
 		// miten monta kierrosta halutaan
 		for (int i = 1; i < range + 1; i++) {
 
 			if (i < 3) {
 				currentX = currentX - i;
 			} else {
-				currentX = currentX - (i - 1);
+				currentX = currentX - (i - m);
+				m++;
 			}
 			selectedTiles.add(new MapLocation(currentX, currentY));
 			for (int e = 0; e < i; e++) {
