@@ -21,4 +21,11 @@
         <damage>3</damage>
         <bitmapcontainergroup>bullet</bitmapcontainergroup>
     </projectile>
+    <projectile>
+        <name>mortar</name>
+        <effect>singleshotexplosion</effect>
+        <health>20</health>
+        <damage>3</damage>
+        <bitmapcontainergroup>mortar</bitmapcontainergroup>
+    </projectile>
 </projectilelist>

@@ -1,6 +1,7 @@
 package kalaveijo.game.gameobjects;
 
 import kalaveijo.game.effect.SingleshotEffect;
+import kalaveijo.game.effect.SingleshotEffectExplosion;
 import kalaveijo.game.effect.SingleshotEffectNoMiss;
 import kalaveijo.game.effect.SingleshotEffectNoMissExplosion;
 import kalaveijo.game.engine.Effect;
@@ -67,6 +68,12 @@ public class Projectile extends Entity {
 			return new SingleshotEffectNoMissExplosion(currentLocation,
 					targetLocation, super.health, om, damage);
 		}
+		
+		if (effect.equals("singleshotexplosion")) {
+			return new SingleshotEffectExplosion(currentLocation,
+					targetLocation, super.health, om, damage, this);
+		}
+
 
 		// if all fails, default singleshot
 		return new SingleshotEffect(currentLocation, targetLocation,
