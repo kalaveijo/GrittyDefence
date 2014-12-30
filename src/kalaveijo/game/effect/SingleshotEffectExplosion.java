@@ -19,6 +19,7 @@ public class SingleshotEffectExplosion extends SingleshotEffect {
 	private Projectile projectile;
 	private int iX;
 	private int iY;
+	private boolean runOnce = true;
 	
 	public SingleshotEffectExplosion(MapLocation startLocation,
 			MapLocation endLocation, int health, ObjectManager om, int damage, Projectile projectile) {
@@ -33,6 +34,8 @@ public class SingleshotEffectExplosion extends SingleshotEffect {
 		currentPoint.x = currentPoint.x + iX;
 		currentPoint.y = currentPoint.y + iY;
 		}else{
+			if(runOnce)currentPoint.x = currentPoint.x + (iX*offSet);
+			if(runOnce)currentPoint.y = currentPoint.y + (iY*offSet);
 			Paint paint = new Paint();
 			paint.setColor(Color.YELLOW);
 			c.drawCircle(currentPoint.x, currentPoint.y, radius, paint);
@@ -40,7 +43,8 @@ public class SingleshotEffectExplosion extends SingleshotEffect {
 			c.drawCircle(currentPoint.x, currentPoint.y - Options.TILE_SIZE, radius, paint); //above
 			c.drawCircle(currentPoint.x + Options.TILE_SIZE, currentPoint.y, radius, paint); //right
 			c.drawCircle(currentPoint.x, currentPoint.y + Options.TILE_SIZE, radius, paint); //down
-			radius = radius + 3;
+			radius = radius + 5;
+			runOnce = false;
 		}
 	}
 
