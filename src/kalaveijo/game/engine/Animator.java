@@ -1,6 +1,7 @@
 package kalaveijo.game.engine;
 
 import kalaveijo.game.gameobjects.Unit;
+import kalaveijo.game.util.Options;
 import android.graphics.Bitmap;
 
 /*
@@ -16,15 +17,20 @@ public class Animator {
 	private int howManyFramesToSkip = 2;
 	private int framesSkipped = 0;
 	private boolean allowFrameChange = true;
+	private int maxActionLeft = Options.GAME_SPEED;
 
 	public Animator(Entity e) {
 		this.e = e;
+		
 	}
 
 	// this is called by entity draw(Canvas c);
 	public Bitmap animate() {
 		// find unit state
 		checkIfStatusChanged();
+		
+		//if dying, animate differently
+		if(e.getStatus() == Entity.DYING) return animateDying();
 		
 		// move frame if should
 		if(framesSkipped >= howManyFramesToSkip){							
@@ -50,6 +56,40 @@ public class Animator {
 		}		
 	}
 
+	
+	private Bitmap animateDying(){
+		
+		int ActionLeft = e.getActionLeft();
+		int interval = maxActionLeft / 4;
+		
+		// move frame if should
+				if(framesSkipped >= howManyFramesToSkip){	
+					
+						if(ActionLeft > interval * 3){
+							frame = 0;
+						}else if(ActionLeft > interval * 2){
+							frame = 1;
+						}else if(ActionLeft > interval){
+							frame = 2;
+						}else{
+							frame = 3;
+						}
+						
+						allowFrameChange = false;
+						framesSkipped = 0;		
+				}else{
+					framesSkipped++;
+				}
+				
+				// fetch correct bitmap
+				if (e.getBmContainerGroup() != null) {
+					Bitmap b = findCorrectBitmap();
+					return b;
+				} else {
+					return null;
+				}	
+	}
+	
 	// checks if status has changed
 	// reset frame if so
 	private void checkIfStatusChanged() {
@@ -57,6 +97,7 @@ public class Animator {
 			lastStatus = e.getStatus();
 			frame = 0;
 			modifier = -1;
+			
 		}
 	}
 
