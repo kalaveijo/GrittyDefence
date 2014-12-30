@@ -669,4 +669,12 @@ public class Renderer {
 		return dst;
 	}
 	
+	public void drawBloodOnMap(Point point){
+		
+	}
+	
+	public void drawCraterOnMap(Point point){
+		
+	}
+	
 }
