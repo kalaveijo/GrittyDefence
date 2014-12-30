@@ -17,8 +17,6 @@ public class SingleshotEffectExplosion extends SingleshotEffect {
 	private int offSet = 5;
 	private int radius = 1;
 	private Projectile projectile;
-	private int iX;
-	private int iY;
 	private boolean runOnce = true;
 	
 	public SingleshotEffectExplosion(MapLocation startLocation,
@@ -30,21 +28,20 @@ public class SingleshotEffectExplosion extends SingleshotEffect {
 	public void draw(Canvas c) {
 		if(projectile.getHealth() > offSet){
 		c.drawCircle(currentPoint.x, currentPoint.y, 5, new Paint());
-		calculateIncrements();
 		currentPoint.x = currentPoint.x + iX;
 		currentPoint.y = currentPoint.y + iY;
 		}else{
-			if(runOnce)currentPoint.x = currentPoint.x + (iX*offSet);
-			if(runOnce)currentPoint.y = currentPoint.y + (iY*offSet);
+			c.drawCircle(currentPoint.x, currentPoint.y, 5, new Paint());
+			currentPoint.x = currentPoint.x + iX;
+			currentPoint.y = currentPoint.y + iY;
 			Paint paint = new Paint();
 			paint.setColor(Color.YELLOW);
-			c.drawCircle(currentPoint.x, currentPoint.y, radius, paint);
-			c.drawCircle(currentPoint.x - Options.TILE_SIZE, currentPoint.y, radius, paint); //left
-			c.drawCircle(currentPoint.x, currentPoint.y - Options.TILE_SIZE, radius, paint); //above
-			c.drawCircle(currentPoint.x + Options.TILE_SIZE, currentPoint.y, radius, paint); //right
-			c.drawCircle(currentPoint.x, currentPoint.y + Options.TILE_SIZE, radius, paint); //down
+			c.drawCircle(endPoint.x, endPoint.y, radius, paint);
+			c.drawCircle(endPoint.x - Options.TILE_SIZE, endPoint.y, radius, paint); //left
+			c.drawCircle(endPoint.x, endPoint.y - Options.TILE_SIZE, radius, paint); //above
+			c.drawCircle(endPoint.x + Options.TILE_SIZE, endPoint.y, radius, paint); //right
+			c.drawCircle(endPoint.x, endPoint.y + Options.TILE_SIZE, radius, paint); //down
 			radius = radius + 5;
-			runOnce = false;
 		}
 	}
 
@@ -60,17 +57,13 @@ public class SingleshotEffectExplosion extends SingleshotEffect {
 		
 		for(Entity e : unitsGettingHit){
 		if (e != null && e instanceof Unit) {
+			if(!om.getPlayerUnits().contains(e)){
 			Unit u = (Unit) e;
 			int direction = u.calculateDirection(startLocation, endLocation);
 			u.setLastHitDirection(direction);
 			u.getDamage(damage);
-		}}
+		}}}
 	}
 	
-	// calculate how many steps can be taken
-		private void calculateIncrements() {
-			iX = (int) Math.floor((endPoint.x - currentPoint.x) / (this.health - offSet));
-			iY = (int) Math.floor((endPoint.y - currentPoint.y) / (this.health - offSet));
-		}
 	
 }
