@@ -22,6 +22,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.util.DisplayMetrics;
 
 /*
@@ -89,7 +90,7 @@ public class Renderer {
 
 		// draw under effects
 		drawUnderEffects(canvas);
-		
+
 		// draw units
 		drawUnits(canvas);
 
@@ -143,18 +144,18 @@ public class Renderer {
 		deathCollectorList.clear();
 	}
 
-	protected void drawAboveEffects(Canvas c){
+	protected void drawAboveEffects(Canvas c) {
 		for (Entity e : om.getAboveEffectList()) {
 			e.draw(c);
 		}// for
 	}
-	
-	protected void drawUnderEffects(Canvas c){
+
+	protected void drawUnderEffects(Canvas c) {
 		for (Entity e : om.getUnderEffectList()) {
 			e.draw(c);
 		}// for
 	}
-	
+
 	protected void drawUnits(Canvas c) {
 
 		for (Entity u : om.getPlayerUnits()) {
@@ -579,27 +580,27 @@ public class Renderer {
 				Options.TILE_SIZE, true);
 		bmg.addBitmapContainer(new BitmapContainer(picture, "Right_arrow",
 				BitmapContainer.RIGHT, 0, false, bmg));
-		
+
 		picture = BitmapFactory.decodeResource(cv.getResources(),
 				R.drawable.arrow_down_left);
 		picture = Bitmap.createScaledBitmap(picture, Options.TILE_SIZE,
 				Options.TILE_SIZE, true);
 		bmg.addBitmapContainer(new BitmapContainer(picture, "Down_left_arrow",
 				BitmapContainer.DOWNLEFT, 0, false, bmg));
-		
+
 		picture = BitmapFactory.decodeResource(cv.getResources(),
 				R.drawable.arrow_up_left);
 		picture = Bitmap.createScaledBitmap(picture, Options.TILE_SIZE,
 				Options.TILE_SIZE, true);
 		bmg.addBitmapContainer(new BitmapContainer(picture, "up_left_arrow",
 				BitmapContainer.UPLEFT, 0, false, bmg));
-		
+
 		picture = BitmapFactory.decodeResource(cv.getResources(),
 				R.drawable.arrow_up_down_left);
 		picture = Bitmap.createScaledBitmap(picture, Options.TILE_SIZE,
 				Options.TILE_SIZE, true);
-		bmg.addBitmapContainer(new BitmapContainer(picture, "up_down_left_arrow",
-				BitmapContainer.UPDOWNLEFT, 0, false, bmg));
+		bmg.addBitmapContainer(new BitmapContainer(picture,
+				"up_down_left_arrow", BitmapContainer.UPDOWNLEFT, 0, false, bmg));
 
 		bitmapContainers.add(bmg);
 		//
@@ -668,13 +669,13 @@ public class Renderer {
 		dst.setDensity(DisplayMetrics.DENSITY_DEFAULT);
 		return dst;
 	}
-	
-	public void drawBloodOnMap(Point point){
-		
+
+	public void drawBloodOnMap(Point point) {
+
 	}
-	
-	public void drawCraterOnMap(Point point){
-		
+
+	public void drawCraterOnMap(Point point) {
+
 	}
-	
+
 }
