@@ -18,11 +18,13 @@ public class SingleshotEffectExplosion extends SingleshotEffect {
 	private int radius = 1;
 	private Projectile projectile;
 	private boolean runOnce = true;
+	private int scatterDamage;
 	
 	public SingleshotEffectExplosion(MapLocation startLocation,
 			MapLocation endLocation, int health, ObjectManager om, int damage, Projectile projectile) {
 		super(startLocation, endLocation, health, om, damage);
 		this.projectile = projectile;
+		scatterDamage = (int) Math.ceil((damage * 0.64));
 	}
 
 	public void draw(Canvas c) {
@@ -61,7 +63,10 @@ public class SingleshotEffectExplosion extends SingleshotEffect {
 			Unit u = (Unit) e;
 			int direction = u.calculateDirection(startLocation, endLocation);
 			u.setLastHitDirection(direction);
-			u.getDamage(damage);
+			if(runOnce){u.getDamage(damage);}else{
+				u.getDamage(scatterDamage);
+			}
+			runOnce = false;
 		}}}
 	}
 	
