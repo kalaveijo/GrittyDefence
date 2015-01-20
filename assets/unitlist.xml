@@ -108,6 +108,6 @@
 		<atkspeed>3</atkspeed>
 		<player>enemy</player>
 		<projectile>bullet</projectile>
-		<bitmapcontainergroup>fistmecha</bitmapcontainergroup>
+		<bitmapcontainergroup>farmer</bitmapcontainergroup>
 	</unit>
 </unitlist>
